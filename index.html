@@ -6,7 +6,7 @@
     <!-- Updated Meta Description for SEO -->
     <meta name="description" content="Lerne, KI zu denken. Dein 1:1 KI-Sparring für Unternehmer:innen & Führungskräfte in Wien. Entwickle die strategische Denkweise für deinen entscheidenden Vorsprung.">
 
-    <link rel="canonical" href="https://www.ki-coaching-wien.at/">
+    <link rel="canonical" href="https://aisabella.ai/">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,18 +23,7 @@
                 {
                     "@type": "Organization",
                     "name": "AIsabella | KI-Coaching Wien",
-                    "url": "https://www.ki-coaching-wien.at/",
-                    "logo": "https://www.ki-coaching-wien.at/logo.png",
-                    "contactPoint": {
-                        "@type": "ContactPoint",
-                        "telephone": "+43-XXX-XXXXXX",
-                        "contactType": "customer service"
-                    },
-                    "address": {
-                        "@type": "PostalAddress",
-                        "addressLocality": "Wien",
-                        "addressCountry": "AT"
-                    }
+                    "url": "https://aisabella.ai/"
                 },
                 {
                     "@type": "Person",
@@ -206,8 +195,26 @@
             <a href="#about" class="text-gray-300 hover:text-white transition">Über Mich</a>
             <a href="#faq" class="text-gray-300 hover:text-white transition">FAQ</a>
         </div>
-        <a href="#contact" class="hidden md:inline-block cta-button text-white font-bold py-2 px-6 rounded-lg">Termin vereinbaren</a>
+        <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="hidden md:inline-block cta-button text-white font-bold py-2 px-6 rounded-lg">Termin vereinbaren</a>
+        <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menü öffnen"
+                class="md:hidden ml-3 p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition">
+            <svg data-icon="open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg data-icon="close" class="h-6 w-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
     </nav>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+        <div class="flex flex-col space-y-2">
+            <a href="#philosophy" class="block py-2 text-gray-300 hover:text-white transition">Philosophie</a>
+            <a href="#offer" class="block py-2 text-gray-300 hover:text-white transition">Angebot</a>
+            <a href="#about" class="block py-2 text-gray-300 hover:text-white transition">Über Mich</a>
+            <a href="#faq" class="block py-2 text-gray-300 hover:text-white transition">FAQ</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
+        </div>
+    </div>
 </header>
 
 <main>
@@ -221,7 +228,7 @@
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-2">Lerne, KI zu denken.</h1>
             <p class="text-xl md:text-2xl font-semibold gradient-text mb-6">Dein 1:1 KI-Sparring für Unternehmer:innen & Führungskräfte in Wien.</p>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Dir fehlt die Zeit für generische Kurse und endlose Tutorials? In unserem Sparring entwickeln wir die strategische Denkweise für deinen entscheidenden Vorsprung.</p>
-            <a href="#contact" class="cta-button text-white font-bold py-4 px-10 rounded-lg text-lg">
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
                 Jetzt Termin vereinbaren
             </a>
             <p class="text-sm text-gray-500 mt-3">Dein unverbindliches 20-Minuten-Gespräch.</p>
@@ -314,7 +321,7 @@
     <section id="about" class="bg-gray-800 py-20">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
             <div class="md:w-1/3 text-center mb-8 md:mb-0">
-                <img src="https://placehold.co/192x192/2D3748/E2E8F0?text=AIsabella" alt="Portrait von Isabella Bogdanovic" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
+                <img src="images/Bogdanovic_Profile_Photo.jpg" alt="Portrait von Isabella Bogdanovic" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
                 <h3 class="text-2xl font-bold text-white">Isabella Bogdanovic</h3>
                 <p class="gradient-text font-semibold">AIsabella – Deine KI-Denkerin & Sparringspartnerin</p>
             </div>
@@ -322,6 +329,15 @@
                 <h2 class="text-3xl font-bold text-white mb-4">Mein Weg: Vom neugierigen Anwenden zum souveränen Denken.</h2>
                 <p class="text-lg text-gray-300 leading-relaxed">Meine Faszination für KI begann Anfang 2023, angetrieben von reiner Neugier. Als Early Adopterin ohne technischen Hintergrund nutzte ich die neuen Möglichkeiten anfangs vor allem für mich privat, übertrug meine Erkenntnisse aber rasch in mein berufliches Umfeld und erzielte dort schnell erstaunliche Erfolge. Diese intensive praktische Anwendung führte zu meiner entscheidenden Entdeckung: Ich begann, KI nicht nur für einzelne Aufgaben zu nutzen, sondern als Partnerin für Analyse und Umdenken. Ich lernte, selbst Dinge zu hinterfragen, von denen ich zuvor keine Ahnung hatte – und entdeckte dadurch eine völlig neue Herangehensweise und ein neues Maß an Gestaltungsfreiheit.</p>
                 <p class="text-lg text-gray-300 leading-relaxed mt-4">Mein Weg ist der Beweis, dass man keinen technischen Hintergrund braucht, um KI strategisch zu meistern. Man nähert sich der Technologie einfach von einer anderen Seite – mit dem Fokus auf eine klare Logik, die richtigen Fragen und die praktische Anwendbarkeit in deiner Realität. Diese gelebte Leidenschaft habe ich kürzlich durch Zertifizierungen von international anerkannten Institutionen untermauert.</p>
+                <!-- Certification badge (Austrian Standards) -->
+                <div class="mt-6 flex items-center gap-4">
+                  <div class="bg-white rounded-xl p-2 shadow-lg inline-flex">
+                    <img src="images/AST_Guetesiegel_CERTIFIED.jpg" alt="Austrian Standards CERTIFIED Gütesiegel – Zertifizierung von Isabella Bogdanovic" class="h-16 w-auto sm:h-20 md:h-24 object-contain" loading="lazy">
+                  </div>
+                  <div class="text-gray-300 text-sm leading-snug">
+                    <p class="font-semibold text-white">Austrian Standards – Zertifizierte&nbsp;KI&nbsp;Managerin</p>
+                  </div>
+                </div>
             </div>
         </div>
     </section>
@@ -356,7 +372,7 @@
         <div class="container mx-auto px-6 text-center max-w-2xl">
             <h2 class="text-3xl font-bold text-white mb-4">Bereit für den entscheidenden Vorsprung?</h2>
             <p class="text-lg text-gray-300 mb-8">Der Weg zur KI-Souveränität beginnt mit dem ersten klaren Gedanken. Lass uns diesen gemeinsam fassen. In einem unverbindlichen Erstgespräch klären wir deinen persönlichen Startpunkt und finden heraus, wie aus deinem Interesse ein echter strategischer Vorteil wird.</p>
-            <a href="mailto:isabella@example.com?subject=Anfrage%20Terminvereinbarung%20KI-Sparring" class="cta-button text-white font-bold py-4 px-10 rounded-lg text-lg">
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
                 Jetzt Termin vereinbaren
             </a>
             <div class="mt-10 p-6 glass-card rounded-lg inline-block border border-cyan-500/30 shadow-lg">
@@ -407,8 +423,9 @@
             <div id="imprint-content" class="text-xs mt-2 hidden leading-6">
               <p>
                 AIsabella<br>Isabella Bogdanovic<br>
-                Wien, Österreich<br><br>
-                Kontakt: <a href="mailto:isabella@example.com" class="underline hover:text-gray-300">isabella@example.com</a><br><br>
+                  Kaltenleutgebner Straße 24/10/14<br>
+                  1230 Wien, Österreich<br><br>
+                Kontakt: <a href="#" class="protected-email underline hover:text-gray-300">E‑Mail anzeigen</a><br><br>
                 Verantwortlich für den Inhalt:<br>Isabella Bogdanovic
               </p>
             </div>
@@ -421,26 +438,64 @@
 
 <!-- Imprint toggle -->
 <script>
+  // Obfuscated contact rendering (email)
+  function decodeAndRenderEmail() {
+    // 'aisabella' (username)
+    const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+    // 'aisabella' (domain)
+    const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+    // 'ai' (tld)
+    const t = [97, 105];
+    return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    // Inject email into protected elements
+    try {
+      const email = decodeAndRenderEmail();
+      document.querySelectorAll(".protected-email").forEach((el) => {
+        el.textContent = email;
+        el.setAttribute("href", "mailto:" + email);
+      });
+    } catch {}
+
+    // Impressum ein-/ausblenden
     const btn = document.getElementById("show-imprint");
     const content = document.getElementById("imprint-content");
-    if (!btn || !content) return;
-
-    let expanded = false;
-    function updateUI() {
-      if (expanded) {
-        content.classList.remove("hidden");
-        btn.textContent = "Impressum ausblenden";
-      } else {
-        content.classList.add("hidden");
-        btn.textContent = "Impressum anzeigen";
+    if (btn && content) {
+      let expanded = false;
+      function updateUI() {
+        if (expanded) {
+          content.classList.remove("hidden");
+          btn.textContent = "Impressum ausblenden";
+        } else {
+          content.classList.add("hidden");
+          btn.textContent = "Impressum anzeigen";
+        }
       }
-    }
-    btn.addEventListener("click", function () {
-      expanded = !expanded;
+      btn.addEventListener("click", function () {
+        expanded = !expanded;
+        updateUI();
+      });
       updateUI();
-    });
-    updateUI();
+    }
+
+    // Mobiles Menü toggeln
+    const mobileBtn = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener("click", function () {
+        const isHidden = mobileMenu.classList.toggle("hidden");
+        const expanded = !isHidden;
+        mobileBtn.setAttribute("aria-expanded", String(expanded));
+        const openIcon = mobileBtn.querySelector('[data-icon="open"]');
+        const closeIcon = mobileBtn.querySelector('[data-icon="close"]');
+        if (openIcon && closeIcon) {
+          openIcon.classList.toggle("hidden", expanded);
+          closeIcon.classList.toggle("hidden", !expanded);
+        }
+      });
+    }
   });
 </script>
 
