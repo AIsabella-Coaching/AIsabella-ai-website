@@ -202,15 +202,21 @@
 
 <!-- Header Section -->
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold text-white">AIsabella</div>
-        <div class="hidden md:flex space-x-8">
-            <a href="#philosophy" class="text-gray-300 hover:text-white transition">Philosophie</a>
-            <a href="#offer" class="text-gray-300 hover:text-white transition">Angebot</a>
-            <a href="#about" class="text-gray-300 hover:text-white transition">Über Mich</a>
-            <a href="#faq" class="text-gray-300 hover:text-white transition">FAQ</a>
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="/"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto"></a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-10">
+            <div class="space-x-8">
+                 <a href="#philosophy" class="text-base text-gray-300 hover:text-white font-medium transition">Philosophie</a>
+                 <a href="#offer" class="text-base text-gray-300 hover:text-white font-medium transition">Angebot</a>
+                 <a href="#about" class="text-base text-gray-300 hover:text-white font-medium transition">Über Mich</a>
+                 <a href="#faq" class="text-base text-gray-300 hover:text-white font-medium transition">FAQ</a>
+            </div>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
         </div>
-        <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="hidden md:inline-block cta-button text-white font-bold py-2 px-6 rounded-lg">Termin vereinbaren</a>
+
+        <!-- Mobile Menu Button -->
         <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menü öffnen"
                 class="md:hidden ml-3 p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition">
             <svg data-icon="open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -401,6 +407,11 @@
 <!-- Footer -->
 <footer class="bg-gray-900 border-t border-gray-800 py-10">
     <div class="container mx-auto px-6 text-center text-gray-500">
+        <div class="flex justify-center mb-8">
+            <a href="/">
+                <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto opacity-70 hover:opacity-100 transition">
+            </a>
+        </div>
         <!-- Optional: Hier könnten die Logos für Zertifizierungen (TÜV, ISO) platziert werden -->
         <!--<div class="mb-4">
             <p class="text-sm uppercase tracking-wider text-gray-400">Zertifiziert durch:</p>
@@ -409,7 +420,7 @@
                 <img src="placeholder-logo-tuv.svg" alt="TÜV Zertifizierung" class="h-10">
             </div>
         </div>-->
-        <div class="mt-6 flex justify-center">
+        <div class="flex justify-center">
             <a
                 href="https://www.linkedin.com/in/isabella-bogdanovic/"
                 target="_blank"
