@@ -64,9 +64,10 @@
         </p>
         <div class="mt-4 border border-gray-700 rounded-lg p-5">
           <p class="mb-1 font-semibold text-white">AIsabella – Isabella Bogdanovic</p>
-          <p class="mb-1">Wien, Österreich</p>
-          <p class="mb-1">E‑Mail: <a href="mailto:isabella@example.com" class="underline hover:text-gray-200">isabella@example.com</a></p>
-          <p class="mb-0">Website: <a href="/" class="underline hover:text-gray-200">www.ki-coaching-wien.at</a></p>
+          <p class="mb-1">Kaltenleutgebner Straße 24/10/14</p>
+          <p class="mb-1">1230 Wien, Österreich</p>
+          <p class="mb-1">E‑Mail: <a href="#" class="protected-email underline hover:text-gray-200">E‑Mail anzeigen</a></p>
+          <p class="mb-0">Website: <a href="/" class="underline hover:text-gray-200">aisabella.ai</a></p>
         </div>
       </section>
 
@@ -116,7 +117,7 @@
         </p>
         <p class="mt-3">
           Zur Ausübung Ihrer Rechte genügt eine formlose E‑Mail an
-          <a href="mailto:isabella@example.com" class="underline hover:text-gray-200">isabella@example.com</a>.
+          <a href="#" class="protected-email underline hover:text-gray-200">E‑Mail anzeigen</a>.
         </p>
         <p class="mt-3">
           Zudem haben Sie das Recht auf Beschwerde bei der österreichischen Datenschutzbehörde.
@@ -162,7 +163,7 @@
             <p>
               AIsabella<br>Isabella Bogdanovic<br>
               Wien, Österreich<br><br>
-              Kontakt: <a href="mailto:isabella@example.com" class="underline hover:text-gray-300">isabella@example.com</a><br><br>
+              Kontakt: <a href="#" class="protected-email underline hover:text-gray-300">E‑Mail anzeigen</a><br><br>
               Verantwortlich für den Inhalt:<br>Isabella Bogdanovic
             </p>
           </div>
@@ -195,6 +196,26 @@
         updateUI();
       });
       updateUI();
+    });
+  </script>
+
+  <!-- Obfuscated contact rendering (email) -->
+  <script>
+    function decodeAndRenderEmail() {
+      // 'aisabella' as username and domain; 'ai' as TLD
+      const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+      const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+      const t = [97, 105];
+      return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        const email = decodeAndRenderEmail();
+        document.querySelectorAll(".protected-email").forEach(function (el) {
+          el.textContent = email;
+          el.setAttribute("href", "mailto:" + email);
+        });
+      } catch (e) {}
     });
   </script>
 </body>
