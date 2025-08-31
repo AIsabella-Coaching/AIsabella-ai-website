@@ -1,0 +1,7 @@
+# robots.txt for aisabella.ai
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Location of the sitemap file
+Sitemap: https://aisabella.ai/sitemap.xml
