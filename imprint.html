@@ -265,7 +265,7 @@
 
                 <h2 class="text-lg md:text-xl font-bold text-white mt-8">Kontaktdaten:</h2>
                 <p>
-                    <strong>E-Mail:</strong> <a href="mailto:aisabella@aisabella.ai" class="text-cyan-400 hover:text-cyan-300">aisabella@aisabella.ai</a>
+                    <strong>E-Mail:</strong> <a href="#" class="protected-email text-cyan-400 hover:text-cyan-300">E-Mail anzeigen</a>
                 </p>
 
                 <h2 class="text-lg md:text-xl font-bold text-white mt-8">Unternehmensgegenstand:</h2>
@@ -468,6 +468,32 @@
           }
         });
       })();
+    </script>
+
+    <script>
+      // Obfuscated contact rendering (email)
+      function decodeAndRenderEmail() {
+        // 'aisabella' (username)
+        const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+        // 'aisabella' (domain)
+        const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+        // 'ai' (tld)
+        const t = [97, 105];
+        return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inject email into protected elements
+        try {
+          const email = decodeAndRenderEmail();
+          document.querySelectorAll(".protected-email").forEach((el) => {
+            el.textContent = email;
+            el.setAttribute("href", "mailto:" + email);
+          });
+        } catch(e) {
+            console.error("Could not decode email.", e);
+        }
+      });
     </script>
 
 </body>
