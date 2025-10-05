@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
-    <title>AIsabella | Aus der Praxis (Finale Version)</title>
+    <title>AIsabella | Aus der Praxis</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, nosnippet">
@@ -87,12 +87,12 @@
   <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-lg m-4 w-full">
     <!-- Main View -->
     <div id="cookie-view-main">
-      <h2 id="cookie-main-heading" class="text-2xl font-bold">Wir respektieren Ihre Privatsphäre</h2>
+      <h2 id="cookie-main-heading" class="text-2xl font-bold">Ich respektiere Ihre Privatsphäre</h2>
       <p class="mt-3 text-gray-300">
-        Wir verwenden Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern. 
+        Ich verwende Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern. 
         Sie können alle Cookies akzeptieren oder Ihre Einstellungen verwalten. 
         Mehr Informationen finden Sie in unserer 
-        <a href="#privacy" onclick="document.getElementById('cookie-consent-banner').classList.add('hidden')" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
+        <a href="privacy.html" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
       </p>
       <div class="mt-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
         <button id="manage-cookies" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Cookies verwalten</button>
@@ -147,7 +147,7 @@
 <!-- Header Section -->
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-        <a href="/"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto"></a>
+  <a href="index.html#hero" class="inline-flex items-center flex-shrink-0"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto"></a>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10">
@@ -318,11 +318,11 @@
 <!-- Footer -->
 <footer class="bg-gray-900 border-t border-gray-800 py-10">
     <div class="container mx-auto px-6 text-center text-gray-500">
-        <div class="flex justify-center mb-8">
-            <a href="/">
-                <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto">
-            </a>
-        </div>
+    <div class="flex justify-center mb-8">
+      <a href="index.html" class="inline-flex items-center flex-shrink-0">
+        <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto">
+      </a>
+    </div>
         <!-- Optional: Hier könnten die Logos für Zertifizierungen (TÜV, ISO) platziert werden -->
         <!--<div class="mb-4">
             <p class="text-sm uppercase tracking-wider text-gray-400">Zertifiziert durch:</p>
@@ -355,24 +355,8 @@
         <p class="mt-6">&copy; 2025 AIsabella. Alle Rechte vorbehalten.</p>
         <p class="text-sm mt-2">Isabella Bogdanovic | Deine KI-Denkerin & Sparringspartnerin</p>
         <p class="text-sm mt-2">
-          <a href="privacy.html" class="underline hover:text-gray-300">Datenschutzerklärung</a>
+          <a href="privacy.html" class="underline hover:text-gray-300">Datenschutzerklärung</a> | <a href="imprint.html" class="underline hover:text-gray-300">Impressum</a>
         </p>
-        <div class="mt-6 flex justify-center">
-            <div class="text-left max-w-xs text-gray-400">
-                <button id="show-imprint" class="text-xs hover:text-purple-300 transition-colors">
-                    Impressum anzeigen
-                </button>
-                <div id="imprint-content" class="text-xs mt-2 hidden leading-6" data-nosnippet>
-                    <p>
-                        AIsabella<br>Isabella Bogdanovic<br>
-                        Kaltenleutgebner Straße 24/10/14<br>
-                        1230 Wien, Österreich<br><br>
-                        Kontakt: <a href="#" class="protected-email underline hover:text-gray-300">E‑Mail anzeigen</a><br><br>
-                        Verantwortlich für den Inhalt:<br>Isabella Bogdanovic
-                    </p>
-                </div>
-            </div>
-        </div>
     </div>
 </footer>
 
@@ -398,16 +382,6 @@
         el.setAttribute("href", "mailto:" + email);
       });
     } catch {}
-
-    // Impressum ein-/ausblenden
-    const btn = document.getElementById("show-imprint");
-    const content = document.getElementById("imprint-content");
-
-    if (btn && content) {
-      btn.addEventListener("click", function () {
-        content.classList.toggle("hidden");
-      });
-    }
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -543,6 +517,52 @@
       }
     });
   })();
+</script>
+
+<!-- Mobile menu toggle -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mobile menu toggle functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle menu visibility
+            mobileMenu.classList.toggle('hidden');
+            
+            // Toggle icons
+            const openIcon = this.querySelector('[data-icon="open"]');
+            const closeIcon = this.querySelector('[data-icon="close"]');
+            
+            if (openIcon && closeIcon) {
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            }
+            
+            // Update aria-expanded
+            const isExpanded = !mobileMenu.classList.contains('hidden');
+            this.setAttribute('aria-expanded', isExpanded.toString());
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                const openIcon = mobileMenuButton.querySelector('[data-icon="open"]');
+                const closeIcon = mobileMenuButton.querySelector('[data-icon="close"]');
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+  });
 </script>
 
 </body>

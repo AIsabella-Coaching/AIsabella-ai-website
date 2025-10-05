@@ -159,12 +159,12 @@
   <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-lg m-4 w-full">
     <!-- Main View -->
     <div id="cookie-view-main">
-      <h2 id="cookie-main-heading" class="text-2xl font-bold">Wir respektieren Ihre Privatsphäre</h2>
+      <h2 id="cookie-main-heading" class="text-2xl font-bold">Ich respektiere Ihre Privatsphäre</h2>
       <p class="mt-3 text-gray-300">
-        Wir verwenden Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern. 
+        Ich verwende Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern. 
         Sie können alle Cookies akzeptieren oder Ihre Einstellungen verwalten. 
         Mehr Informationen finden Sie in unserer 
-        <a href="#privacy" onclick="document.getElementById('cookie-consent-banner').classList.add('hidden')" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
+        <a href="privacy.html" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
       </p>
       <div class="mt-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
         <button id="manage-cookies" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Cookies verwalten</button>
@@ -210,7 +210,7 @@
 <!-- Header Section -->
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-        <a href="/"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto"></a>
+  <a href="#hero" class="inline-flex items-center flex-shrink-0"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto"></a>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10">
@@ -249,7 +249,7 @@
 
 <main>
     <!-- Hero Section -->
-    <section class="relative pt-24 pb-20 overflow-hidden">
+    <section id="hero" class="relative pt-24 pb-20 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
         <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl opacity-50"></div>
         <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-50"></div>
@@ -427,9 +427,9 @@
 <footer class="bg-gray-900 border-t border-gray-800 py-10">
     <div class="container mx-auto px-6 text-center text-gray-500">
         <div class="flex justify-center mb-8">
-            <a href="/">
-                <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto">
-            </a>
+      <a href="index.html" class="inline-flex items-center flex-shrink-0">
+        <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto">
+      </a>
         </div>
         <!-- Optional: Hier könnten die Logos für Zertifizierungen (TÜV, ISO) platziert werden -->
         <!--<div class="mb-4">
@@ -463,24 +463,8 @@
         <p class="mt-6">&copy; 2025 AIsabella. Alle Rechte vorbehalten.</p>
         <p class="text-sm mt-2">Isabella Bogdanovic | Deine KI-Denkerin & Sparringspartnerin</p>
         <p class="text-sm mt-2">
-          <a href="privacy.html" class="underline hover:text-gray-300">Datenschutzerklärung</a>
+          <a href="privacy.html" class="underline hover:text-gray-300">Datenschutzerklärung</a> | <a href="imprint.html" class="underline hover:text-gray-300">Impressum</a>
         </p>
-        <div class="mt-6 flex justify-center">
-            <div class="text-left max-w-xs text-gray-400">
-                <button id="show-imprint" class="text-xs hover:text-purple-300 transition-colors">
-                    Impressum anzeigen
-                </button>
-                <div id="imprint-content" class="text-xs mt-2 hidden leading-6" data-nosnippet>
-                    <p>
-                        AIsabella<br>Isabella Bogdanovic<br>
-                        Kaltenleutgebner Straße 24/10/14<br>
-                        1230 Wien, Österreich<br><br>
-                        Kontakt: <a href="#" class="protected-email underline hover:text-gray-300">E‑Mail anzeigen</a><br><br>
-                        Verantwortlich für den Inhalt:<br>Isabella Bogdanovic
-                    </p>
-                </div>
-            </div>
-        </div>
     </div>
 </footer>
 
@@ -506,16 +490,6 @@
         el.setAttribute("href", "mailto:" + email);
       });
     } catch {}
-
-    // Impressum ein-/ausblenden
-    const btn = document.getElementById("show-imprint");
-    const content = document.getElementById("imprint-content");
-
-    if (btn && content) {
-      btn.addEventListener("click", function () {
-        content.classList.toggle("hidden");
-      });
-    }
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');

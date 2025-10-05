@@ -1,47 +1,83 @@
 <!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Datenschutzerklärung | AIsabella</title>
-    <meta name="description"
-          content="Datenschutzerklärung für AIsabella: Informationen zur Verarbeitung personenbezogener Daten, Cookies und Ihre Rechte."/>
-    <meta name="robots" content="index, follow, nosnippet">
-    <link rel="canonical" href="/privacy.html"/>
 
+    <meta name="description" content="Datenschutzerklärung für AIsabella: Informationen zur Verarbeitung personenbezogener Daten, Cookies und Ihre Rechte.">
+    <meta name="robots" content="index, follow, nosnippet">
+
+    <link rel="canonical" href="https://aisabella.ai/privacy.html">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aisabella.ai/privacy.html">
+    <meta property="og:title" content="Datenschutzerklärung | AIsabella">
+    <meta property="og:description" content="Datenschutzerklärung für AIsabella: Informationen zur Verarbeitung personenbezogener Daten, Cookies und Ihre Rechte.">
+    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+    <meta property="og:site_name" content="AIsabella">
+    <meta property="og:locale" content="de_AT">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://aisabella.ai/privacy.html">
+    <meta name="twitter:title" content="Datenschutzerklärung | AIsabella">
+    <meta name="twitter:description" content="Datenschutzerklärung für AIsabella: Informationen zur Verarbeitung personenbezogener Daten, Cookies und Ihre Rechte.">
+    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+
+    <!-- Schema.org Data for Privacy Page -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Datenschutzerklärung",
+            "description": "Datenschutzerklärung für AIsabella: Informationen zur Verarbeitung personenbezogener Daten, Cookies und Ihre Rechte.",
+            "url": "https://aisabella.ai/privacy.html",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "AIsabella",
+                "url": "https://aisabella.ai"
+            },
+            "about": {
+                "@type": "Organization",
+                "name": "AIsabella | KI-Coaching Wien",
+                "url": "https://aisabella.ai/"
+            }
+        }
+    </script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827;
+            background-color: #111827; /* Dark background */
         }
-
-        .gradient-text {
-            background-image: linear-gradient(to right, #08D3BB, #33B1FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .glass-card {
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         .cta-button {
             background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
             background-size: 200% auto;
             transition: all 0.4s ease;
             box-shadow: 0 4px 15px 0 rgba(8, 211, 187, 0.25);
         }
-
         .cta-button:hover {
             background-position: right center;
             transform: translateY(-2px);
             box-shadow: 0 7px 20px 0 rgba(138, 63, 252, 0.4);
+        }
+        .gradient-text {
+            background-image: linear-gradient(to right, #08D3BB, #33B1FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -49,120 +85,287 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
 </head>
+
 <body class="bg-gray-900 text-gray-300">
 
-<!-- Header -->
+<!-- GDPR Cookie Banner (German) -->
+<div id="cookie-consent-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cookie-main-heading">
+  <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-lg m-4 w-full">
+    <!-- Main View -->
+    <div id="cookie-view-main">
+      <h2 id="cookie-main-heading" class="text-2xl font-bold">Ich respektiere Ihre Privatsphäre</h2>
+      <p class="mt-3 text-gray-300">
+        Ich verwende Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern. 
+        Sie können alle Cookies akzeptieren oder Ihre Einstellungen verwalten. 
+        Mehr Informationen finden Sie in unserer 
+        <a href="privacy.html" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
+      </p>
+      <div class="mt-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+        <button id="manage-cookies" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Cookies verwalten</button>
+        <button id="accept-cookies" class="w-full sm:w-auto bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg">Alle akzeptieren</button>
+      </div>
+    </div>
+    <!-- Preferences View -->
+    <div id="cookie-view-prefs" class="hidden">
+      <h2 class="text-2xl font-bold">Cookie-Einstellungen</h2>
+      <p class="mt-2 text-gray-300">Sie können Ihre Präferenzen unten anpassen. Notwendige Cookies sind immer aktiv.</p>
+      <div class="mt-5 space-y-4">
+        <div class="p-4 border border-gray-700 rounded-lg">
+          <div class="flex justify-between items-center">
+            <span class="font-semibold">Notwendige Cookies</span>
+            <div class="relative inline-flex items-center h-6 rounded-full w-11 cursor-not-allowed">
+              <input type="checkbox" class="w-11 h-6 rounded-full appearance-none bg-cyan-400" checked disabled />
+              <span class="absolute left-1 top-1 w-4 h-4 transform bg-white rounded-full translate-x-5"></span>
+            </div>
+          </div>
+          <p class="mt-1 text-sm text-gray-400">Diese Cookies sind für die Grundfunktionen der Website erforderlich.</p>
+        </div>
+        <div class="p-4 border border-gray-700 rounded-lg">
+          <div class="flex justify-between items-center">
+            <span class="font-semibold">Analyse &amp; Performance</span>
+            <label for="analytics-toggle" class="relative inline-flex items-center h-6 rounded-full w-11 cursor-pointer">
+              <input id="analytics-toggle" type="checkbox" class="sr-only peer" />
+              <span class="w-11 h-6 rounded-full bg-gray-600 peer-checked:bg-cyan-400 transition-colors"></span>
+              <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></span>
+            </label>
+          </div>
+          <p class="mt-1 text-sm text-gray-400">Diese Cookies helfen uns, Besuche und Traffic-Quellen zu messen.</p>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
+        <button id="back-to-main" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Zurück</button>
+        <button id="reject-cookies" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Alle ablehnen</button>
+        <button id="save-preferences-button" class="bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg">Einstellungen speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header Section -->
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="/"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-8 w-auto"></a>
-        <a href="/" class="hidden md:inline-block cta-button text-white font-bold py-2 px-6 rounded-lg">Zur
-            Startseite</a>
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="index.html#hero" class="inline-flex items-center flex-shrink-0"><img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto"></a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-10">
+            <div class="space-x-8">
+                 <a href="index.html#philosophy" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Philosophie</a>
+                 <a href="index.html#offer" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Angebot</a>
+                 <a href="praxis.html" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Aus der Praxis</a>
+                 <a href="index.html#about" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
+                 <a href="index.html#faq" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
+            </div>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menü öffnen"
+                class="md:hidden ml-3 p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition">
+            <svg data-icon="open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg data-icon="close" class="h-6 w-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
     </nav>
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+        <div class="flex flex-col space-y-2">
+            <a href="index.html#philosophy" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Philosophie</a>
+            <a href="index.html#offer" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Angebot</a>
+            <a href="praxis.html" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Aus der Praxis</a>
+            <a href="index.html#about" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
+            <a href="index.html#faq" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
+        </div>
+    </div>
 </header>
 
 <!-- Hero -->
 <section class="relative pt-20 pb-16 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Datenschutzerklärung</h1>
-        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Wie wir mit personenbezogenen Daten umgehen – transparent, zweckgebunden und konform mit der DSGVO.
-        </p>
-        <p class="mt-4 text-sm text-gray-400">Zuletzt aktualisiert: August 2025</p>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3">Datenschutzerklärung</h1>
+        <p class="mt-4 text-xl text-gray-400">Stand: Oktober 2025</p>
     </div>
 </section>
 
 <!-- Content -->
 <main class="py-10 md:py-16">
-    <div class="container mx-auto px-6 max-w-4xl space-y-8">
+    <div class="container mx-auto px-6 space-y-8">
         <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">1. Verantwortliche Stelle</h2>
-            <p class="mt-3">
-                Verantwortlich für die Verarbeitung personenbezogener Daten ist:
+            <p class="text-xl mt-3">
+                Der Schutz Ihrer persönlichen Daten ist für mich nicht nur eine gesetzliche Pflicht, sondern ein Ausdruck meines Respekts. Ich glaube an Klarheit und Transparenz. Diese Erklärung gibt Ihnen daher einen ehrlichen und verständlichen Überblick darüber, welche Daten ich im Rahmen meiner Tätigkeit als AIsabella verarbeite, warum ich das tue – und was ich zum Schutz Ihrer Privatsphäre bewusst nicht tue.
+            </p>
+        </section>
+
+        <section class="glass-card rounded-xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold text-white">1. Verantwortliche Stelle</h2>
+            <p class="text-xl mt-3">
+                Verantwortlich für die Verarbeitung Ihrer personenbezogenen Daten im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
             </p>
             <div class="mt-4 border border-gray-700 rounded-lg p-5" data-nosnippet>
-                <p class="mb-1 font-semibold text-white">AIsabella – Isabella Bogdanovic</p>
-                <p class="mb-1">E‑Mail: <a href="#" class="protected-email underline hover:text-gray-200">E‑Mail
-                    anzeigen</a></p>
-                <p class="mb-0">Website: <a href="/" class="underline hover:text-gray-200">aisabella.ai</a></p>
+                <p class="mb-1 font-semibold text-white text-xl">Isabella Bogdanovic</p>
+                <p class="text-xl mt-3">
+                    Die vollständigen Kontaktdaten und die gesetzlich vorgeschriebenen Impressumsangaben finden Sie in meinem <a href="imprint.html" class="underline hover:text-gray-200">Impressum</a>.
+                </p>
             </div>
         </section>
 
         <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">2. Welche Daten wir verarbeiten</h2>
-            <p class="mt-3">Wir verarbeiten – je nach Nutzung – insbesondere:</p>
-            <ul class="list-disc pl-6 space-y-2 mt-3">
-                <li>Kontaktdaten (z.B. Name, E‑Mail‑Adresse), wenn Sie uns kontaktieren.</li>
-                <li>Nutzungsdaten (z.B. aufgerufene Seiten, Verweilzeiten), sofern Sie dem Einsatz von Analyse‑Cookies
-                    zugestimmt haben.
+            <h2 class="text-xl md:text-2xl font-bold text-white">2. Datenverarbeitung beim Besuch der Website</h2>
+            <h3 class="text-xl font-bold text-white mt-4">a) Hosting bei GitHub Pages</h3>
+            <p class="text-xl mt-3">
+                Um Ihnen diese Website sicher und zuverlässig zur Verfügung zu stellen, nutze ich den Hosting-Dienst "GitHub Pages". Anbieter ist die GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (nachfolgend "GitHub").
+            </p>
+            <p class="text-xl mt-3">
+                Bei jedem Aufruf meiner Website erfasst der Server von GitHub automatisch technische Daten in sogenannten Server-Logfiles. Dazu gehören Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs, der von Ihnen verwendete Browser sowie Ihr Betriebssystem. Diese Daten sind technisch notwendig, um Ihnen eine funktionierende Website anzuzeigen und deren Stabilität und Sicherheit zu gewährleisten.
+            </p>
+            <p class="text-xl mt-3">
+                Die Rechtsgrundlage für diese Verarbeitung ist mein berechtigtes Interesse an einer sicheren und professionellen Bereitstellung meines Online-Angebots gemäß Art. 6 Abs. 1 lit. f DSGVO.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>Hinweis zum Datentransfer in die USA:</strong><br>
+                Da GitHub ein Unternehmen mit Sitz in den USA ist, werden bei der Nutzung der Dienste Daten auf Server in den USA übertragen. Um ein angemessenes Datenschutzniveau nach EU-Standards zu gewährleisten, stützt sich dieser Datentransfer auf die von der EU-Kommission genehmigten Standardvertragsklauseln.
+            </p>
+
+            <h3 class="text-xl font-bold text-white mt-6">b) Kontaktaufnahme und Terminvereinbarung via Google Kalender</h3>
+            <p class="text-xl mt-3">
+                Ich biete Ihnen die Möglichkeit, über einen Link auf meiner Website direkt einen Termin mit mir zu vereinbaren. Für diese Funktion nutze ich den Dienst "Google Kalender", einen Service der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, Mutterunternehmen: Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+            </p>
+            <p class="text-xl mt-3">
+                Wenn Sie einen Termin buchen, werden die von Ihnen eingegebenen Daten (typischerweise Name, E-Mail-Adresse und ggf. Ihre Nachricht) zur Planung, Durchführung und Verwaltung des Termins verarbeitet.
+            </p>
+            <p class="text-xl mt-3">
+                Die Rechtsgrundlage für diese Verarbeitung ist die Anbahnung und Erfüllung eines Vertragsverhältnisses auf Ihre Anfrage hin gemäß Art. 6 Abs. 1 lit. b DSGVO.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>Hinweis zum Datentransfer in die USA:</strong><br>
+                Auch bei der Nutzung von Google-Diensten werden Daten an Server von Google in den USA übertragen. Google sichert ein angemessenes Datenschutzniveau durch die Verwendung der von der EU-Kommission genehmigten Standardvertragsklauseln zu. Weitere Informationen zum Datenschutz bei Google finden Sie in der Datenschutzerklärung von Google.
+            </p>
+
+            <h3 class="text-xl font-bold text-white mt-6">c) Kontaktaufnahme per E-Mail</h3>
+            <p class="text-xl mt-3">
+                Wenn Sie mich über die auf der Website bereitgestellte E-Mail-Adresse kontaktieren, werden die von Ihnen übermittelten Daten (insbesondere Ihre E-Mail-Adresse und der Inhalt Ihrer Nachricht) von mir gespeichert, um Ihr Anliegen zu bearbeiten. Eine Weitergabe dieser Daten an Dritte findet ohne Ihre Einwilligung nicht statt.
+            </p>
+            <p class="text-xl mt-3">
+                Die Rechtsgrundlage für diese Verarbeitung ist mein berechtigtes Interesse an der Beantwortung Ihres Anliegens (Art. 6 Abs. 1 lit. f DSGVO) bzw., falls Ihre Anfrage auf einen Vertragsabschluss abzielt, die Durchführung vorvertraglicher Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO).
+            </p>
+
+            <h3 class="text-xl font-bold text-white mt-6">d) Durchführung von Online-Meetings via Google Meet</h3>
+            <p class="text-xl mt-3">
+                Für die Durchführung von 1:1-Sessions und anderen Online-Gesprächen nutze ich den Dienst "Google Meet". Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, Mutterunternehmen: Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+            </p>
+            <p class="text-xl mt-3">
+                Bei der Teilnahme an einem Meeting werden verschiedene Datenarten verarbeitet. Der Umfang der Daten hängt davon ab, welche Angaben Sie vor bzw. bei der Teilnahme machen. Dazu gehören typischerweise Ihr Name, Ihre E-Mail-Adresse, Meeting-Metadaten (z.B. Datum, Uhrzeit) sowie die Inhalte des Gesprächs in Form von Ton- und Bilddaten.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>Hinweis zum Datentransfer in die USA:</strong> Auch bei der Nutzung von Google Meet werden Daten an Server von Google in den USA übertragen. Google sichert ein angemessenes Datenschutzniveau durch die Verwendung der von der EU-Kommission genehmigten Standardvertragsklauseln zu.
+            </p>
+        </section>
+
+        <section class="glass-card rounded-xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold text-white">3. Cookies und Web-Analyse mit Google Analytics</h2>
+            <h3 class="text-xl font-bold text-white mt-4">a) Allgemeine Hinweise zu Cookies</h3>
+            <p class="text-xl mt-3">
+                Meine Website verwendet Cookies. Das sind kleine Textdateien, die mithilfe des Browsers auf Ihrem Endgerät abgelegt werden. Sie richten keinen Schaden an. Einige Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen. Sie ermöglichen es mir, Ihren Browser beim nächsten Besuch wiederzuerkennen.
+            </p>
+            <p class="text-xl mt-3">
+                Ich nutze Cookies dazu, mein Angebot nutzerfreundlich zu gestalten. Technisch notwendige Cookies sind für die grundlegende Funktion der Website erforderlich. Alle weiteren Cookies, insbesondere solche zu Analyse- und Marketingzwecken, setze ich ausschließlich auf Grundlage Ihrer freiwilligen Einwilligung.
+            </p>
+
+            <h3 class="text-xl font-bold text-white mt-6">b) Google Analytics</h3>
+            <p class="text-xl mt-3">
+                Diese Website nutzt auf Grundlage Ihrer Einwilligung den Webanalysedienst "Google Analytics". Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, Mutterunternehmen: Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
+            </p>
+            <p class="text-xl mt-3">
+                Google Analytics verwendet Cookies, die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch das Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>IP-Anonymisierung:</strong> Ich habe auf dieser Website die Funktion IP-Anonymisierung aktiviert. Dadurch wird Ihre IP-Adresse von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum vor der Übermittlung in die USA gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.
+            </p>
+            <p class="text-xl mt-3">
+                Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Website-Aktivitäten zusammenzustellen und um weitere mit der Website-Nutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Website-Betreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>Rechtsgrundlage und Widerruf:</strong> Die Verarbeitung der Daten mittels Google Analytics erfolgt ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können diese Einwilligung jederzeit widerrufen, indem Sie die Cookie-Einstellungen auf dieser Website ändern.
+            </p>
+            <p class="text-xl mt-3">
+                <strong>Hinweis zum Datentransfer in die USA:</strong> Der Datentransfer in die USA stützt sich auf die Standardvertragsklauseln der EU-Kommission, um ein angemessenes Datenschutzniveau zu gewährleisten.
+            </p>
+        </section>
+
+        <section class="glass-card rounded-xl p-6 md:p-8">
+            <h2 class="text-xl md:text-2xl font-bold text-white">4. Speicherdauer</h2>
+            <p class="text-xl mt-3">
+                Ich speichere Ihre personenbezogenen Daten nur so lange, wie es für die Zwecke, für die sie erhoben wurden, unbedingt erforderlich ist. Darüber hinaus unterliege ich gesetzlichen Aufbewahrungspflichten.
+            </p>
+            <ul class="list-disc pl-6 space-y-2 mt-3 text-lg">
+                <li>
+                    <strong>Daten aus Kontaktanfragen:</strong> Daten aus Ihren Anfragen per E-Mail oder über die Terminbuchung lösche ich, sobald die Konversation beendet und Ihr Anliegen vollständig geklärt ist, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
                 </li>
-                <li>Kommunikationsinhalte, wenn Sie uns per E‑Mail schreiben.</li>
+                <li>
+                    <strong>Vertragsdaten:</strong> Daten, die zur Erfüllung eines Vertrags (z.B. zur Erstellung Ihres "KI-Fahrplans") notwendig sind, bewahre ich bis zum Ablauf der gesetzlichen Fristen auf. Nach österreichischem Unternehmens- und Steuerrecht (§§ 190, 212 UGB, § 132 BAO) beträgt diese Frist für Rechnungen und Vertragsunterlagen in der Regel 7 Jahre.
+                </li>
+                <li>
+                    <strong>Web-Analyse-Daten:</strong> Die durch Google Analytics erfassten Daten werden nach einer von Google festgelegten Zeitspanne automatisch gelöscht.
+                </li>
             </ul>
         </section>
 
         <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">3. Zwecke und Rechtsgrundlagen</h2>
-            <ul class="list-disc pl-6 space-y-2 mt-3">
-                <li>Beantwortung von Anfragen und Kommunikation (Art. 6 Abs. 1 lit. b/f DSGVO).</li>
-                <li>Reichweitenmessung und Verbesserung der Website auf Basis Ihrer Einwilligung (Art. 6 Abs. 1 lit. a
-                    DSGVO).
+            <h2 class="text-xl md:text-2xl font-bold text-white">5. Ihre Rechte als betroffene Person</h2>
+            <p class="text-xl mt-3">
+                Ihnen stehen bezüglich Ihrer bei mir gespeicherten Daten grundsätzlich die folgenden Rechte zu:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 mt-3 text-lg">
+                <li>
+                    <strong>Auskunft:</strong> Sie können jederzeit Auskunft über die von Ihnen verarbeiteten Daten verlangen.
                 </li>
-                <li>Wahrung berechtigter Interessen (z.B. technisch notwendige Speicherung, Missbrauchsvermeidung) (Art.
-                    6 Abs. 1 lit. f DSGVO).
+                <li>
+                    <strong>Berichtigung:</strong> Sollten Ihre Daten unrichtig oder unvollständig sein, können Sie deren Berichtigung verlangen.
+                </li>
+                <li>
+                    <strong>Löschung:</strong> Sie können die Löschung Ihrer Daten verlangen, insbesondere wenn diese für den ursprünglichen Erhebungszweck nicht mehr notwendig sind oder unrechtmäßig verarbeitet wurden.
+                </li>
+                <li>
+                    <strong>Einschränkung:</strong> Sie können unter bestimmten Voraussetzungen die Einschränkung der Verarbeitung Ihrer Daten verlangen.
+                </li>
+                <li>
+                    <strong>Datenübertragbarkeit:</strong> Sie haben das Recht, die Sie betreffenden Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.
+                </li>
+                <li>
+                    <strong>Widerspruch:</strong> Sie können der Verarbeitung Ihrer Daten in bestimmten Fällen widersprechen.
                 </li>
             </ul>
-        </section>
-
-        <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">4. Cookies & Tracking</h2>
-            <p class="mt-3">
-                Analyse‑Cookies (Google Analytics 4) werden auf dieser Website erst nach Ihrer ausdrücklichen
-                Einwilligung
-                gesetzt. Sie können Ihre Entscheidung jederzeit über den Cookie‑Banner anpassen.
+            <p class="text-xl mt-3">
+                Wenn Sie eines dieser Rechte ausüben möchten, kontaktieren Sie mich bitte über die im Impressum angegebenen Kontaktdaten.
             </p>
-            <p class="mt-3">
-                Notwendige Cookies, die für den Betrieb der Seite erforderlich sind, werden ohne Einwilligung gesetzt
-                (z.B. zur Speicherung Ihrer Cookie‑Einstellungen).
+            <p class="text-xl mt-3">
+                Sollten Sie der Ansicht sein, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt, haben Sie zudem das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren. In Österreich ist dies die Österreichische Datenschutzbehörde (dsb.gv.at).
             </p>
         </section>
 
         <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">5. Speicherdauer</h2>
-            <p class="mt-3">
-                Wir verarbeiten personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist
-                bzw.
-                gesetzliche Aufbewahrungspflichten bestehen. Anschließend werden die Daten gelöscht oder anonymisiert.
+            <h2 class="text-xl md:text-2xl font-bold text-white">6. Mein Umgang mit Ihren Daten im KI-Kontext</h2>
+            <p class="text-xl mt-3">
+                Der Kern meiner Arbeit ist Vertrauen. Ich setze zur Optimierung meiner eigenen, internen Prozesse KI-Systeme ein. Bei der Verarbeitung Ihrer Daten gilt jedoch folgender Grundsatz:
+            </p>
+            <p class="text-xl mt-3">
+                Eine Verarbeitung Ihrer personenbezogenen oder geschäftlichen Daten (wie z.B. die Inhalte unserer Gespräche) durch externe KI-gestützte Dienste – etwa zur automatischen Transkription eines Meetings – findet ausschließlich nach Ihrer vorherigen, ausdrücklichen und für den jeweiligen Zweck erteilten Einwilligung statt. Sie behalten jederzeit die volle Kontrolle darüber, welche Daten wie verarbeitet werden.
             </p>
         </section>
 
         <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">6. Ihre Rechte</h2>
-            <p class="mt-3">
-                Sie haben nach der DSGVO insbesondere das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
-                Verarbeitung,
-                Datenübertragbarkeit sowie Widerspruch gegen Verarbeitungen. Einwilligungen können Sie jederzeit mit
-                Wirkung für die Zukunft widerrufen.
+            <h2 class="text-xl md:text-2xl font-bold text-white">7. Änderungen dieser Datenschutzerklärung</h2>
+            <p class="text-xl mt-3">
+                Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf anzupassen, um sie an eine geänderte Rechtslage oder bei Änderungen meiner Dienste anzupassen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.
             </p>
-            <p class="mt-3">
-                Zur Ausübung Ihrer Rechte genügt eine formlose E‑Mail an
-                <a href="#" class="protected-email underline hover:text-gray-200">E‑Mail anzeigen</a>.
-            </p>
-            <p class="mt-3">
-                Zudem haben Sie das Recht auf Beschwerde bei der österreichischen Datenschutzbehörde.
-            </p>
-        </section>
-
-        <section class="glass-card rounded-xl p-6 md:p-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-white">7. Änderungen</h2>
-            <p class="mt-3">
-                Wir passen diese Datenschutzerklärung an, wenn dies aufgrund rechtlicher oder technischer Änderungen
-                notwendig ist.
-                Die jeweils aktuelle Fassung finden Sie stets auf dieser Seite.
-            </p>
+           
         </section>
 
         <div class="text-center pt-2">
-            <a href="/" class="inline-block mt-2 text-sm underline hover:text-gray-200">Zurück zur Startseite</a>
+            <a href="index.html" class="inline-block mt-2 text-sm underline hover:text-gray-200">Zurück zur Startseite</a>
         </div>
     </div>
 </main>
@@ -171,79 +374,55 @@
 <footer class="bg-gray-900 border-t border-gray-800 py-10">
     <div class="container mx-auto px-6 text-center text-gray-500">
         <div class="flex justify-center mb-8">
-            <a href="/">
-                <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="h-9 w-auto opacity-70 hover:opacity-100 transition">
+            <a href="index.html" class="inline-flex items-center flex-shrink-0">
+                <img src="images/AIsabella-Logo.png" alt="AIsabella Logo" class="block h-10 md:h-12 w-auto">
             </a>
         </div>
+        <!-- Optional: Hier könnten die Logos für Zertifizierungen (TÜV, ISO) platziert werden -->
+        <!--<div class="mb-4">
+            <p class="text-sm uppercase tracking-wider text-gray-400">Zertifiziert durch:</p>
+            <div class="flex justify-center items-center space-x-6 mt-2">
+                <img src="placeholder-logo-iso.svg" alt="ISO Zertifizierung" class="h-10">
+                <img src="placeholder-logo-tuv.svg" alt="TÜV Zertifizierung" class="h-10">
+            </div>
+        </div>-->
         <div class="flex justify-center">
             <a
-                    href="https://www.linkedin.com/in/isabella-bogdanovic/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn Profil von AIsabella"
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition"
+                href="https://www.linkedin.com/in/isabella-bogdanovic/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profil von AIsabella"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition"
             >
-                <svg class="h-5 w-5 text-[#0A66C2]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z"/>
+                <svg
+                    class="h-5 w-5 text-[#0A66C2]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z"
+                    />
                 </svg>
                 <span class="font-semibold">LinkedIn‑Profil</span>
             </a>
         </div>
-
         <p class="mt-6">&copy; 2025 AIsabella. Alle Rechte vorbehalten.</p>
         <p class="text-sm mt-2">Isabella Bogdanovic | Deine KI-Denkerin & Sparringspartnerin</p>
-
-        <div class="mt-6 flex justify-center">
-            <div class="text-left max-w-xs text-gray-400">
-                <button id="show-imprint" class="text-xs hover:text-purple-300 transition-colors">Impressum anzeigen
-                </button>
-                <div id="imprint-content" class="text-xs mt-2 hidden leading-6" data-nosnippet>
-                    <p>
-                        AIsabella<br>Isabella Bogdanovic<br>
-                        Kaltenleutgebner Straße 24/10/14<br>
-                        1230 Wien, Österreich<br><br>
-                        Kontakt: <a href="#" class="protected-email underline hover:text-gray-300">E‑Mail
-                        anzeigen</a><br><br>
-                        Verantwortlich für den Inhalt:<br>Isabella Bogdanovic
-                    </p>
-                </div>
-            </div>
-        </div>
+        <p class="text-sm mt-2">
+          <a href="privacy.html" class="underline hover:text-gray-300">Datenschutzerklärung</a> | <a href="imprint.html" class="underline hover:text-gray-300">Impressum</a>
+        </p>
     </div>
 </footer>
-
-<!-- Imprint toggle -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("show-imprint");
-        const content = document.getElementById("imprint-content");
-        if (!btn || !content) return;
-        let expanded = false;
-
-        function updateUI() {
-            if (expanded) {
-                content.classList.remove("hidden");
-                btn.textContent = "Impressum ausblenden";
-            } else {
-                content.classList.add("hidden");
-                btn.textContent = "Impressum anzeigen";
-            }
-        }
-
-        btn.addEventListener("click", function () {
-            expanded = !expanded;
-            updateUI();
-        });
-        updateUI();
-    });
-</script>
 
 <!-- Obfuscated contact rendering (email) -->
 <script>
     function decodeAndRenderEmail() {
-        // 'aisabella' as username and domain; 'ai' as TLD
+        // 'aisabella' (username)
         const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+        // 'aisabella' (domain)
         const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
+        // 'ai' (tld)
         const t = [97, 105];
         return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
     }
@@ -257,7 +436,142 @@
             });
         } catch (e) {
         }
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('hidden');
+                
+                // Toggle icons
+                const openIcon = this.querySelector('[data-icon="open"]');
+                const closeIcon = this.querySelector('[data-icon="close"]');
+                
+                if (openIcon && closeIcon) {
+                    openIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                }
+                
+                // Update aria-expanded
+                const isExpanded = !mobileMenu.classList.contains('hidden');
+                this.setAttribute('aria-expanded', isExpanded.toString());
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    const openIcon = mobileMenuButton.querySelector('[data-icon="open"]');
+                    const closeIcon = mobileMenuButton.querySelector('[data-icon="close"]');
+                    if (openIcon && closeIcon) {
+                        openIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    }
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
     });
+</script>
+
+
+
+<!-- Consent + GA4 (GDPR) -->
+<script>
+  (function () {
+    const MEASUREMENT_ID = "G-VD58LK7VD6";
+
+    function loadGA(id) {
+      if (window.gtagLoaded) return;
+      const s = document.createElement("script");
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+      s.async = true;
+      s.onload = () => console.log("[Analytics] GA script loaded:", id);
+      s.onerror = () => console.warn("[Analytics] GA script failed to load (blocked?)");
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", id); // sends page_view
+      window.gtagLoaded = true;
+      console.log("[Analytics] GA initialized & page_view sent", id);
+    }
+
+    function show(el) { el && el.classList.remove("hidden"); }
+    function hide(el) { el && el.classList.add("hidden"); }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const banner = document.getElementById("cookie-consent-banner");
+      const viewMain = document.getElementById("cookie-view-main");
+      const viewPrefs = document.getElementById("cookie-view-prefs");
+
+      const manageBtn = document.getElementById("manage-cookies");
+      const backBtn = document.getElementById("back-to-main");
+      const acceptBtn = document.getElementById("accept-cookies");
+      const rejectBtn = document.getElementById("reject-cookies");
+      const saveBtn = document.getElementById("save-preferences-button");
+      const analyticsToggle = document.getElementById("analytics-toggle");
+
+      // Respect prior choice
+      const consent = localStorage.getItem("cookie_consent");
+      if (consent === "true") {
+        loadGA(MEASUREMENT_ID);
+      } else if (consent === "false") {
+        // Do nothing (analytics off)
+      } else if (banner) {
+        show(banner);
+      }
+
+      // Buttons
+      if (manageBtn) {
+        manageBtn.addEventListener("click", function () {
+          hide(viewMain); show(viewPrefs);
+          // reflect stored preference in toggle
+          const stored = localStorage.getItem("cookie_consent");
+          if (analyticsToggle) analyticsToggle.checked = stored === "true";
+        });
+      }
+      if (backBtn) {
+        backBtn.addEventListener("click", function () {
+          hide(viewPrefs); show(viewMain);
+        });
+      }
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          localStorage.setItem("cookie_consent", "true");
+          hide(banner);
+          loadGA(MEASUREMENT_ID);
+        });
+      }
+      if (rejectBtn) {
+        rejectBtn.addEventListener("click", function () {
+          localStorage.setItem("cookie_consent", "false");
+          hide(banner);
+          console.log("[Analytics] Disabled by user preference.");
+        });
+      }
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          const enable = !!(analyticsToggle && analyticsToggle.checked);
+          localStorage.setItem("cookie_consent", enable ? "true" : "false");
+          hide(banner);
+          if (enable) {
+            loadGA(MEASUREMENT_ID);
+          } else {
+            console.log("[Analytics] Disabled by user preference.");
+          }
+        });
+      }
+    });
+  })();
 </script>
 </body>
 </html>
