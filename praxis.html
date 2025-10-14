@@ -377,23 +377,15 @@
     </div>
 </footer>
 
-<!-- Imprint toggle -->
+<!-- Scripts -->
 <script>
-  // Obfuscated contact rendering (email)
-  function decodeAndRenderEmail() {
-    // 'aisabella' (username)
-    const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
-    // 'aisabella' (domain)
-    const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
-    // 'ai' (tld)
-    const t = [97, 105];
-    return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
-    // Inject email into protected elements
+    // Obfuscated contact rendering (email)
     try {
-      const email = decodeAndRenderEmail();
+      const u = [97, 105, 115, 97, 98, 101, 108, 108, 97]; // aisabella
+      const d = [97, 105, 115, 97, 98, 101, 108, 108, 97]; // aisabella
+      const t = [97, 105]; // ai
+      const email = String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
       document.querySelectorAll(".protected-email").forEach((el) => {
         el.textContent = email;
         el.setAttribute("href", "mailto:" + email);
@@ -404,43 +396,53 @@
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            const openIcon = this.querySelector('[data-icon="open"]');
-            const closeIcon = this.querySelector('[data-icon="close"]');
-            mobileMenu.classList.toggle('hidden');
-            openIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
+      mobileMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        this.querySelector('[data-icon="open"]').classList.toggle('hidden');
+        this.querySelector('[data-icon="close"]').classList.toggle('hidden');
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          mobileMenuButton.querySelector('[data-icon="open"]').classList.remove('hidden');
+          mobileMenuButton.querySelector('[data-icon="close"]').classList.add('hidden');
+        }
+      });
     }
 
-    // Active link highlighting on scroll
+    // Active link highlighting on scroll (for single-page sections)
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
-    const mobileNavLinks = document.querySelectorAll('#mobile-menu a[href^="#"]');
+    if (sections.length > 0) {
+      const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+      const mobileNavLinks = document.querySelectorAll('#mobile-menu a[href^="#"]');
+      const allLinks = [...navLinks, ...mobileNavLinks];
+      
+      const activeClasses = ['text-transparent', 'bg-clip-text', 'bg-gradient-to-r', 'from-cyan-400', 'to-blue-500', 'font-bold'];
+      const inactiveClasses = ['text-gray-300', 'font-medium'];
 
-    const activeClasses = ['text-transparent', 'bg-clip-text', 'bg-gradient-to-r', 'from-cyan-400', 'to-blue-500', 'font-bold'];
-    const inactiveClasses = ['text-gray-300', 'font-medium'];
-
-    const observer = new IntersectionObserver((entries) => {
+      const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                
-                [...navLinks, ...mobileNavLinks].forEach(link => {
-                    link.classList.remove(...activeClasses);
-                    link.classList.add(...inactiveClasses);
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add(...activeClasses);
-                        link.classList.remove(...inactiveClasses);
-                    }
-                });
-            }
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            allLinks.forEach(link => {
+              link.classList.remove(...activeClasses);
+              link.classList.add(...inactiveClasses);
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add(...activeClasses);
+                link.classList.remove(...inactiveClasses);
+              }
+            });
+          }
         });
-    }, { rootMargin: "-50% 0px -50% 0px" });
+      }, { rootMargin: "-50% 0px -50% 0px" });
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+      sections.forEach(section => observer.observe(section));
+    }
   });
 </script>
 
@@ -534,52 +536,6 @@
       }
     });
   })();
-</script>
-
-<!-- Mobile menu toggle -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Mobile menu toggle functionality
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Toggle menu visibility
-            mobileMenu.classList.toggle('hidden');
-            
-            // Toggle icons
-            const openIcon = this.querySelector('[data-icon="open"]');
-            const closeIcon = this.querySelector('[data-icon="close"]');
-            
-            if (openIcon && closeIcon) {
-                openIcon.classList.toggle('hidden');
-                closeIcon.classList.toggle('hidden');
-            }
-            
-            // Update aria-expanded
-            const isExpanded = !mobileMenu.classList.contains('hidden');
-            this.setAttribute('aria-expanded', isExpanded.toString());
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-                const openIcon = mobileMenuButton.querySelector('[data-icon="open"]');
-                const closeIcon = mobileMenuButton.querySelector('[data-icon="close"]');
-                if (openIcon && closeIcon) {
-                    openIcon.classList.remove('hidden');
-                    closeIcon.classList.add('hidden');
-                }
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-  });
 </script>
 
 </body>

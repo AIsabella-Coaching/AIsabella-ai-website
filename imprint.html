@@ -334,167 +334,135 @@
 </footer>
 
     <script>
-        // Mobile menu toggle functionality
-        document.addEventListener("DOMContentLoaded", function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Toggle menu visibility
-                    mobileMenu.classList.toggle('hidden');
-                    
-                    // Toggle icons
-                    const openIcon = this.querySelector('[data-icon="open"]');
-                    const closeIcon = this.querySelector('[data-icon="close"]');
-                    
-                    if (openIcon && closeIcon) {
-                        openIcon.classList.toggle('hidden');
-                        closeIcon.classList.toggle('hidden');
-                    }
-                    
-                    // Update aria-expanded
-                    const isExpanded = !mobileMenu.classList.contains('hidden');
-                    this.setAttribute('aria-expanded', isExpanded.toString());
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                        mobileMenu.classList.add('hidden');
-                        const openIcon = mobileMenuButton.querySelector('[data-icon="open"]');
-                        const closeIcon = mobileMenuButton.querySelector('[data-icon="close"]');
-                        if (openIcon && closeIcon) {
-                            openIcon.classList.remove('hidden');
-                            closeIcon.classList.add('hidden');
-                        }
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        });
-    </script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obfuscated contact rendering (email)
+    try {
+      const u = [97, 105, 115, 97, 98, 101, 108, 108, 97]; // aisabella
+      const d = [97, 105, 115, 97, 98, 101, 108, 108, 97]; // aisabella
+      const t = [97, 105]; // ai
+      const email = String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
+      document.querySelectorAll(".protected-email").forEach((el) => {
+        el.textContent = email;
+        el.setAttribute("href", "mailto:" + email);
+      });
+    } catch {}
 
-    <!-- Consent + GA4 (GDPR) -->
-    <script>
-      (function () {
-        const MEASUREMENT_ID = "G-VD58LK7VD6";
-
-        function loadGA(id) {
-          if (window.gtagLoaded) return;
-          const s = document.createElement("script");
-          s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-          s.async = true;
-          s.onload = () => console.log("[Analytics] GA script loaded:", id);
-          s.onerror = () => console.warn("[Analytics] GA script failed to load (blocked?)");
-          document.head.appendChild(s);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){ dataLayer.push(arguments); }
-          window.gtag = gtag;
-          gtag("js", new Date());
-          gtag("config", id); // sends page_view
-          window.gtagLoaded = true;
-          console.log("[Analytics] GA initialized & page_view sent", id);
-        }
-
-        function show(el) { el && el.classList.remove("hidden"); }
-        function hide(el) { el && el.classList.add("hidden"); }
-
-        document.addEventListener("DOMContentLoaded", function () {
-          const banner = document.getElementById("cookie-consent-banner");
-          const viewMain = document.getElementById("cookie-view-main");
-          const viewPrefs = document.getElementById("cookie-view-prefs");
-
-          const manageBtn = document.getElementById("manage-cookies");
-          const backBtn = document.getElementById("back-to-main");
-          const acceptBtn = document.getElementById("accept-cookies");
-          const rejectBtn = document.getElementById("reject-cookies");
-          const saveBtn = document.getElementById("save-preferences-button");
-          const analyticsToggle = document.getElementById("analytics-toggle");
-
-          // Respect prior choice
-          const consent = localStorage.getItem("cookie_consent");
-          if (consent === "true") {
-            loadGA(MEASUREMENT_ID);
-          } else if (consent === "false") {
-            // Do nothing (analytics off)
-          } else if (banner) {
-            show(banner);
-          }
-
-          // Buttons
-          if (manageBtn) {
-            manageBtn.addEventListener("click", function () {
-              hide(viewMain); show(viewPrefs);
-              // reflect stored preference in toggle
-              const stored = localStorage.getItem("cookie_consent");
-              if (analyticsToggle) analyticsToggle.checked = stored === "true";
-            });
-          }
-          if (backBtn) {
-            backBtn.addEventListener("click", function () {
-              hide(viewPrefs); show(viewMain);
-            });
-          }
-          if (acceptBtn) {
-            acceptBtn.addEventListener("click", function () {
-              localStorage.setItem("cookie_consent", "true");
-              hide(banner);
-              loadGA(MEASUREMENT_ID);
-            });
-          }
-          if (rejectBtn) {
-            rejectBtn.addEventListener("click", function () {
-              localStorage.setItem("cookie_consent", "false");
-              hide(banner);
-              console.log("[Analytics] Disabled by user preference.");
-            });
-          }
-          if (saveBtn) {
-            saveBtn.addEventListener("click", function () {
-              const enable = !!(analyticsToggle && analyticsToggle.checked);
-              localStorage.setItem("cookie_consent", enable ? "true" : "false");
-              hide(banner);
-              if (enable) {
-                loadGA(MEASUREMENT_ID);
-              } else {
-                console.log("[Analytics] Disabled by user preference.");
-              }
-            });
-          }
-        });
-      })();
-    </script>
-
-    <script>
-      // Obfuscated contact rendering (email)
-      function decodeAndRenderEmail() {
-        // 'aisabella' (username)
-        const u = [97, 105, 115, 97, 98, 101, 108, 108, 97];
-        // 'aisabella' (domain)
-        const d = [97, 105, 115, 97, 98, 101, 108, 108, 97];
-        // 'ai' (tld)
-        const t = [97, 105];
-        return String.fromCharCode(...u) + "@" + String.fromCharCode(...d) + "." + String.fromCharCode(...t);
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // Inject email into protected elements
-        try {
-          const email = decodeAndRenderEmail();
-          document.querySelectorAll(".protected-email").forEach((el) => {
-            el.textContent = email;
-            el.setAttribute("href", "mailto:" + email);
-          });
-        } catch(e) {
-            console.error("Could not decode email.", e);
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        this.querySelector('[data-icon="open"]').classList.toggle('hidden');
+        this.querySelector('[data-icon="close"]').classList.toggle('hidden');
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          mobileMenuButton.querySelector('[data-icon="open"]').classList.remove('hidden');
+          mobileMenuButton.querySelector('[data-icon="close"]').classList.add('hidden');
         }
       });
-    </script>
+    }
+  });
+</script>
+
+<!-- Consent + GA4 (GDPR) -->
+<script>
+  (function () {
+    const MEASUREMENT_ID = "G-VD58LK7VD6";
+
+    function loadGA(id) {
+      if (window.gtagLoaded) return;
+      const s = document.createElement("script");
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+      s.async = true;
+      s.onload = () => console.log("[Analytics] GA script loaded:", id);
+      s.onerror = () => console.warn("[Analytics] GA script failed to load (blocked?)");
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", id); // sends page_view
+      window.gtagLoaded = true;
+      console.log("[Analytics] GA initialized & page_view sent", id);
+    }
+
+    function show(el) { el && el.classList.remove("hidden"); }
+    function hide(el) { el && el.classList.add("hidden"); }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const banner = document.getElementById("cookie-consent-banner");
+      const viewMain = document.getElementById("cookie-view-main");
+      const viewPrefs = document.getElementById("cookie-view-prefs");
+
+      const manageBtn = document.getElementById("manage-cookies");
+      const backBtn = document.getElementById("back-to-main");
+      const acceptBtn = document.getElementById("accept-cookies");
+      const rejectBtn = document.getElementById("reject-cookies");
+      const saveBtn = document.getElementById("save-preferences-button");
+      const analyticsToggle = document.getElementById("analytics-toggle");
+
+      // Respect prior choice
+      const consent = localStorage.getItem("cookie_consent");
+      if (consent === "true") {
+        loadGA(MEASUREMENT_ID);
+      } else if (consent === "false") {
+        // Do nothing (analytics off)
+      } else if (banner) {
+        show(banner);
+      }
+
+      // Buttons
+      if (manageBtn) {
+        manageBtn.addEventListener("click", function () {
+          hide(viewMain); show(viewPrefs);
+          // reflect stored preference in toggle
+          const stored = localStorage.getItem("cookie_consent");
+          if (analyticsToggle) analyticsToggle.checked = stored === "true";
+        });
+      }
+      if (backBtn) {
+        backBtn.addEventListener("click", function () {
+          hide(viewPrefs); show(viewMain);
+        });
+      }
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          localStorage.setItem("cookie_consent", "true");
+          hide(banner);
+          loadGA(MEASUREMENT_ID);
+        });
+      }
+      if (rejectBtn) {
+        rejectBtn.addEventListener("click", function () {
+          localStorage.setItem("cookie_consent", "false");
+          hide(banner);
+          console.log("[Analytics] Disabled by user preference.");
+        });
+      }
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          const enable = !!(analyticsToggle && analyticsToggle.checked);
+          localStorage.setItem("cookie_consent", enable ? "true" : "false");
+          hide(banner);
+          if (enable) {
+            loadGA(MEASUREMENT_ID);
+          } else {
+            console.log("[Analytics] Disabled by user preference.");
+          }
+        });
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
