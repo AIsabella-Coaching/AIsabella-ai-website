@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, nosnippet">
+    
+    <link rel="canonical" href="https://aisabella.ai/praxis.html">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,37 +61,77 @@
             stroke: url(#icon-gradient);
         }
         .gradient-text-cyan {
-            background-image: linear-gradient(to right, #2DD4BF, #06B6D4);
+            background-image: linear-gradient(to right, #14B8A6, #0891B2);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         .gradient-text-blue {
-            background-image: linear-gradient(to right, #60A5FA, #2563EB);
+            background-image: linear-gradient(to right, #3B82F6, #1D4ED8);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         .gradient-text-purple {
-            background-image: linear-gradient(to right, #C084FC, #9333EA);
+            background-image: linear-gradient(to right, #A855F7, #7C3AED);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         .gradient-text-teal {
-            background-image: linear-gradient(to right, #5EEAD4, #0D9488);
+            background-image: linear-gradient(to right, #06D6A0, #059669);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         .gradient-text-pink {
-            background-image: linear-gradient(to right, #F472B6, #DB2777);
+            background-image: linear-gradient(to right, #F472B6, #D946EF);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         .force-hyphens {
             word-break: break-word;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes float-slow {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .hover-float {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-glow:hover {
+            filter: drop-shadow(0 0 8px currentColor);
+            transition: filter 0.3s ease;
         }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -205,8 +248,39 @@
     <!-- Praxis Section -->
     <section id="praxis" class="relative py-20 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
-        <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl opacity-50"></div>
-        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-50"></div>
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl opacity-50 animate-float"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-50 animate-float-slow"></div>
+        
+        <!-- Decorative Icons -->
+        <!-- Blueprint Icon - Top Left (Strategischer Plan, Maßgeschneiderte Lösung) -->
+        <div class="absolute top-8 left-4 md:top-20 md:left-20 lg:left-32 xl:left-40 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-25 md:opacity-35 lg:opacity-40 animate-float">
+            <!-- Heroicon: document-chart-bar (Blueprint/Plan) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="url(#icon-gradient-blueprint)">
+                <defs>
+                    <linearGradient id="icon-gradient-blueprint" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#08D3BB;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#33B1FF;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#8A3FFC;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+        </div>
+        
+        <!-- Chart/Analytics Icon - Bottom Right (Datenbasierte Ergebnisse, Messbare Erfolge) -->
+        <div class="absolute bottom-16 right-4 md:bottom-20 md:right-20 lg:right-32 xl:right-40 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-25 md:opacity-35 lg:opacity-40 animate-float-slow">
+            <!-- Heroicon: chart-bar -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="url(#icon-gradient-chart)">
+                <defs>
+                    <linearGradient id="icon-gradient-chart" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#8A3FFC;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#33B1FF;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#08D3BB;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            </svg>
+        </div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
@@ -259,8 +333,8 @@
     <section class="py-20 bg-gray-800">
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl mx-auto space-y-8">
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 hover:border-cyan-400/50 border border-transparent">
-                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-cyan-400">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-cyan-500/30 md:border-transparent md:hover:border-cyan-500/50 hover-float">
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-cyan-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m10.4 12.6-1.8 1.8 3.2 3.2 6.4-6.4-1.8-1.8-4.6 4.6Z"/></svg>
                     </div>
                     <div class="text-gray-400">
@@ -270,8 +344,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 hover:border-teal-400/50 border border-transparent">
-                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-teal-400">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-teal-500/30 md:border-transparent md:hover:border-teal-500/50 hover-float">
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-teal-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                     </div>
                     <div class="text-gray-400">
@@ -281,8 +355,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 hover:border-blue-400/50 border border-transparent">
-                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-blue-400">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-blue-500/30 md:border-transparent md:hover:border-blue-500/50 hover-float">
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-blue-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
                     </div>
                     <div class="text-gray-400">
@@ -292,8 +366,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 hover:border-purple-400/50 border border-transparent">
-                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-purple-400">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-purple-500/30 md:border-transparent md:hover:border-purple-500/50 hover-float">
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-purple-500 icon-glow">
                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>
                     </div>
                     <div class="text-gray-400">
@@ -303,8 +377,8 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 hover:border-pink-400/50 border border-transparent">
-                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-pink-400">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-fuchsia-500/30 md:border-transparent md:hover:border-fuchsia-500/50 hover-float">
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-fuchsia-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                     </div>
                     <div class="text-gray-400">
@@ -326,7 +400,7 @@
             </a>
             <div class="mt-10 p-6 glass-card rounded-lg inline-block border border-cyan-500/30 shadow-lg">
                 <h4 class="font-bold text-white">Mein Commitment: Direktheit & Resultate</h4>
-                <p class="text-gray-400 text-sm mt-2">Du erhältst meine ungeteilte Aufmerksamkeit und ehrliche, direkte Impulse. Gemeinsam formen wir die strategische Denkweise, die dich befähigt, souveräne KI-Entscheidungen für dein Business zu treffen.</p>
+                <p class="text-gray-400 text-sm mt-2">Du erhältst meine ungeteilte Aufmerksamkeit und ehrliche, direkte Impulse. Gemeinsam formen wir die strategische Denkweise, die dich befähigt, souveräne<br>KI-Entscheidungen für dein Business zu treffen.</p>
             </div>
         </div>
     </section>
