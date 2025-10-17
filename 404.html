@@ -135,7 +135,18 @@
             box-shadow: 0 7px 20px 0 rgba(138, 63, 252, 0.4);
         }
         .gradient-text {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 50%, #8A3FFC 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-text-full {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 50%, #8A3FFC 100%);
+        }
+        .gradient-text-subtle {
             background-image: linear-gradient(to right, #08D3BB, #33B1FF);
+        }
+        .gradient-text-full, .gradient-text-subtle {
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -144,6 +155,10 @@
             background: rgba(31, 41, 55, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-border-left {
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #08D3BB, #33B1FF, #8A3FFC) 1;
         }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
