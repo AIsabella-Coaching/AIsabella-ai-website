@@ -11,7 +11,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -304,6 +304,20 @@
                            drop-shadow(0 0 35px rgba(51, 177, 255, 0.8)) 
                            drop-shadow(0 0 50px rgba(138, 63, 252, 0.6)) !important;
         }
+
+        /* Barrierefreiheit: Sichtbarer Fokus-Ring für Tastatur-Navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #22d3d1;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .cta-button:focus-visible {
+            outline: 3px solid #22d3d1;
+            outline-offset: 3px;
+            box-shadow: 0 0 0 6px rgba(34, 211, 209, 0.3);
+        }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-new.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-new.png">
@@ -512,7 +526,7 @@
                  <a href="#about" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
                  <a href="#faq" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
             </div>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -533,7 +547,7 @@
             <a href="praxis.html" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">KI in der Praxis</a>
             <a href="#about" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
             <a href="#faq" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
         </div>
     </div>
 </header>
@@ -595,7 +609,7 @@
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-2">Lerne, KI zu denken.</h1>
             <p class="text-xl md:text-2xl font-semibold gradient-text-hero mb-6">Dein 1:1 KI-Sparring in Wien. Praxisnahe KI-Strategie für Unternehmer:innen & Führungskräfte.</p>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Dir fehlt die Zeit für generische Kurse und endlose Tutorials? In unserem Sparring entwickeln wir die strategische Denkweise für deinen entscheidenden Vorsprung.</p>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
                 Jetzt Termin vereinbaren
             </a>
             <p class="text-sm text-gray-500 mt-3">Dein unverbindliches 20-Minuten-Gespräch.</p>
@@ -608,7 +622,7 @@
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl font-bold text-white mb-4">Meine Philosophie: <br><span class="gradient-text">Erst das Denken, dann das Tool.</span></h2>
                 <div class="my-8 text-center max-w-3xl mx-auto">
-                    <p class="text-lg text-gray-400 mb-4">Ein modernes Sprichwort bringt diese Herangehensweise auf den Punkt:</p>
+                    <p class="text-lg text-gray-300 mb-4">Ein modernes Sprichwort bringt diese Herangehensweise auf den Punkt:</p>
                     <blockquote class="text-xl italic text-gray-200 gradient-border-left pl-6 text-left max-w-md mx-auto leading-relaxed">
                         "Tell me and I forget.<br>
                         Teach me and I remember.<br>
@@ -632,7 +646,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">Dein Impuls</h3>
-                    <p class="text-gray-400">Ich löse Veränderung aus, indem ich vorlebe, wie man KI denkt. Du erlebst live einen neuen Ansatz, der dich inspiriert, eingefahrene Pfade zu verlassen und neue Möglichkeiten für dein Business zu sehen.</p>
+                    <p class="text-gray-300">Ich löse Veränderung aus, indem ich vorlebe, wie man KI denkt. Du erlebst live einen neuen Ansatz, der dich inspiriert, eingefahrene Pfade zu verlassen und neue Möglichkeiten für dein Business zu sehen.</p>
                 </div>
                 <!-- Deine Klarheit -->
                 <div class="p-8 glass-card rounded-xl text-center hover-float transition duration-300 border border-blue-400/30 md:border-transparent md:hover:border-blue-400/50">
@@ -643,7 +657,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">Deine Klarheit</h3>
-                    <p class="text-gray-400">Ich bringe Ruhe und Fokus in das laute Rauschen der KI-Welt. Statt dich mit Optionen zu überfluten, höre ich genau zu und stelle die entscheidenden Fragen, damit du aus dem Nebel der Möglichkeiten deinen klaren, nächsten Schritt erkennst.</p>
+                    <p class="text-gray-300">Ich bringe Ruhe und Fokus in das laute Rauschen der KI-Welt. Statt dich mit Optionen zu überfluten, höre ich genau zu und stelle die entscheidenden Fragen, damit du aus dem Nebel der Möglichkeiten deinen klaren, nächsten Schritt erkennst.</p>
                 </div>
                  <!-- Deine Befähigung -->
                 <div class="p-8 glass-card rounded-xl text-center hover-float transition duration-300 border border-fuchsia-400/30 md:border-transparent md:hover:border-fuchsia-400/50">
@@ -654,7 +668,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">Deine Befähigung</h3>
-                    <p class="text-gray-400">Ich bin deine Schnittstelle zur KI-Welt. Ich erkläre dir die relevanten Konzepte, gebe die entscheidenden Impulse und zeige dir neue Denkmodelle auf. Du bleibst der Experte für dein Business – ich befähige dich, diese neuen Möglichkeiten selbstständig und souverän für dich zu nutzen.</p>
+                    <p class="text-gray-300">Ich bin deine Schnittstelle zur KI-Welt. Ich erkläre dir die relevanten Konzepte, gebe die entscheidenden Impulse und zeige dir neue Denkmodelle auf. Du bleibst der Experte für dein Business – ich befähige dich, diese neuen Möglichkeiten selbstständig und souverän für dich zu nutzen.</p>
                 </div>
             </div>
         </div>
@@ -684,7 +698,7 @@
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold text-white">Persönliche KI-Strategie-Session</h3>
-                    <p class="text-gray-400 mt-2">In unseren vertraulichen Sessions hole ich dich genau dort ab, wo du stehst. Wir durchleuchten deine Prozesse, identifizieren die größten Potenziale und entwickeln die Kunst der richtigen Fragestellung. Ziel ist nicht nur eine Lösung, sondern deine Befähigung, zukünftige Herausforderungen souverän selbst zu meistern.</p>
+                    <p class="text-gray-300 mt-2">In unseren vertraulichen Sessions hole ich dich genau dort ab, wo du stehst. Wir durchleuchten deine Prozesse, identifizieren die größten Potenziale und entwickeln die Kunst der richtigen Fragestellung. Ziel ist nicht nur eine Lösung, sondern deine Befähigung, zukünftige Herausforderungen souverän selbst zu meistern.</p>
                     <p class="text-gray-300 mt-4 italic">Ein Post-it am Laptop erinnert dich vielleicht daran, KI zu nutzen. Aber erst im aktiven Sparring lernst du, <span class="gradient-text font-semibold">wann, wie und wofür.</span> In unseren Sessions bist du mehr als nur Zuhörer:in – durch meine gezielten Rückfragen und Impulse wird "KI denken" vom Vorsatz zur unternehmerischen Routine.</p>
                 </div>
             </div>
@@ -704,7 +718,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-white">Dein Ergebnis: Dein persönlicher Kompass</h3>
-                        <p class="text-gray-400 mt-2">Das Resultat unserer Zusammenarbeit sind keine Checklisten oder schnelllebigen "How-to"-Guides, sondern eine souveräne Disziplin, die du meisterst. Du gewinnst Klarheit und die Befähigung, um den Wert von KI für dein Business selbstständig zu beurteilen. Statt einer starren Anleitung erhältst du einen inneren Kompass, der dir hilft, auch in Zukunft souverän die richtigen Entscheidungen zu treffen.</p>
+                        <p class="text-gray-300 mt-2">Das Resultat unserer Zusammenarbeit sind keine Checklisten oder schnelllebigen "How-to"-Guides, sondern eine souveräne Disziplin, die du meisterst. Du gewinnst Klarheit und die Befähigung, um den Wert von KI für dein Business selbstständig zu beurteilen. Statt einer starren Anleitung erhältst du einen inneren Kompass, der dir hilft, auch in Zukunft souverän die richtigen Entscheidungen zu treffen.</p>
                     </div>
                 </div>
             </div>
@@ -715,7 +729,7 @@
     <section id="about" class="bg-gray-800 py-20">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-start">
             <div class="md:w-1/3 text-center mb-8 md:mb-0 md:mt-16">
-                <img src="images/Bogdanovic_Profile_Photo.jpg" alt="Portrait von Isabella Bogdanovic" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
+                <img src="images/Bogdanovic_Profile_Photo.jpg" alt="Portrait von Isabella Bogdanovic" width="192" height="192" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
                 <h3 class="text-2xl font-bold text-white">Isabella Bogdanovic</h3>
                 <p class="gradient-text font-semibold">AIsabella – Deine KI-Denkerin & Sparringspartnerin</p>
             </div>
@@ -728,11 +742,11 @@
                   <div class="flex flex-wrap justify-center sm:justify-start items-center gap-4 sm:gap-6">
                     <!-- Austrian Standards Badge -->
                     <div class="bg-white rounded-xl p-2 shadow-lg inline-flex">
-                      <img src="images/AST_Guetesiegel_CERTIFIED.jpg" alt="Austrian Standards CERTIFIED Gütesiegel – Zertifizierung von Isabella Bogdanovic" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                      <img src="images/AST_Guetesiegel_CERTIFIED.jpg" alt="Austrian Standards CERTIFIED Gütesiegel – Zertifizierung von Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
                     </div>
                     <!-- TÜV Rheinland Badge -->
                     <div class="bg-white rounded-xl p-2 shadow-lg inline-flex">
-                      <img src="images/TUV-certified-Isabella-Bogdanovic.png" alt="TÜV Rheinland Zertifikat für Isabella Bogdanovic" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                      <img src="images/TUV-certified-Isabella-Bogdanovic.png" alt="TÜV Rheinland Zertifikat für Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
                     </div>
                   </div>
                   <div class="mt-4 text-center sm:text-left text-gray-300 text-sm leading-snug">
@@ -753,23 +767,23 @@
             <div class="space-y-6">
                 <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Für wen ist dieses Sparring gedacht?</h3>
-                    <p class="text-gray-400">Für erfolgreiche Selbstständige, Unternehmer:innen und Führungskräfte – insbesondere im Raum Wien – die spüren, dass KI mehr als nur das nächste Effizienz-Tool ist. Mein KI-Sparring zielt auf Klienten, die ihre Zeit schätzen, oberflächlichen Hype ablehnen und einen ehrlichen, strategischen Dialog suchen, der zu einer direkt anwendbaren Denkweise führt – anstatt zu einer endlosen Tool-Liste.</p>
+                    <p class="text-gray-300">Für erfolgreiche Selbstständige, Unternehmer:innen und Führungskräfte – insbesondere im Raum Wien – die spüren, dass KI mehr als nur das nächste Effizienz-Tool ist. Mein KI-Sparring zielt auf Klienten, die ihre Zeit schätzen, oberflächlichen Hype ablehnen und einen ehrlichen, strategischen Dialog suchen, der zu einer direkt anwendbaren Denkweise führt – anstatt zu einer endlosen Tool-Liste.</p>
                 </div>
                 <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Was unterscheidet dich von einem normalen KI-Kurs oder einer typischen Beratung?</h3>
-                    <p class="text-gray-400">Der entscheidende Unterschied ist die Philosophie: Mindset über Tools. Bei mir geht es nicht um generische Checklisten. Es geht darum, in intensiven 1:1-Sessions eine neue Fähigkeit zu entwickeln: "KI zu denken". Das Ergebnis ist kein starrer Fahrplan, sondern dein innerer Kompass. Mein gesamter Ansatz zielt auf deine Souveränität und unternehmerische Unabhängigkeit ab.</p>
+                    <p class="text-gray-300">Der entscheidende Unterschied ist die Philosophie: Mindset über Tools. Bei mir geht es nicht um generische Checklisten. Es geht darum, in intensiven 1:1-Sessions eine neue Fähigkeit zu entwickeln: "KI zu denken". Das Ergebnis ist kein starrer Fahrplan, sondern dein innerer Kompass. Mein gesamter Ansatz zielt auf deine Souveränität und unternehmerische Unabhängigkeit ab.</p>
                 </div>
                 <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Warum ein 1:1-Sparring und kein Online-Kurs?</h3>
-                    <p class="text-gray-400">Weil die größte Hürde nicht das Wissen ist, sondern die konsequente, strategische Anwendung. Mein Sparring ist der aktive Katalysator, der sicherstellt, dass du vom reinen Wissen ins Tun kommst. Wir arbeiten an <em>deinen</em> konkreten Fällen. Das führt dazu, dass du die neue Denkweise nicht nur verstehst, sondern sie verinnerlichst und zur selbstverständlichen Routine machst.</p>
+                    <p class="text-gray-300">Weil die größte Hürde nicht das Wissen ist, sondern die konsequente, strategische Anwendung. Mein Sparring ist der aktive Katalysator, der sicherstellt, dass du vom reinen Wissen ins Tun kommst. Wir arbeiten an <em>deinen</em> konkreten Fällen. Das führt dazu, dass du die neue Denkweise nicht nur verstehst, sondern sie verinnerlichst und zur selbstverständlichen Routine machst.</p>
                 </div>
                  <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Ich habe schon mit Tools wie ChatGPT experimentiert, mir fehlt aber die Strategie. Passt das?</h3>
-                    <p class="text-gray-400">Perfekt. Das ist der ideale Ausgangspunkt. Mein Angebot ist keine Einführung in einzelne Tools, sondern der nächste Schritt: Wir heben deine Erfahrungen auf eine strategische Ebene. Es geht darum, vom reinen Ausprobieren zur gezielten Wertschöpfung zu kommen und deine bisherigen Erkenntnisse in einen klaren, unternehmerischen Rahmen zu gießen.</p>
+                    <p class="text-gray-300">Perfekt. Das ist der ideale Ausgangspunkt. Mein Angebot ist keine Einführung in einzelne Tools, sondern der nächste Schritt: Wir heben deine Erfahrungen auf eine strategische Ebene. Es geht darum, vom reinen Ausprobieren zur gezielten Wertschöpfung zu kommen und deine bisherigen Erkenntnisse in einen klaren, unternehmerischen Rahmen zu gießen.</p>
                 </div>
                 <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Was ist das konkrete Ergebnis unserer Zusammenarbeit?</h3>
-                    <p class="text-gray-400">Das Ergebnis ist keine Checkliste, sondern eine souveräne Disziplin, die du meisterst. Konkret gewinnst du drei Dinge: <br>1. <strong>Zeitersparnis:</strong> Indem du dir die stundenlange, mühsame Einarbeitung in unzählige Tutorials, Tools und Konzepte sparst.<br>2. <strong>Strategische Ruhe:</strong> Durch einen klaren Fokus statt dem Gefühl, einen entscheidenden Wettbewerbsvorteil zu verspielen.<br>3. <strong>Echte Befähigung:</strong> Du erhältst deinen "inneren Kompass", der dir hilft, bei zukünftigen unternehmerischen Entscheidungen souverän zu beurteilen, welche Rolle KI für dich spielen kann – und welche nicht.</p>
+                    <p class="text-gray-300">Das Ergebnis ist keine Checkliste, sondern eine souveräne Disziplin, die du meisterst. Konkret gewinnst du drei Dinge: <br>1. <strong>Zeitersparnis:</strong> Indem du dir die stundenlange, mühsame Einarbeitung in unzählige Tutorials, Tools und Konzepte sparst.<br>2. <strong>Strategische Ruhe:</strong> Durch einen klaren Fokus statt dem Gefühl, einen entscheidenden Wettbewerbsvorteil zu verspielen.<br>3. <strong>Echte Befähigung:</strong> Du erhältst deinen "inneren Kompass", der dir hilft, bei zukünftigen unternehmerischen Entscheidungen souverän zu beurteilen, welche Rolle KI für dich spielen kann – und welche nicht.</p>
                 </div>
             </div>
         </div>
@@ -780,12 +794,12 @@
         <div class="container mx-auto px-6 text-center max-w-2xl">
             <h2 class="text-3xl font-bold text-white mb-4">Bereit für den entscheidenden Vorsprung?</h2>
             <p class="text-lg text-gray-300 mb-8">Der Weg zur KI-Souveränität beginnt mit dem ersten klaren Gedanken. Lass uns diesen gemeinsam fassen. In einem unverbindlichen Erstgespräch klären wir deinen persönlichen Startpunkt und finden heraus, wie aus deinem Interesse ein echter strategischer Vorteil wird.</p>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
                 Jetzt Termin vereinbaren
             </a>
             <div class="mt-10 p-6 glass-card rounded-lg inline-block border border-cyan-500/30 shadow-lg">
                 <h4 class="font-bold text-white">Mein Commitment: Direktheit & Resultate</h4>
-                <p class="text-gray-400 text-sm mt-2">Du erhältst meine ungeteilte Aufmerksamkeit und ehrliche, direkte Impulse. Gemeinsam formen wir die strategische Denkweise, die dich befähigt, souveräne<br>KI-Entscheidungen für dein Business zu treffen.</p>
+                <p class="text-gray-300 text-sm mt-2">Du erhältst meine ungeteilte Aufmerksamkeit und ehrliche, direkte Impulse. Gemeinsam formen wir die strategische Denkweise, die dich befähigt, souveräne<br>KI-Entscheidungen für dein Business zu treffen.</p>
             </div>
         </div>
     </section>

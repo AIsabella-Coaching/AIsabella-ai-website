@@ -1,0 +1,39 @@
+# WICHTIG: WIE DU DAS DESIGN ÄNDERST
+
+## Szenario A: Du änderst nur TEXT (z.B. Tippfehler, neuer Satz)
+-> Du musst NICHTS Besonderes tun. Einfach die HTML-Datei speichern. Fertig.
+
+## Szenario B: Du änderst das DESIGN (Farben, Abstände, Größen, Layout)
+1. Doppelklicke auf die Datei `design-modus_starten.bat` in diesem Ordner.
+2. Ein schwarzes Fenster öffnet sich. Lass es offen!
+3. Jetzt kannst du deine Änderungen in den HTML-Dateien machen. Das Fenster aktualisiert die Datei `tailwind.css` automatisch im Hintergrund.
+4. Wenn du fertig bist, schließe das schwarze Fenster einfach.
+
+---
+
+## BILDER OPTIMIEREN (Optional, für bessere Ladezeit)
+
+Wenn du neue Bilder hinzufügst, solltest du sie ins WebP-Format konvertieren.
+Das macht die Bilder kleiner und deine Seite schneller.
+
+### So geht's:
+1. Gehe zu: https://squoosh.app (kostenlos, von Google)
+2. Ziehe dein Bild in die Seite
+3. Rechts "WebP" auswählen
+4. Qualität auf ca. 80-85% setzen
+5. Herunterladen und in den `images/` Ordner legen
+6. Im HTML-Code den Dateinamen anpassen (z.B. von `.jpg` auf `.webp`)
+
+---
+
+## HINWEIS FÜR DIE ZUKUNFT (oder für KI-Assistenten)
+Dieses Projekt nutzt eine lokale Tailwind-Installation (Standalone CLI).
+- Die Konfiguration ist Standard (via `input.css`).
+- Die CSS-Datei heißt `tailwind.css`.
+- Der Build-Prozess läuft über `tailwindcss.exe`.
+
+Falls du (oder eine KI) in Zukunft an diesem Projekt arbeitest:
+Lies diese Datei. Der Befehl zum Bauen des CSS lautet:
+`.\tailwindcss.exe -i input.css -o tailwind.css --minify`
+
+Bitte die Datei `tailwindcss.exe` NICHT löschen.

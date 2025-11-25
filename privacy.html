@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -78,6 +78,20 @@
             background: rgba(31, 41, 55, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Barrierefreiheit: Sichtbarer Fokus-Ring für Tastatur-Navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #22d3d1;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .cta-button:focus-visible {
+            outline: 3px solid #22d3d1;
+            outline-offset: 3px;
+            box-shadow: 0 0 0 6px rgba(34, 211, 209, 0.3);
         }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-new.png">
@@ -287,7 +301,7 @@
                  <a href="index.html#about" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
                  <a href="index.html#faq" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
             </div>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Termin vereinbaren</a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -308,7 +322,7 @@
             <a href="praxis.html" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">KI in der Praxis</a>
             <a href="index.html#about" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
             <a href="index.html#faq" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
-            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
+            <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Termin vereinbaren</a>
         </div>
     </div>
 </header>
