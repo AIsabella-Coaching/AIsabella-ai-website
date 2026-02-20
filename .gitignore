@@ -2,5 +2,23 @@
 tailwindcss.exe
 
 # Temporäre/Hilfsdateien
+process_qr_code.py
+process_qr_code.ps1
 generate_logos.py
 new_logo.txt
+Onepager.html
+Onepager4Alphas.html
+OnepagerBeraterstab.html
+OnepagerLinkedIn.html
+OnepagerUseCases.html
+OnepagerWKO.html
+beraterstab-visualisierung.html
+images/QR_Code_Gradient_Styled_Rand.png
+images/QR_Code_Gradient_Styled.png
+images/QR_Code_Gradient.png
+images/QR_Code_New_Raw.png
+images/QR_Code.png
+images/Logo_Ai_White.png
+images/icon file-02.png
+images/Icon.png
+images/RGB version logo-01.png

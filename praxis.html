@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de-AT" class="scroll-smooth">
+<html lang="de-AT">
 <head>
     <title>KI in der Praxis | AIsabella</title>
     <meta name="description" content="Entdecke konkrete Anwendungsbeispiele, wie du als Unternehmer oder Führungskraft KI strategisch nutzt. Echte Einblicke aus der Praxis von AIsabella.">
@@ -10,16 +10,14 @@
     <link rel="canonical" href="https://aisabella.ai/praxis.html">
     
     <link rel="stylesheet" href="tailwind.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/fonts.css">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aisabella.ai/praxis.html">
     <meta property="og:title" content="KI in der Praxis | AIsabella">
     <meta property="og:description" content="Entdecke konkrete Anwendungsbeispiele, wie du als Unternehmer oder Führungskraft KI strategisch nutzt. Echte Einblicke aus der Praxis von AIsabella.">
-    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
     <meta property="og:site_name" content="AIsabella">
     <meta property="og:locale" content="de_AT">
 
@@ -28,12 +26,16 @@
     <meta name="twitter:url" content="https://aisabella.ai/praxis.html">
     <meta name="twitter:title" content="KI in der Praxis | AIsabella">
     <meta name="twitter:description" content="Entdecke konkrete Anwendungsbeispiele, wie du als Unternehmer oder Führungskraft KI strategisch nutzt. Echte Einblicke aus der Praxis von AIsabella.">
-    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
 
     <style>
+        /* Verhindert, dass sticky Header anchor-targets überlagert */
+        html {
+            scroll-padding-top: 72px;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827;
+            background-color: #0B0C10;
         }
         .cta-button {
             background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
@@ -53,9 +55,10 @@
             color: transparent;
         }
         .glass-card {
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
         .gradient-stroke {
             stroke: url(#icon-gradient);
@@ -163,16 +166,179 @@
             outline: 2px solid #22d3d1 !important;
             outline-offset: 2px !important;
         }
+
+        /* ── Phase 3: Three.js Hero Canvas ─────────────────────── */
+        .three-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: canvasFadeIn 1.8s ease 0.4s forwards;
+        }
+        @keyframes canvasFadeIn {
+            to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .three-canvas { display: none; }
+        }
+
+        /* ── Bento Grid ────────────────────────────────── */
+        .bento-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .bento-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.875rem;
+            border-top: 1px solid rgba(255,255,255,0.10) !important;
+            border-right: 1px solid rgba(255,255,255,0.07) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+        }
+        .bento-card:nth-child(1) { border-left: 2px solid #08D3BB !important; }
+        .bento-card:nth-child(2) { border-left: 2px solid #33B1FF !important; }
+        .bento-card:nth-child(3) { border-left: 2px solid #8A3FFC !important; }
+
+        /* ── Praxis-Cards: Lesbarkeit & Luft ──────────────────────── */
+        .praxis-card h3 {
+            margin-bottom: 0.75rem; /* mb-3 statt mb-2 */
+        }
+        .praxis-card p {
+            line-height: 1.75;     /* leading-relaxed */
+        }
+        .praxis-card p + p {
+            margin-top: 1rem;      /* mt-4 konsistent */
+        }
+
+        /* ── Bento-Card Text: Luft im Hero-Bereich ─────────────────── */
+        .bento-card p {
+            line-height: 1.7;
+        }
+        .bento-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── Accessibility: prefers-reduced-motion ──────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float,
+            .animate-float-slow {
+                animation: none !important;
+            }
+            .hover-float,
+            .hover-float:hover {
+                transform: none !important;
+                transition: none !important;
+            }
+            * {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+            #Header-Icon-Group path,
+            #Footer-Icon-Group path,
+            #Header-Text-Group path,
+            #Footer-Text-Group path {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+        /* ══ FLUID SILK / DEEP GLOW BACKGROUND ════════════════════════════ */
+        #deep-glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #deep-glow .glow-teal,
+        #deep-glow .glow-purple {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.12;
+            animation: floatSilk 25s ease-in-out infinite alternate;
+            will-change: transform, border-radius;
+        }
+
+        #deep-glow .glow-teal {
+            width: 70vw;
+            height: 70vw;
+            top: -20vh;
+            right: -10vw;
+            background: radial-gradient(circle at center, #00CFC4 0%, transparent 70%);
+            border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            animation-delay: 0s;
+        }
+
+        #deep-glow .glow-purple {
+            width: 80vw;
+            height: 80vw;
+            bottom: -30vh;
+            left: -15vw;
+            background: radial-gradient(circle at center, #8934F0 0%, transparent 70%);
+            border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
+            animation-duration: 35s;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatSilk {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            }
+            33% {
+                transform: translate(-4vw, 6vh) rotate(8deg) scale(1.05);
+                border-radius: 55% 45% 40% 60% / 45% 55% 40% 60%;
+            }
+            66% {
+                transform: translate(4vw, -4vh) rotate(-5deg) scale(0.95);
+                border-radius: 40% 60% 55% 45% / 60% 40% 55% 45%;
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #deep-glow .glow-teal, #deep-glow .glow-purple { animation: none !important; }
+        }
+
+        /* ══ NOISE / GRAIN OVERLAY ═════════════════════════════════ */
+        #page-grain {
+            position: fixed; inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.024;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)'/%3E%3C/svg%3E");
+            background-size: 280px 280px;
+        }
+
     </style>
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-new.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-new.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-small-new.png">
     <link rel="shortcut icon" href="images/favicon-new.png">
 </head>
 
-<body class="bg-gray-900 text-gray-300">
-
-<!-- GDPR Cookie Banner (German) -->
+<body class="text-gray-300">
+<!-- Deep Glow background (fixed, below grain) -->
+<div id="deep-glow" aria-hidden="true">
+    <div class="glow-teal"></div>
+    <div class="glow-purple"></div>
+</div>
+<!-- Noise grain overlay -->
+<div id="page-grain" aria-hidden="true"></div>
 <div id="cookie-consent-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cookie-main-heading">
   <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-lg m-4 w-full">
     <!-- Main View -->
@@ -237,7 +403,7 @@
 <!-- Header Section -->
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-  <a href="index.html#hero" class="inline-flex items-center flex-shrink-0"><svg version="1.1" id="HeaderLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1084.38 385.49" class="block h-12 md:h-16 w-auto mb-1">
+  <a href="index.html" class="inline-flex items-center flex-shrink-0"><svg version="1.1" id="HeaderLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1084.38 385.49" class="block h-12 md:h-16 w-auto mb-1">
     <style>
         /* --- ANIMATION LOGIC INSIDE SVG --- */
 
@@ -245,26 +411,27 @@
         #Header-Icon-Group path {
             opacity: 0;
             transform-origin: center center;
-            transform-box: fill-box; /* Ensures scaling happens from the center of each piece */
+            transform-box: fill-box;
             animation: Header-assembly 10s linear infinite;
-            /* Default variables if not supported */
             --tx: 0px;
             --ty: 0px;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
         /* Scatter Logic - Optimized for "Magnetic Assembly" */
         #Header-Icon-Group path:nth-child(1) { --tx: -30px; --ty: -30px; animation-delay: 0.0s; }
         #Header-Icon-Group path:nth-child(2) { --tx: 30px; --ty: -20px; animation-delay: 0.05s; }
-        #Header-Icon-Group path:nth-child(3) { --tx: -20px; --ty: 30px; animation-delay: 0.02s; }
-        #Header-Icon-Group path:nth-child(4) { --tx: 20px; --ty: 40px; animation-delay: 0.07s; }
-        #Header-Icon-Group path:nth-child(5) { --tx: 0px; --ty: -40px; animation-delay: 0.1s; }
-        #Header-Icon-Group path:nth-child(6) { --tx: 40px; --ty: 0px; animation-delay: 0.05s; }
-        #Header-Icon-Group path:nth-child(7) { --tx: -40px; --ty: 10px; animation-delay: 0.12s; }
-        #Header-Icon-Group path:nth-child(8) { --tx: 10px; --ty: 40px; animation-delay: 0.02s; }
-        #Header-Icon-Group path:nth-child(9) { --tx: -15px; --ty: -35px; animation-delay: 0.07s; }
+        #Header-Icon-Group path:nth-child(3) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(4) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(5) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(6) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(7) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(8) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(9) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
 
-        /* Icon Floating Loop (Subtle) */
-        #Header-Icon-Group {
+        /* Icon Floating Loop (Subtle) – auf SVG-Root, verhindert Compound-Transform-Jitter bei kleinen paths */
+        #HeaderLogo {
             animation: Header-hoverFloat 4s ease-in-out infinite;
             animation-delay: 1.5s;
         }
@@ -409,7 +576,11 @@
 <main>
     <!-- Praxis Section -->
     <section id="praxis" class="relative py-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
+        <!-- Phase 3: Three.js Particle Constellation -->
+        <canvas id="praxis-canvas" class="three-canvas" aria-hidden="true"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/75 via-purple-900/15 to-cyan-900/5"></div>
+        <!-- Soft fade into next section -->
+        <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#0B0C10] pointer-events-none z-20"></div>
         <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl opacity-50 animate-float"></div>
         <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-50 animate-float-slow"></div>
         
@@ -447,40 +618,40 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Vom Problem zur Lösung: <br><span class="gradient-text">Was "KI denken" in der Praxis bedeutet</span></h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">
+                    Vom Problem zur Lösung:<br>
+                    <span style="background-image:linear-gradient(90deg,#08D3BB 0%,#33B1FF 55%,#8A3FFC 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline;">Was "KI denken" in der Praxis<br>bedeutet</span>
+                </h1>
                 
                 <p class="text-lg text-gray-300 mb-10">"KI denken" beschreibt eine kraftvolle unternehmerische Haltung, die auf drei Säulen ruht:</p>
 
-                <div class="grid md:grid-cols-3 gap-8 text-left mb-12 flex">
-                    <div class="glass-card p-8 rounded-lg border border-gray-700 flex">
+                <h2 class="sr-only">Die drei Säulen des KI-Denkens</h2>
+                <div class="bento-grid text-left mb-12">
+                    <div class="bento-card glass-card p-8">
                         <div>
                             <div class="flex items-center mb-4">
                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 mr-3 gradient-stroke"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                                 <h3 class="font-bold text-white text-lg">AI First-Prinzip</h3>
                             </div>
-                            <p class="text-gray-400 hyphens-auto force-hyphens">Die Fähigkeit, bei jeder Herausforderung proaktiv das Potenzial von KI als strategischen Partner zu erkennen und zu nutzen.</p>
+                            <p class="text-gray-300 hyphens-auto force-hyphens">Die Fähigkeit, bei jeder Herausforderung proaktiv das Potenzial von KI als strategischen Partner zu erkennen und zu nutzen.</p>
                         </div>
                     </div>
-                    <div class="glass-card p-8 rounded-lg border border-gray-700 flex">
+                    <div class="bento-card glass-card p-8">
                         <div>
                             <div class="flex items-center mb-4">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 mr-3 gradient-stroke">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                    <path d="M2 17l10 5 10-5"/>
-                                    <path d="M2 12l10 5 10-5"/>
-                                </svg>
+                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 mr-3 gradient-stroke"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                                 <h3 class="font-bold text-white text-lg">Kontext-Steuerung</h3>
                             </div>
-                            <p class="text-gray-400 hyphens-auto force-hyphens">Das Wissen, wann man der KI welchen Kontext gibt – oder bewusst weglässt, um den Dialog präzise zu lenken.</p>
+                            <p class="text-gray-300 hyphens-auto force-hyphens">Das Wissen, wann man der KI welchen Kontext gibt – oder bewusst weglässt, um den Dialog präzise zu lenken.</p>
                         </div>
                     </div>
-                    <div class="glass-card p-8 rounded-lg border border-gray-700 flex">
+                    <div class="bento-card glass-card p-8">
                          <div>
                             <div class="flex items-center mb-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3 gradient-stroke" fill="none" viewBox="0 0 24 24" width="28" height="28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.546-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <h3 class="font-bold text-white text-lg">Strategische Frage</h3>
                             </div>
-                            <p class="text-gray-400 hyphens-auto force-hyphens">Die Kompetenz, durch intelligente Fragen und kritisches Prüfen Ergebnisse von außer&shy;ge&shy;wöhn&shy;licher Qualität zu erzielen.</p>
+                            <p class="text-gray-300 hyphens-auto force-hyphens">Die Kompetenz, durch intelligente Fragen und kritisches Prüfen Ergebnisse von außer&shy;ge&shy;wöhn&shy;licher Qualität zu erzielen.</p>
                         </div>
                     </div>
                 </div>
@@ -493,59 +664,60 @@
         </div>
     </section>
 
-    <section class="py-20 bg-gray-800">
+    <section class="py-20">
         <div class="container mx-auto px-6 relative z-10">
+            <h2 class="sr-only">Praxisbeispiele aus dem unternehmerischen Alltag</h2>
             <div class="max-w-4xl mx-auto space-y-8">
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-cyan-500/30 md:border-transparent md:hover:border-cyan-500/50 hover-float">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-cyan-500/30 md:border-transparent md:hover:border-cyan-500/50 hover-float praxis-card">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-cyan-500 icon-glow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m10.4 12.6-1.8 1.8 3.2 3.2 6.4-6.4-1.8-1.8-4.6 4.6Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" /></svg>
                     </div>
                     <div class="text-gray-400">
-                        <h3 class="text-2xl font-bold text-white mb-2">Rechtssicherheit – Vom Bittsteller zum souveränen Auftraggeber:in</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Rechtssicherheit – Vom Bittsteller zum souveränen Auftraggeber:in</h3>
                         <p>Du musst regelmäßig mit Anwälten oder Steuerberatern arbeiten – die Kommunikation ist oft schwierig, die Vorbereitung lückenhaft und teure Kanzleizeit wird für Grundlagen verschwendet. Ich nutze ein Team aus digitalen KI-Experten, um komplexe Sachverhalte vorab zu übersetzen und die richtigen strategischen Fragen zu formulieren.</p> 
                         <p class="mt-4"><strong class="gradient-text-cyan">Das Ergebnis:</strong> Hocheffiziente Meetings, signifikant gesparte Beratungskosten und ein beschleunigter Prozess.</p>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-teal-500/30 md:border-transparent md:hover:border-teal-500/50 hover-float">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-teal-500/30 md:border-transparent md:hover:border-teal-500/50 hover-float praxis-card">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-teal-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                     </div>
                     <div class="text-gray-400">
-                        <h3 class="text-2xl font-bold text-white mb-2">Deep Research – Wissensvorsprung in entscheidenden Momenten</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Deep Research – Wissensvorsprung in entscheidenden Momenten</h3>
                         <p>Kurz vor einer wichtigen Verhandlung fehlt dir tiefgehendes Wissen zu einem fachfremden Thema. Ich setze KI als persönlichen Research-Analysten ein, um Kernaussagen aus komplexen Studien zu extrahieren und in kürzester Zeit eine fundierte Wissensbasis aufzubauen.</p>
                         <p class="mt-4"><strong class="gradient-text-teal">Das Ergebnis:</strong> Ein signifikanter Wissensvorsprung in Stunden, der dir in entscheidenden Situationen einen unbezahlbaren Vorteil verschafft.</p>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-blue-500/30 md:border-transparent md:hover:border-blue-500/50 hover-float">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-blue-500/30 md:border-transparent md:hover:border-blue-500/50 hover-float praxis-card">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-blue-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
                     </div>
                     <div class="text-gray-400">
-                        <h3 class="text-2xl font-bold text-white mb-2">Marktanalyse – Strategische Klarheit in Stunden statt Wochen</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Marktanalyse – Strategische Klarheit in Stunden statt Wochen</h3>
                         <p>Eine wichtige strategische Entscheidung steht an und eine falsche Entscheidung kostet Unsummen. Ich setze KI als unermüdlichen Marktforschungs-Assistenten ein, um eine fundierte Makro- & Mikroanalyse, Wettbewerbs- und Zielgruppenvalidierung zu erstellen.</p>
                         <p class="mt-4"><strong class="gradient-text-blue">Das Ergebnis:</strong> Eine datenbasierte Entscheidungsgrundlage in wenigen Stunden, die dein unternehmerisches Risiko minimiert.</p>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-purple-500/30 md:border-transparent md:hover:border-purple-500/50 hover-float">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-purple-500/30 md:border-transparent md:hover:border-purple-500/50 hover-float praxis-card">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-purple-500 icon-glow">
                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>
                     </div>
                     <div class="text-gray-400">
-                        <h3 class="text-2xl font-bold text-white mb-2">Bürokratie & Förderungen – Vom Antrag zum Erfolg</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Bürokratie & Förderungen – Vom Antrag zum Erfolg</h3>
                         <p>Förderanträge sind komplex und unklare Formulierungen können zu Ablehnung führen. Mithilfe meines digitalen Experten-Teams analysiere ich die Anforderungen, erstelle formell korrekte Texte und bereite eine stichhaltige Argumentationslinie vor.</p>
                         <p class="mt-4"><strong class="gradient-text-purple">Das Ergebnis:</strong> Eine deutlich erhöhte Erfolgschance bei Anträgen und eine reibungslose Kommunikation mit Ämtern.</p>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-fuchsia-500/30 md:border-transparent md:hover:border-fuchsia-500/50 hover-float">
+                <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center transition duration-300 border border-fuchsia-500/30 md:border-transparent md:hover:border-fuchsia-500/50 hover-float praxis-card">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center text-fuchsia-500 icon-glow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                     </div>
                     <div class="text-gray-400">
-                        <h3 class="text-2xl font-bold text-white mb-2">Dein Wissen als Asset – Die persönliche Wissensdatenbank</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3">Dein Wissen als Asset – Die persönliche Wissensdatenbank</h3>
                         <p>Dein Wissen ist dein größtes Kapital, aber es ist oft verstreut und nicht abrufbar, wenn du es brauchst. Ich setze KI als intelligenten Archivar ein, um dein gesamtes Wissen an einem zentralen Ort zu bündeln und intelligent durchsuchbar zu machen.</p>
                         <p class="mt-4"><strong class="gradient-text-pink">Das Ergebnis:</strong> Jede Idee und jede Information wird zu einem aktiven, jederzeit abrufbaren Asset für dein Business.</p>
                     </div>
@@ -554,7 +726,7 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gradient-to-tr from-gray-900 via-blue-900/20 to-gray-900">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-6 text-center max-w-2xl">
             <h2 class="text-3xl font-bold text-white mb-4">Bereit für den entscheidenden Vorsprung?</h2>
             <p class="text-lg text-gray-300 mb-8">Der Weg zur KI-Souveränität beginnt mit dem ersten klaren Gedanken. Lass uns diesen gemeinsam fassen. In einem unverbindlichen Erstgespräch klären wir deinen persönlichen Startpunkt und finden heraus, wie aus deinem Interesse ein echter strategischer Vorteil wird.</p>
@@ -581,26 +753,27 @@
         #Footer-Icon-Group path {
             opacity: 0;
             transform-origin: center center;
-            transform-box: fill-box; /* Ensures scaling happens from the center of each piece */
+            transform-box: fill-box;
             animation: Footer-assembly 10s linear infinite;
-            /* Default variables if not supported */
             --tx: 0px;
             --ty: 0px;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
         /* Scatter Logic - Optimized for "Magnetic Assembly" */
         #Footer-Icon-Group path:nth-child(1) { --tx: -30px; --ty: -30px; animation-delay: 0.0s; }
         #Footer-Icon-Group path:nth-child(2) { --tx: 30px; --ty: -20px; animation-delay: 0.05s; }
-        #Footer-Icon-Group path:nth-child(3) { --tx: -20px; --ty: 30px; animation-delay: 0.02s; }
-        #Footer-Icon-Group path:nth-child(4) { --tx: 20px; --ty: 40px; animation-delay: 0.07s; }
-        #Footer-Icon-Group path:nth-child(5) { --tx: 0px; --ty: -40px; animation-delay: 0.1s; }
-        #Footer-Icon-Group path:nth-child(6) { --tx: 40px; --ty: 0px; animation-delay: 0.05s; }
-        #Footer-Icon-Group path:nth-child(7) { --tx: -40px; --ty: 10px; animation-delay: 0.12s; }
-        #Footer-Icon-Group path:nth-child(8) { --tx: 10px; --ty: 40px; animation-delay: 0.02s; }
-        #Footer-Icon-Group path:nth-child(9) { --tx: -15px; --ty: -35px; animation-delay: 0.07s; }
+        #Footer-Icon-Group path:nth-child(3) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(4) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(5) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(6) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(7) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(8) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(9) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
 
-        /* Icon Floating Loop (Subtle) */
-        #Footer-Icon-Group {
+        /* Icon Floating Loop (Subtle) – auf SVG-Root, verhindert Compound-Transform-Jitter bei kleinen paths */
+        #FooterLogo {
             animation: Footer-hoverFloat 4s ease-in-out infinite;
             animation-delay: 1.5s;
         }
@@ -903,6 +1076,21 @@
       }
     });
   })();
+</script>
+<!-- CDN: Lenis Smooth Scroll -->
+<script defer src="libs/lenis.min.js"></script>
+<!-- CDN: Three.js (Phase 3 – Particle Hero) -->
+<script defer src="libs/three.min.js"></script>
+<!-- CDN: GSAP + ScrollTrigger -->
+<script defer src="libs/gsap.min.js"></script>
+<script defer src="libs/ScrollTrigger.min.js"></script>
+<!-- AIsabella Design System v3 -->
+<script defer src="ai-design-system.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.AIsabellaDS && window.AIsabellaDS.initTextScramble(['#praxis h1']);
+        window.AIsabellaDS && window.AIsabellaDS.initThreeHero('praxis-canvas');
+    });
 </script>
 
 </body>

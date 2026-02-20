@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="de-AT" class="scroll-smooth">
+﻿<!DOCTYPE html>
+<html lang="de-AT">
 <head>
     <title>AIsabella | KI-Strategie-Sparring für Führungskräfte in Wien</title>
 
@@ -12,16 +12,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tailwind.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/fonts.css">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aisabella.ai">
     <meta property="og:title" content="AIsabella | KI-Strategie-Sparring für Führungskräfte in Wien">
     <meta property="og:description" content="Strategisches KI-Denken lernen in 1:1 Sessions für Unternehmer:innen. Zertifizierte KI-Managerin in Wien.">
-    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
     <meta property="og:site_name" content="AIsabella">
     <meta property="og:locale" content="de_AT">
 
@@ -30,7 +28,7 @@
     <meta name="twitter:url" content="https://aisabella.ai">
     <meta name="twitter:title" content="AIsabella | KI-Strategie-Sparring für Führungskräfte in Wien">
     <meta name="twitter:description" content="Strategisches KI-Denken lernen in 1:1 Sessions für Unternehmer:innen. Zertifizierte KI-Managerin in Wien.">
-    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
+    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
 
     <!-- Updated Schema.org Data for SEO -->
     <script type="application/ld+json">
@@ -193,9 +191,13 @@
     </script>
 
     <style>
+        /* Verhindert, dass sticky Header anchor-targets überlagert */
+        html {
+            scroll-padding-top: 72px;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark background */
+            background-color: #0B0C10; /* Deep dark – "infinite space" */
         }
         .cta-button {
             background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
@@ -232,9 +234,10 @@
             color: transparent;
         }
         .glass-card {
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
         .gradient-border-left {
             border-left: 4px solid;
@@ -334,6 +337,158 @@
             outline: 2px solid #22d3d1 !important;
             outline-offset: 2px !important;
         }
+
+        /* ── Phase 3: Three.js Hero Canvas ─────────────────────── */
+        .three-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: canvasFadeIn 1.8s ease 0.4s forwards;
+        }
+        @keyframes canvasFadeIn {
+            to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .three-canvas { display: none; }
+        }
+
+        /* ── Scroll Reveal Animations ─────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Accessibility: prefers-reduced-motion ──────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .animate-float,
+            .animate-float-slow,
+            .animate-float-delay {
+                animation: none !important;
+            }
+            #Header-Icon-Group path,
+            #Header-Text-Group path,
+            #Footer-Icon-Group path,
+            #Footer-Text-Group path {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+            .cta-button {
+                transition: none !important;
+            }
+        }
+
+        /* ── Hero: volle Viewport-Höhe + vertikale Zentrierung des Inhalts ─────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* pt-24 aus dem class-Attribut bleibt als Mindest-Abstand zur fixierten Nav */
+        }
+        /* Der absolute-positionierte Inhalt braucht kein Flex-Verhalten */
+        #hero > .container {
+            width: 100%;
+        }
+
+        /* ══ FLUID SILK / DEEP GLOW BACKGROUND ════════════════════════════ */
+        #deep-glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            /* Kein background-color hier – body hat bereits #0B0C10 */
+        }
+
+        #deep-glow .glow-teal,
+        #deep-glow .glow-purple {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.12;
+            animation: floatSilk 25s ease-in-out infinite alternate;
+            will-change: transform, border-radius;
+        }
+
+        #deep-glow .glow-teal {
+            width: 70vw;
+            height: 70vw;
+            top: -20vh;
+            right: -10vw;
+            background: radial-gradient(circle at center, #00CFC4 0%, transparent 70%);
+            border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            animation-delay: 0s;
+        }
+
+        #deep-glow .glow-purple {
+            width: 80vw;
+            height: 80vw;
+            bottom: -30vh;
+            left: -15vw;
+            background: radial-gradient(circle at center, #8934F0 0%, transparent 70%);
+            border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
+            animation-duration: 35s;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatSilk {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            }
+            33% {
+                transform: translate(-4vw, 6vh) rotate(8deg) scale(1.05);
+                border-radius: 55% 45% 40% 60% / 45% 55% 40% 60%;
+            }
+            66% {
+                transform: translate(4vw, -4vh) rotate(-5deg) scale(0.95);
+                border-radius: 40% 60% 55% 45% / 60% 40% 55% 45%;
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #deep-glow .glow-teal, #deep-glow .glow-purple { animation: none !important; }
+        }
+
+        /* ══ NOISE / GRAIN OVERLAY ══════════════════════════════════ */
+        #page-grain {
+            position: fixed; inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.024;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)'/%3E%3C/svg%3E");
+            background-size: 280px 280px;
+            animation: grainBreathe 10s ease-in-out infinite;
+        }
+        @keyframes grainBreathe {
+            0%,100% { opacity: 0.018; background-position: 0 0; }
+            33%     { opacity: 0.032; background-position: 42px 18px; }
+            66%     { opacity: 0.024; background-position: 14px 54px; }
+        }
+        @media (prefers-reduced-motion: reduce) { #page-grain { animation: none !important; } }
+
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-new.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-new.png">
@@ -341,7 +496,14 @@
     <link rel="shortcut icon" href="images/favicon-new.png">
 </head>
 
-<body class="bg-gray-900 text-gray-300">
+<body class="text-gray-300">
+<!-- Deep Glow background (fixed, below grain) -->
+<div id="deep-glow" aria-hidden="true">
+    <div class="glow-teal"></div>
+    <div class="glow-purple"></div>
+</div>
+<!-- Noise grain overlay (CSS-only, breathing) -->
+<div id="page-grain" aria-hidden="true"></div>
 
 <!-- GDPR Cookie Banner (German) -->
 <div id="cookie-consent-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cookie-main-heading">
@@ -407,26 +569,27 @@
         #Header-Icon-Group path {
             opacity: 0;
             transform-origin: center center;
-            transform-box: fill-box; /* Ensures scaling happens from the center of each piece */
+            transform-box: fill-box;
             animation: Header-assembly 10s linear infinite;
-            /* Default variables if not supported */
             --tx: 0px;
             --ty: 0px;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
         /* Scatter Logic - Optimized for "Magnetic Assembly" */
         #Header-Icon-Group path:nth-child(1) { --tx: -30px; --ty: -30px; animation-delay: 0.0s; }
         #Header-Icon-Group path:nth-child(2) { --tx: 30px; --ty: -20px; animation-delay: 0.05s; }
-        #Header-Icon-Group path:nth-child(3) { --tx: -20px; --ty: 30px; animation-delay: 0.02s; }
-        #Header-Icon-Group path:nth-child(4) { --tx: 20px; --ty: 40px; animation-delay: 0.07s; }
-        #Header-Icon-Group path:nth-child(5) { --tx: 0px; --ty: -40px; animation-delay: 0.1s; }
-        #Header-Icon-Group path:nth-child(6) { --tx: 40px; --ty: 0px; animation-delay: 0.05s; }
-        #Header-Icon-Group path:nth-child(7) { --tx: -40px; --ty: 10px; animation-delay: 0.12s; }
-        #Header-Icon-Group path:nth-child(8) { --tx: 10px; --ty: 40px; animation-delay: 0.02s; }
-        #Header-Icon-Group path:nth-child(9) { --tx: -15px; --ty: -35px; animation-delay: 0.07s; }
+        #Header-Icon-Group path:nth-child(3) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(4) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(5) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(6) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(7) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(8) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Header-Icon-Group path:nth-child(9) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
 
-        /* Icon Floating Loop (Subtle) */
-        #Header-Icon-Group {
+        /* Icon Floating Loop (Subtle) – auf SVG-Root, verhindert Compound-Transform-Jitter bei kleinen paths */
+        #HeaderLogo {
             animation: Header-hoverFloat 4s ease-in-out infinite;
             animation-delay: 1.5s;
         }
@@ -571,9 +734,9 @@
 <main>
     <!-- Hero Section -->
     <section id="hero" class="relative pt-24 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
-        <div class="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl opacity-50 animate-float"></div>
-        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-cyan-500/20 rounded-full filter blur-3xl opacity-50 animate-float-slow"></div>
+        <!-- Phase 3: Three.js Particle Constellation (Synaptic Flow) -->
+        <canvas id="hero-canvas" class="three-canvas" aria-hidden="true"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-purple-900/20 to-cyan-900/10"></div>
         
         <!-- Decorative Icons -->
         <!-- Lightbulb Icon - Top Left (Idee, Denken, Erkenntnis) - mit Glowing-Effekt -->
@@ -621,107 +784,107 @@
             </svg>
         </div>
 
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-2">Lerne, KI zu denken.</h1>
-            <p class="text-xl md:text-2xl font-semibold gradient-text-hero mb-6">Dein 1:1 KI-Sparring in Wien. Praxisnahe KI-Strategie für Unternehmer:innen & Führungskräfte.</p>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Dir fehlt die Zeit für generische Kurse und endlose Tutorials? In unserem Sparring entwickeln wir die strategische Denkweise für deinen entscheidenden Vorsprung.</p>
+        <div class="container mx-auto px-6 text-center relative z-10 py-12 md:py-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-5 md:mb-7">Lerne, KI zu denken.</h1>
+            <p class="text-xl md:text-2xl font-semibold gradient-text-hero mb-8 md:mb-10">Dein 1:1 KI-Sparring in Wien. Praxisnahe KI-Strategie für Unternehmer:innen & Führungskräfte.</p>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 md:mb-12">Dir fehlt die Zeit für generische Kurse und endlose Tutorials? In unserem Sparring entwickeln wir die strategische Denkweise für deinen entscheidenden Vorsprung.</p>
             <a href="https://calendar.app.google/yo8KhBFaqJCt4YeT6" target="_blank" rel="noopener noreferrer" class="cta-button inline-block text-center text-white font-bold py-4 px-10 rounded-lg text-lg">
                 Jetzt Termin vereinbaren
             </a>
-            <p class="text-sm text-gray-500 mt-3">Dein unverbindliches 20-Minuten-Gespräch.</p>
+            <p class="text-sm text-gray-400 mt-4">Dein unverbindliches 20-Minuten-Gespräch.</p>
         </div>
     </section>
-    
+
     <!-- Philosophy Section -->
-    <section id="philosophy" class="py-20 bg-gray-800">
+    <section id="philosophy" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl font-bold text-white mb-4">Meine Philosophie: <br><span class="gradient-text">Erst das Denken, dann das Tool.</span></h2>
                 <div class="my-8 text-center max-w-3xl mx-auto">
                     <p class="text-lg text-gray-300 mb-4">Ein modernes Sprichwort bringt diese Herangehensweise auf den Punkt:</p>
                     <blockquote class="text-xl italic text-gray-200 gradient-border-left pl-6 text-left max-w-md mx-auto leading-relaxed">
-                        "Tell me and I forget.<br>
+                        &ldquo;Tell me and I forget.<br>
                         Teach me and I remember.<br>
-                        Involve me and I learn."
+                        Involve me and I learn.&rdquo;
                     </blockquote>
                 </div>
-    <p class="text-lg text-gray-300 mb-12">
-    Genau dieses "Involvieren" ist der Kern meiner 1:1-Sessions. Es ist keine Vorlesung, sondern ein aktives Sparring, in dem wir <span class="gradient-text font-semibold">an deinen konkreten unternehmerischen Fällen arbeiten.</span> Du bringst die Herausforderung – ich bringe die Methode, um sie mit KI präzise zu meistern.<br><br>
-    Und diese Methode ist fokussiert: Niemand würde seinen Steuerberater um Rat für das Logo-Design fragen. Nach genau diesem Prinzip nutze ich KI nicht als Generalisten, sondern forme für jede Aufgabe den passenden Spezialisten.<br><br>
-    <span class="gradient-text font-bold">Die Kunst der strategischen Frage ist dabei der entscheidende Katalysator.</span><br>
-    Sie ist es, die aus einem Allzweck-Werkzeug einen hochfokussierten digitalen Experten macht, der außergewöhnliche Ergebnisse liefert.
-</p>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Genau dieses &ldquo;Involvieren&rdquo; ist der Kern meiner 1:1-Sessions. Es ist keine Vorlesung, sondern ein aktives Sparring, in dem wir <span class="gradient-text font-semibold">an deinen konkreten unternehmerischen Fällen arbeiten.</span><br>
+                    Du bringst die Herausforderung &ndash; ich bringe die Methode, um sie mit KI präzise zu meistern.
+                </p>
+                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Und diese Methode ist fokussiert: Niemand würde seinen Steuerberater um Rat für das Logo-Design fragen. Nach genau diesem Prinzip nutze ich KI nicht als Generalisten, sondern forme für jede Aufgabe den passenden Spezialisten.
+                </p>
+                <p class="text-lg text-gray-300 mb-12 leading-relaxed">
+                    <span class="gradient-text font-bold">Die Kunst der strategischen Frage ist dabei der entscheidende Katalysator.</span><br>
+                    Sie ist es, die aus einem Allzweck-Werkzeug einen hochfokussierten digitalen Experten macht, der außergewöhnliche Ergebnisse liefert.
+                </p>
             </div>
-            <div class="max-w-3xl mx-auto space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Dein Impuls -->
                 <div class="p-8 glass-card rounded-xl text-center hover-float transition duration-300 border border-cyan-400/30 md:border-transparent md:hover:border-cyan-400/50">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white icon-glow" style="background: linear-gradient(135deg, #14B8A6 0%, #0D9488 40%, #3B82F6 100%);">
-                        <!-- Tailwind Heroicon: bolt -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Dein Impuls</h3>
-                    <p class="text-gray-300">Ich löse Veränderung aus, indem ich vorlebe, wie man KI denkt. Du erlebst live einen neuen Ansatz, der dich inspiriert, eingefahrene Pfade zu verlassen und neue Möglichkeiten für dein Business zu sehen.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Dein Impuls</h3>
+                    <p class="text-gray-300 leading-relaxed">Ich löse Veränderung aus, indem ich vorlebe, wie man KI denkt. Du erlebst live einen neuen Ansatz, der dich inspiriert, eingefahrene Pfade zu verlassen und neue Möglichkeiten für dein Business zu sehen.</p>
                 </div>
                 <!-- Deine Klarheit -->
                 <div class="p-8 glass-card rounded-xl text-center hover-float transition duration-300 border border-blue-400/30 md:border-transparent md:hover:border-blue-400/50">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white icon-glow" style="background: linear-gradient(135deg, #3B82F6 0%, #2563EB 45%, #8B5CF6 100%);">
-                        <!-- Tailwind Heroicon: magnifying-glass -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Deine Klarheit</h3>
-                    <p class="text-gray-300">Ich bringe Ruhe und Fokus in das laute Rauschen der KI-Welt. Statt dich mit Optionen zu überfluten, höre ich genau zu und stelle die entscheidenden Fragen, damit du aus dem Nebel der Möglichkeiten deinen klaren, nächsten Schritt erkennst.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Deine Klarheit</h3>
+                    <p class="text-gray-300 leading-relaxed">Ich bringe Ruhe und Fokus in das laute Rauschen der KI-Welt. Statt dich mit Optionen zu überfluten, höre ich genau zu und stelle die entscheidenden Fragen, damit du aus dem Nebel der Möglichkeiten deinen klaren, nächsten Schritt erkennst.</p>
                 </div>
-                 <!-- Deine Befähigung -->
+                <!-- Deine Befähigung -->
                 <div class="p-8 glass-card rounded-xl text-center hover-float transition duration-300 border border-fuchsia-400/30 md:border-transparent md:hover:border-fuchsia-400/50">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white icon-glow" style="background: linear-gradient(135deg, #E879F9 0%, #A855F7 45%, #6366F1 100%);">
-                        <!-- Tailwind Heroicon: key -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Deine Befähigung</h3>
-                    <p class="text-gray-300">Ich bin deine Schnittstelle zur KI-Welt. Ich erkläre dir die relevanten Konzepte, gebe die entscheidenden Impulse und zeige dir neue Denkmodelle auf. Du bleibst der Experte für dein Business – ich befähige dich, diese neuen Möglichkeiten selbstständig und souverän für dich zu nutzen.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Deine Befähigung</h3>
+                    <p class="text-gray-300 leading-relaxed">Ich bin deine Schnittstelle zur KI-Welt. Ich erkläre dir die relevanten Konzepte, gebe die entscheidenden Impulse und zeige dir neue Denkmodelle auf. Du bleibst der Experte für dein Business &ndash; ich befähige dich, diese neuen Möglichkeiten selbstständig und souverän für dich zu nutzen.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Offer Section -->
-    <section id="offer" class="py-20 bg-gray-900">
+    <section id="offer" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl font-bold text-white mb-4">Das Angebot: <span class="gradient-text">Ein Maßanzug für deinen Kopf</span></h2>
                 <p class="text-lg text-gray-300 mb-12">Mein Ansatz ist bewusst das Gegenteil eines Massenkurses. Es ist eine Entscheidung für radikale Individualisierung in intensiven 1:1-Sessions. Statt generischer Beispiele arbeiten wir direkt an deinem Business und an der Schärfung deiner Denkweise.</p>
             </div>
-
             <div class="max-w-4xl mx-auto space-y-8">
                 <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center hover-float transition duration-300 border border-cyan-400/30 md:border-transparent md:hover:border-cyan-400/50">
-                <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center icon-glow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20" fill="url(#icon-gradient-people)">
-                      <defs>
-                        <linearGradient id="icon-gradient-people" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" style="stop-color:#08D3BB;stop-opacity:1" />
-                          <stop offset="50%" style="stop-color:#33B1FF;stop-opacity:1" />
-                          <stop offset="100%" style="stop-color:#8A3FFC;stop-opacity:1" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                    </svg>
+                    <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center icon-glow">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20" fill="url(#icon-gradient-people)">
+                          <defs>
+                            <linearGradient id="icon-gradient-people" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:#08D3BB;stop-opacity:1" />
+                              <stop offset="50%" style="stop-color:#33B1FF;stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:#8A3FFC;stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                          <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Persönliche KI-Strategie-Session</h3>
+                        <p class="text-gray-300 mt-2">In unseren vertraulichen Sessions hole ich dich genau dort ab, wo du stehst. Wir durchleuchten deine Prozesse, identifizieren die größten Potenziale und entwickeln die Kunst der richtigen Fragestellung. Ziel ist nicht nur eine Lösung, sondern deine Befähigung, zukünftige Herausforderungen souverän selbst zu meistern.</p>
+                        <p class="text-gray-300 mt-4 italic">Ein Post-it am Laptop erinnert dich vielleicht daran, KI zu nutzen. Aber erst im aktiven Sparring lernst du, <span class="gradient-text font-semibold">wann, wie und wofür.</span> In unseren Sessions bist du mehr als nur Zuhörer:in &ndash; durch meine gezielten Rückfragen und Impulse wird &ldquo;KI denken&rdquo; vom Vorsatz zur unternehmerischen Routine.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-white">Persönliche KI-Strategie-Session</h3>
-                    <p class="text-gray-300 mt-2">In unseren vertraulichen Sessions hole ich dich genau dort ab, wo du stehst. Wir durchleuchten deine Prozesse, identifizieren die größten Potenziale und entwickeln die Kunst der richtigen Fragestellung. Ziel ist nicht nur eine Lösung, sondern deine Befähigung, zukünftige Herausforderungen souverän selbst zu meistern.</p>
-                    <p class="text-gray-300 mt-4 italic">Ein Post-it am Laptop erinnert dich vielleicht daran, KI zu nutzen. Aber erst im aktiven Sparring lernst du, <span class="gradient-text font-semibold">wann, wie und wofür.</span> In unseren Sessions bist du mehr als nur Zuhörer:in – durch meine gezielten Rückfragen und Impulse wird "KI denken" vom Vorsatz zur unternehmerischen Routine.</p>
-                </div>
-            </div>
                 <div class="glass-card rounded-lg p-8 flex flex-col md:flex-row items-center hover-float transition duration-300 border border-purple-400/30 md:border-transparent md:hover:border-purple-400/50">
                     <div class="w-20 h-20 flex-shrink-0 mr-8 mb-4 md:mb-0 flex items-center justify-center icon-glow">
-                       <!-- Tailwind Heroicon: sparkles -->
-                       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="url(#icon-gradient-sparkles)" stroke-width="1.5">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="url(#icon-gradient-sparkles)">
                          <defs>
                            <linearGradient id="icon-gradient-sparkles" x1="0%" y1="0%" x2="0%" y2="100%">
                              <stop offset="0%" style="stop-color:#08D3BB;stop-opacity:1" />
@@ -729,12 +892,12 @@
                              <stop offset="100%" style="stop-color:#8A3FFC;stop-opacity:1" />
                            </linearGradient>
                          </defs>
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.565l.223.874.223-.874a2.25 2.25 0 00-1.72-1.72l-.874-.223.874-.223a2.25 2.25 0 001.72-1.72l.223-.874.223.874a2.25 2.25 0 001.72 1.72l.874.223-.874.223a2.25 2.25 0 00-1.72 1.72z" />
+                         <path d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" />
                        </svg>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-white">Dein Ergebnis: Dein persönlicher Kompass</h3>
-                        <p class="text-gray-300 mt-2">Das Resultat unserer Zusammenarbeit sind keine Checklisten oder schnelllebigen "How-to"-Guides, sondern eine souveräne Disziplin, die du meisterst. Du gewinnst Klarheit und die Befähigung, um den Wert von KI für dein Business selbstständig zu beurteilen. Statt einer starren Anleitung erhältst du einen inneren Kompass, der dir hilft, auch in Zukunft souverän die richtigen Entscheidungen zu treffen.</p>
+                        <p class="text-gray-300 mt-2">Das Resultat unserer Zusammenarbeit sind keine Checklisten oder schnelllebigen &ldquo;How-to&rdquo;-Guides, sondern eine souveräne Disziplin, die du meisterst. Du gewinnst Klarheit und die Befähigung, um den Wert von KI für dein Business selbstständig zu beurteilen. Statt einer starren Anleitung erhältst du einen inneren Kompass, der dir hilft, auch in Zukunft souverän die richtigen Entscheidungen zu treffen.</p>
                     </div>
                 </div>
             </div>
@@ -742,11 +905,14 @@
     </section>
     
     <!-- About Me Section -->
-    <section id="about" class="bg-gray-800 py-20">
+    <section id="about" class="py-20">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-start">
             <div class="md:w-1/3 text-center mb-8 md:mb-0 md:mt-16">
-                <img src="images/Bogdanovic_Profile_Photo.jpg" alt="Portrait von Isabella Bogdanovic" width="192" height="192" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
-                <h3 class="text-2xl font-bold text-white">Isabella Bogdanovic</h3>
+                <picture>
+                  <source srcset="images/Bogdanovic_Profile_Photo.webp" type="image/webp">
+                  <img src="images/Bogdanovic_Profile_Photo.jpg" alt="Portrait von Isabella Bogdanovic" width="192" height="192" loading="lazy" class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-gray-600">
+                </picture>
+                <p class="text-2xl font-bold text-white">Isabella Bogdanovic</p>
                 <p class="gradient-text font-semibold">AIsabella – Deine KI-Denkerin & Sparringspartnerin</p>
             </div>
             <div class="md:w-2/3 md:pl-12">
@@ -757,18 +923,22 @@
                 <div class="mt-8">
                   <div class="flex flex-wrap justify-center sm:justify-start items-center gap-4 sm:gap-6">
                     <!-- Austrian Standards Badge -->
-                    <div class="bg-white rounded-xl p-2 shadow-lg inline-flex">
-                      <img src="images/AST_Guetesiegel_CERTIFIED.jpg" alt="Austrian Standards CERTIFIED Gütesiegel – Zertifizierung von Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                    <div class="cert-badge bg-white rounded-xl p-2 shadow-lg inline-flex">
+                      <picture>
+                        <source srcset="images/AST_Guetesiegel_CERTIFIED.webp" type="image/webp">
+                        <img src="images/AST_Guetesiegel_CERTIFIED.jpg" alt="Austrian Standards CERTIFIED Gütesiegel – Zertifizierung von Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                      </picture>
                     </div>
                     <!-- TÜV Rheinland Badge -->
-                    <div class="bg-white rounded-xl p-2 shadow-lg inline-flex">
-                      <img src="images/TUV-certified-Isabella-Bogdanovic.png" alt="TÜV Rheinland Zertifikat für Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                    <div class="cert-badge bg-white rounded-xl p-2 shadow-lg inline-flex">
+                      <picture>
+                        <source srcset="images/TUV-certified-Isabella-Bogdanovic.webp" type="image/webp">
+                        <img src="images/TUV-certified-Isabella-Bogdanovic.png" alt="TÜV Rheinland Zertifikat für Isabella Bogdanovic" width="96" height="96" class="h-20 w-auto sm:h-24 object-contain" loading="lazy">
+                      </picture>
                     </div>
                   </div>
-                  <div class="mt-4 text-center sm:text-left text-gray-300 text-sm leading-snug">
-                    <br
+                  <div class="mt-6 text-center sm:text-left text-gray-300 text-sm leading-snug space-y-2">
                     <p><span class="font-semibold text-white">Austrian Standards</span> – Zertifizierte KI-Managerin</p>
-                    <br>
                     <p><span class="font-semibold text-white">TÜV Rheinland</span> – Zertifizierte AI Trainerin</p>
                   </div>
                 </div>
@@ -777,7 +947,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-gray-900">
+    <section id="faq" class="py-20">
         <div class="container mx-auto px-6 max-w-3xl">
             <h2 class="text-3xl font-bold text-center text-white mb-12">Die richtigen Fragen sind der Anfang von allem</h2>
             <div class="space-y-6">
@@ -799,14 +969,19 @@
                 </div>
                 <div class="glass-card p-6 rounded-lg">
                     <h3 class="font-bold text-xl mb-2 text-white">Was ist das konkrete Ergebnis unserer Zusammenarbeit?</h3>
-                    <p class="text-gray-300">Das Ergebnis ist keine Checkliste, sondern eine souveräne Disziplin, die du meisterst. Konkret gewinnst du drei Dinge: <br>1. <strong>Zeitersparnis:</strong> Indem du dir die stundenlange, mühsame Einarbeitung in unzählige Tutorials, Tools und Konzepte sparst.<br>2. <strong>Strategische Ruhe:</strong> Durch einen klaren Fokus statt dem Gefühl, einen entscheidenden Wettbewerbsvorteil zu verspielen.<br>3. <strong>Echte Befähigung:</strong> Du erhältst deinen "inneren Kompass", der dir hilft, bei zukünftigen unternehmerischen Entscheidungen souverän zu beurteilen, welche Rolle KI für dich spielen kann – und welche nicht.</p>
+                    <p class="text-gray-300 mb-3">Das Ergebnis ist keine Checkliste, sondern eine souveräne Disziplin, die du meisterst. Konkret gewinnst du drei Dinge:</p>
+                    <ol class="text-gray-300 space-y-2 list-none">
+                        <li><span class="font-semibold text-white">1. Zeitersparnis:</span> Indem du dir die stundenlange, mühsame Einarbeitung in unzählige Tutorials, Tools und Konzepte sparst.</li>
+                        <li><span class="font-semibold text-white">2. Strategische Ruhe:</span> Durch einen klaren Fokus statt dem Gefühl, einen entscheidenden Wettbewerbsvorteil zu verspielen.</li>
+                        <li><span class="font-semibold text-white">3. Echte Befähigung:</span> Du erhältst deinen &ldquo;inneren Kompass&rdquo;, der dir hilft, bei zukünftigen unternehmerischen Entscheidungen souverän zu beurteilen, welche Rolle KI für dich spielen kann – und welche nicht.</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact / CTA Section -->
-    <section id="contact" class="py-20 bg-gradient-to-tr from-gray-900 via-blue-900/20 to-gray-900">
+    <section id="contact" class="py-20">
         <div class="container mx-auto px-6 text-center max-w-2xl">
             <h2 class="text-3xl font-bold text-white mb-4">Bereit für den entscheidenden Vorsprung?</h2>
             <p class="text-lg text-gray-300 mb-8">Der Weg zur KI-Souveränität beginnt mit dem ersten klaren Gedanken. Lass uns diesen gemeinsam fassen. In einem unverbindlichen Erstgespräch klären wir deinen persönlichen Startpunkt und finden heraus, wie aus deinem Interesse ein echter strategischer Vorteil wird.</p>
@@ -814,7 +989,7 @@
                 Jetzt Termin vereinbaren
             </a>
             <div class="mt-10 p-6 glass-card rounded-lg inline-block border border-cyan-500/30 shadow-lg">
-                <h4 class="font-bold text-white">Mein Commitment: Direktheit & Resultate</h4>
+                <h3 class="font-bold text-white">Mein Commitment: Direktheit & Resultate</h3>
                 <p class="text-gray-300 text-sm mt-2">Du erhältst meine ungeteilte Aufmerksamkeit und ehrliche, direkte Impulse. Gemeinsam formen wir die strategische Denkweise, die dich befähigt, souveräne<br>KI-Entscheidungen für dein Business zu treffen.</p>
             </div>
         </div>
@@ -833,26 +1008,27 @@
         #Footer-Icon-Group path {
             opacity: 0;
             transform-origin: center center;
-            transform-box: fill-box; /* Ensures scaling happens from the center of each piece */
+            transform-box: fill-box;
             animation: Footer-assembly 10s linear infinite;
-            /* Default variables if not supported */
             --tx: 0px;
             --ty: 0px;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
 
         /* Scatter Logic - Optimized for "Magnetic Assembly" */
         #Footer-Icon-Group path:nth-child(1) { --tx: -30px; --ty: -30px; animation-delay: 0.0s; }
         #Footer-Icon-Group path:nth-child(2) { --tx: 30px; --ty: -20px; animation-delay: 0.05s; }
-        #Footer-Icon-Group path:nth-child(3) { --tx: -20px; --ty: 30px; animation-delay: 0.02s; }
-        #Footer-Icon-Group path:nth-child(4) { --tx: 20px; --ty: 40px; animation-delay: 0.07s; }
-        #Footer-Icon-Group path:nth-child(5) { --tx: 0px; --ty: -40px; animation-delay: 0.1s; }
-        #Footer-Icon-Group path:nth-child(6) { --tx: 40px; --ty: 0px; animation-delay: 0.05s; }
-        #Footer-Icon-Group path:nth-child(7) { --tx: -40px; --ty: 10px; animation-delay: 0.12s; }
-        #Footer-Icon-Group path:nth-child(8) { --tx: 10px; --ty: 40px; animation-delay: 0.02s; }
-        #Footer-Icon-Group path:nth-child(9) { --tx: -15px; --ty: -35px; animation-delay: 0.07s; }
+        #Footer-Icon-Group path:nth-child(3) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(4) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(5) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(6) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(7) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(8) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
+        #Footer-Icon-Group path:nth-child(9) { --tx: 22px; --ty: -32px; animation-delay: 0.06s; }
 
-        /* Icon Floating Loop (Subtle) */
-        #Footer-Icon-Group {
+        /* Icon Floating Loop (Subtle) – auf SVG-Root, verhindert Compound-Transform-Jitter bei kleinen paths */
+        #FooterLogo {
             animation: Footer-hoverFloat 4s ease-in-out infinite;
             animation-delay: 1.5s;
         }
@@ -1153,6 +1329,22 @@
       }
     });
   })();
+</script>
+
+<!-- Lenis Smooth Scroll (lokal) -->
+<script defer src="libs/lenis.min.js"></script>
+<!-- Three.js (lokal) -->
+<script defer src="libs/three.min.js"></script>
+<!-- GSAP + ScrollTrigger (lokal) -->
+<script defer src="libs/gsap.min.js"></script>
+<script defer src="libs/ScrollTrigger.min.js"></script>
+<!-- AIsabella Design System v3 -->
+<script defer src="ai-design-system.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.AIsabellaDS && window.AIsabellaDS.initTextScramble(['#hero h1']);
+        window.AIsabellaDS && window.AIsabellaDS.initThreeHero('hero-canvas');
+    });
 </script>
 
 </body>
