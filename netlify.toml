@@ -1,6 +1,20 @@
 # Netlify Configuration
 # Cache-Regeln für statische Assets
 
+# 301-Redirect: /index.html → / (verhindert doppelte URLs, fixes Lighthouse SEO)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# 301-Redirect: www → non-www (alle SEO-Stärke auf eine Domain bündeln)
+[[redirects]]
+  from = "https://www.aisabella.ai/*"
+  to = "https://aisabella.ai/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/libs/*"
   [headers.values]
