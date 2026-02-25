@@ -317,6 +317,9 @@
     /* ── 6. TEXT SCRAMBLE ───────────────────────────────────────────── */
     function initTextScramble(selectors) {
         if (prefersReduced) return;
+        /* Mobile deaktivieren: Scramble-Zeichen haben unterschiedliche Breiten
+           und können auf kleinen Viewports die H1-Höhe verändern → CLS-Sprung */
+        if (window.innerWidth < 768) return;
         var CHARS = '!<>-_\\/[]{}=+*^#@$%ABCDEFabcdef0123456789';
         var SKIP  = [' ', '.', ',', ':', '!', '?', '\n', '-', '–', '/', '&', '"', '\u201c', '\u201d'];
         var FRAMES = 50;

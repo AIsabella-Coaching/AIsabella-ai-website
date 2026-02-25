@@ -364,6 +364,10 @@
         @media (prefers-reduced-motion: reduce) {
             .three-canvas { display: none; }
         }
+        /* Canvas auf Mobile grundsätzlich ausblenden (Three.js läuft dort nicht) */
+        @media (max-width: 767px) {
+            .three-canvas { display: none !important; }
+        }
 
         /* ── Scroll Reveal Animations ─────────────────────────── */
         .reveal {
