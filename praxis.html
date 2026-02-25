@@ -1025,11 +1025,11 @@
           if (_gaLoaded) return;
           _gaLoaded = true;
           loadGA(MEASUREMENT_ID);
-          ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+          ['scroll','pointerdown','touchstart','keydown'].forEach(function(e){
             window.removeEventListener(e, _loadGAOnce, {passive:true});
           });
         }
-        ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+        ['scroll','pointerdown','touchstart','keydown'].forEach(function(e){
           window.addEventListener(e, _loadGAOnce, {passive:true, once:true});
         });
       } else if (consent === "false") {

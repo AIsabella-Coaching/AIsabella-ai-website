@@ -1283,11 +1283,11 @@
           if (_gaLoaded) return;
           _gaLoaded = true;
           loadGA(MEASUREMENT_ID);
-          ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+          ['scroll','pointerdown','touchstart','keydown'].forEach(function(e){
             window.removeEventListener(e, _loadGAOnce, {passive:true});
           });
         }
-        ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+        ['scroll','pointerdown','touchstart','keydown'].forEach(function(e){
           window.addEventListener(e, _loadGAOnce, {passive:true, once:true});
         });
       } else if (consent === "false") {
@@ -1350,14 +1350,21 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.AIsabellaDS && window.AIsabellaDS.initTextScramble(['#hero h1']);
-        /* Three.js dynamisch laden – kein document.write, kein Reflow-Risiko */
+        /* Three.js erst im Browser-Leerlauf starten – entlastet Initial-Render (TBT) */
         if (window._loadThree) {
-            var s = document.createElement('script');
-            s.src = 'libs/three.min.js';
-            s.onload = function () {
-                window.AIsabellaDS && window.AIsabellaDS.initThreeHero('hero-canvas');
-            };
-            document.head.appendChild(s);
+            function startThree() {
+                var s = document.createElement('script');
+                s.src = 'libs/three.min.js';
+                s.onload = function () {
+                    window.AIsabellaDS && window.AIsabellaDS.initThreeHero('hero-canvas');
+                };
+                document.head.appendChild(s);
+            }
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(startThree, { timeout: 1000 });
+            } else {
+                setTimeout(startThree, 500);
+            }
         }
     });
 </script>
