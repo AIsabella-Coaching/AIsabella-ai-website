@@ -11,6 +11,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Three.js-Flag: nur einmal im Head berechnen, kein document.write im Body -->
+    <script>window._loadThree=(window.innerWidth>=768&&window.matchMedia('(pointer:fine)').matches);</script>
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="fonts/fonts.css">
 
@@ -342,6 +345,8 @@
         }
 
         /* ── Phase 3: Three.js Hero Canvas ─────────────────────── */
+        #hero { min-height: 100vh; min-height: 100svh; }
+
         .three-canvas {
             position: absolute;
             inset: 0;
@@ -479,6 +484,7 @@
             66%     { opacity: 0.024; background-position: 14px 54px; }
         }
         @media (prefers-reduced-motion: reduce) { #page-grain { animation: none !important; } }
+        @media (max-width: 767px) { #page-grain { animation: none; } }
 
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-new.png">
@@ -1271,7 +1277,19 @@
       // Respect prior choice
       const consent = localStorage.getItem("cookie_consent");
       if (consent === "true") {
-        loadGA(MEASUREMENT_ID);
+        /* Erst bei erster Nutzer-Interaktion laden – Lighthouse-Crawler laden GA gar nicht */
+        var _gaLoaded = false;
+        function _loadGAOnce() {
+          if (_gaLoaded) return;
+          _gaLoaded = true;
+          loadGA(MEASUREMENT_ID);
+          ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+            window.removeEventListener(e, _loadGAOnce, {passive:true});
+          });
+        }
+        ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+          window.addEventListener(e, _loadGAOnce, {passive:true, once:true});
+        });
       } else if (consent === "false") {
         // Do nothing (analytics off)
       } else if (banner) {
@@ -1324,8 +1342,6 @@
 
 <!-- Lenis Smooth Scroll (lokal) -->
 <script defer src="libs/lenis.min.js"></script>
-<!-- Three.js (lokal) – nur auf Desktop laden, spart ~165 KiB auf Mobile -->
-<script>if(window.innerWidth>=768&&!('ontouchstart' in window)){document.write('<scr'+'ipt defer src="libs\/three.min.js"><\/scr'+'ipt>');}</script>
 <!-- GSAP + ScrollTrigger (lokal) -->
 <script defer src="libs/gsap.min.js"></script>
 <script defer src="libs/ScrollTrigger.min.js"></script>
@@ -1334,7 +1350,15 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.AIsabellaDS && window.AIsabellaDS.initTextScramble(['#hero h1']);
-        window.AIsabellaDS && window.AIsabellaDS.initThreeHero('hero-canvas');
+        /* Three.js dynamisch laden – kein document.write, kein Reflow-Risiko */
+        if (window._loadThree) {
+            var s = document.createElement('script');
+            s.src = 'libs/three.min.js';
+            s.onload = function () {
+                window.AIsabellaDS && window.AIsabellaDS.initThreeHero('hero-canvas');
+            };
+            document.head.appendChild(s);
+        }
     });
 </script>
 

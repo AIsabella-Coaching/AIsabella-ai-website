@@ -10,3 +10,15 @@
 # Bilder – 1 Woche cachen
 /images/*
   Cache-Control: public, max-age=604800
+
+# Eigene CSS/JS Assets – 1 Tag cachen (kurz, damit Änderungen schnell ankommen)
+/tailwind.css
+  Cache-Control: public, max-age=86400
+/ai-design-system.js
+  Cache-Control: public, max-age=86400
+
+# Security-Header (alle Seiten)
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

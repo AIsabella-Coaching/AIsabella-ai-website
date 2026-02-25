@@ -370,6 +370,11 @@
         var canvas = document.getElementById(canvasId);
         if (!canvas) return;
 
+        /* Read layout values BEFORE any writes to avoid forced reflow */
+        var W = canvas.clientWidth || window.innerWidth;
+        var TOTAL = W < 768 ? 0 : W < 1200 ? 60 : 100;
+        if (TOTAL === 0) { canvas.style.display = 'none'; return; }
+
         /* pause entirely when hero not visible (IntersectionObserver) */
         var heroVisible = true;
         if (window.IntersectionObserver) {
@@ -384,10 +389,6 @@
         var scene  = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
         camera.position.z = 55;
-
-        var W     = canvas.clientWidth || window.innerWidth;
-        var TOTAL = W < 768 ? 0 : W < 1200 ? 60 : 100;
-        if (TOTAL === 0) { canvas.style.display = 'none'; return; }
 
         var HUB_COUNT = Math.floor(TOTAL * 0.18);
         var REG_COUNT = TOTAL - HUB_COUNT;

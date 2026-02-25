@@ -9,6 +9,9 @@
     
     <link rel="canonical" href="https://aisabella.ai/praxis.html">
     
+    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Three.js-Flag: nur einmal im Head berechnen -->
+    <script>window._loadThree=(window.innerWidth>=768&&window.matchMedia('(pointer:fine)').matches);</script>
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="fonts/fonts.css">
 
@@ -1017,7 +1020,18 @@
       // Respect prior choice
       const consent = localStorage.getItem("cookie_consent");
       if (consent === "true") {
-        loadGA(MEASUREMENT_ID);
+        var _gaLoaded = false;
+        function _loadGAOnce() {
+          if (_gaLoaded) return;
+          _gaLoaded = true;
+          loadGA(MEASUREMENT_ID);
+          ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+            window.removeEventListener(e, _loadGAOnce, {passive:true});
+          });
+        }
+        ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+          window.addEventListener(e, _loadGAOnce, {passive:true, once:true});
+        });
       } else if (consent === "false") {
         // Do nothing (analytics off)
       } else if (banner) {
@@ -1069,9 +1083,7 @@
 </script>
 <!-- CDN: Lenis Smooth Scroll -->
 <script defer src="libs/lenis.min.js"></script>
-<!-- CDN: Three.js (Phase 3 – Particle Hero) -->
-<script defer src="libs/three.min.js"></script>
-<!-- CDN: GSAP + ScrollTrigger -->
+<!-- GSAP + ScrollTrigger -->
 <script defer src="libs/gsap.min.js"></script>
 <script defer src="libs/ScrollTrigger.min.js"></script>
 <!-- AIsabella Design System v3 -->
@@ -1079,7 +1091,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.AIsabellaDS && window.AIsabellaDS.initTextScramble(['#praxis h1']);
-        window.AIsabellaDS && window.AIsabellaDS.initThreeHero('praxis-canvas');
+        if (window._loadThree) {
+            var s = document.createElement('script');
+            s.src = 'libs/three.min.js';
+            s.onload = function () {
+                window.AIsabellaDS && window.AIsabellaDS.initThreeHero('praxis-canvas');
+            };
+            document.head.appendChild(s);
+        }
     });
 </script>
 
