@@ -22,3 +22,18 @@ images/Logo_Ai_White.png
 images/icon file-02.png
 images/Icon.png
 images/RGB version logo-01.png
+BeraterstabTemplate.html
+node_modules
+BeraterstabTemplate.pdf
+
+# Projektnotizen & IDE
+CLAUDE.md
+.vscode/
+
+# PDF-Workflow & Dev-Tools
+PDF-WORKFLOW.md
+generate-pdf.js
+debug-footer.js
+package.json
+package-lock.json
+node_modules/
