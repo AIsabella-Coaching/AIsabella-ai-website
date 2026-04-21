@@ -23,8 +23,20 @@ images/icon file-02.png
 images/Icon.png
 images/RGB version logo-01.png
 BeraterstabTemplate.html
-node_modules
 BeraterstabTemplate.pdf
+template-images/
+
+# Template-Bilder (lokal generiert, nicht im Repo)
+images/board-meeting-clean.png
+images/brand-dna-prism-clean.png
+images/icon-strategy.png
+images/icon-market.png
+images/icon-leadership.png
+images/icon-innovation.png
+images/systemprompt-document-clean.png
+images/closing-knowledge-flow.png
+
+node_modules
 
 # Projektnotizen & IDE
 CLAUDE.md
@@ -37,3 +49,6 @@ debug-footer.js
 package.json
 package-lock.json
 node_modules/
+
+# Claude Code lokale Konfiguration
+.claude/
