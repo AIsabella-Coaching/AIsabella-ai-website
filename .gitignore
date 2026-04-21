@@ -1,5 +1,4 @@
 # Build-Tool (zu groß für GitHub, kann neu heruntergeladen werden)
-tailwindcss.exe
 
 # Temporäre/Hilfsdateien
 process_qr_code.py
@@ -45,9 +44,6 @@ CLAUDE.md
 # PDF-Workflow & Dev-Tools
 PDF-WORKFLOW.md
 generate-pdf.js
-debug-footer.js
-package.json
-package-lock.json
 node_modules/
 
 # Claude Code lokale Konfiguration
