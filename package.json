@@ -1,0 +1,26 @@
+{
+  "name": "aisabella-ai-website",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AIsabella-Coaching/AIsabella-ai-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AIsabella-Coaching/AIsabella-ai-website/issues"
+  },
+  "homepage": "https://github.com/AIsabella-Coaching/AIsabella-ai-website#readme",
+  "dependencies": {
+    "astro": "^6.1.8"
+  }
+}

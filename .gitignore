@@ -48,3 +48,7 @@ node_modules/
 
 # Claude Code lokale Konfiguration
 .claude/
+
+# Astro
+dist/
+.astro/
