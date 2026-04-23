@@ -35,10 +35,9 @@ images/icon-innovation.png
 images/systemprompt-document-clean.png
 images/closing-knowledge-flow.png
 
-node_modules
-
 # Projektnotizen & IDE
 CLAUDE.md
+docs/
 .vscode/
 
 # PDF-Workflow & Dev-Tools
