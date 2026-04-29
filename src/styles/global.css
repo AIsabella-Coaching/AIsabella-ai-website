@@ -1,1 +1,299 @@
 @import "tailwindcss";
+
+/* === Custom CSS aus alter index.html (1:1 übernommen) === */
+        /* Verhindert, dass sticky Header anchor-targets überlagert */
+        html {
+            scroll-padding-top: 72px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0C10; /* Deep dark – "infinite space" */
+        }
+        .cta-button {
+            background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
+            background-size: 200% auto;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px 0 rgba(8, 211, 187, 0.25);
+        }
+        .cta-button:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px 0 rgba(138, 63, 252, 0.4);
+        }
+        .gradient-text {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 50%, #8A3FFC 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-text-hero {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-text-full {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 100%);
+        }
+        .gradient-text-subtle {
+            background-image: linear-gradient(to right, #08D3BB, #33B1FF);
+        }
+        .gradient-text-full, .gradient-text-subtle {
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .gradient-border-left {
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #08D3BB, #33B1FF, #8A3FFC) 1;
+        }
+        
+        /* Animationen */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes float-slow {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(10px, -15px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+        
+        .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+            will-change: transform;
+        }
+        
+        .animate-float-delay {
+            animation: float 6s ease-in-out infinite 1s;
+            will-change: transform;
+        }
+        
+        .hover-float {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-glow:hover {
+            filter: drop-shadow(0 0 8px currentColor);
+            transition: filter 0.3s ease;
+        }
+        
+        .lightbulb-glow {
+            filter: drop-shadow(0 0 20px rgba(8, 211, 187, 1)) 
+                    drop-shadow(0 0 35px rgba(51, 177, 255, 0.8)) 
+                    drop-shadow(0 0 50px rgba(138, 63, 252, 0.6)) !important;
+            -webkit-filter: drop-shadow(0 0 20px rgba(8, 211, 187, 1)) 
+                           drop-shadow(0 0 35px rgba(51, 177, 255, 0.8)) 
+                           drop-shadow(0 0 50px rgba(138, 63, 252, 0.6)) !important;
+        }
+
+        /* Barrierefreiheit: Sichtbarer Fokus-Ring für Tastatur-Navigation */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 2px !important;
+            border-radius: 4px;
+        }
+
+        .cta-button:focus-visible {
+            outline: 3px solid #22d3d1 !important;
+            outline-offset: 3px !important;
+            box-shadow: 0 0 0 6px rgba(34, 211, 209, 0.3) !important;
+        }
+
+        /* Fokus für Navigation-Links im Header */
+        header a:focus-visible,
+        nav a:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 4px !important;
+        }
+
+        /* Fokus für Footer-Links */
+        footer a:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 2px !important;
+        }
+
+        /* ── Phase 3: Three.js Hero Canvas ─────────────────────── */
+        #hero { min-height: 100vh; }
+
+        .three-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: canvasFadeIn 1.8s ease 0.4s forwards;
+        }
+        @keyframes canvasFadeIn {
+            to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .three-canvas { display: none; }
+        }
+        /* Canvas auf Mobile grundsätzlich ausblenden (Three.js läuft dort nicht) */
+        @media (max-width: 767px) {
+            .three-canvas { display: none !important; }
+        }
+
+        /* ── Scroll Reveal Animations ─────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Accessibility: prefers-reduced-motion ──────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .animate-float,
+            .animate-float-slow,
+            .animate-float-delay {
+                animation: none !important;
+            }
+            #Header-Icon-Group path,
+            #Header-Text-Group path,
+            #Footer-Icon-Group path,
+            #Footer-Text-Group path {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+            .cta-button {
+                transition: none !important;
+            }
+        }
+
+        /* ── Hero: volle Viewport-Höhe + vertikale Zentrierung des Inhalts ─────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* pt-24 aus dem class-Attribut bleibt als Mindest-Abstand zur fixierten Nav */
+        }
+        /* Der absolute-positionierte Inhalt braucht kein Flex-Verhalten */
+        #hero > .container {
+            width: 100%;
+        }
+
+        /* ══ FLUID SILK / DEEP GLOW BACKGROUND ════════════════════════════ */
+        #deep-glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            /* Kein background-color hier – body hat bereits #0B0C10 */
+        }
+
+        #deep-glow .glow-teal,
+        #deep-glow .glow-purple {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.12;
+            animation: floatSilk 25s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        #deep-glow .glow-teal {
+            width: 70vw;
+            height: 70vw;
+            top: -20vh;
+            right: -10vw;
+            background: radial-gradient(circle at center, #00CFC4 0%, transparent 70%);
+            border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
+            animation-delay: 0s;
+        }
+
+        #deep-glow .glow-purple {
+            width: 80vw;
+            height: 80vw;
+            bottom: -30vh;
+            left: -15vw;
+            background: radial-gradient(circle at center, #8934F0 0%, transparent 70%);
+            border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
+            animation-duration: 35s;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatSilk {
+            0%   { transform: translate(0, 0)      rotate(0deg)  scale(1);    }
+            33%  { transform: translate(-4vw, 6vh)  rotate(8deg)  scale(1.05); }
+            66%  { transform: translate(4vw, -4vh)  rotate(-5deg) scale(0.95); }
+            100% { transform: translate(0, 0)      rotate(0deg)  scale(1);    }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #deep-glow .glow-teal, #deep-glow .glow-purple { animation: none !important; }
+        }
+
+        /* ══ NOISE / GRAIN OVERLAY ══════════════════════════════════ */
+        #page-grain {
+            position: fixed; inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.024;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)'/%3E%3C/svg%3E");
+            background-size: 280px 280px;
+            animation: grainBreathe 10s ease-in-out infinite;
+        }
+        @keyframes grainBreathe {
+            0%,100% { opacity: 0.018; background-position: 0 0; }
+            33%     { opacity: 0.032; background-position: 42px 18px; }
+            66%     { opacity: 0.024; background-position: 14px 54px; }
+        }
+        @media (prefers-reduced-motion: reduce) { #page-grain { animation: none !important; } }
+        @media (max-width: 767px) { #page-grain { animation: none; } }
+
