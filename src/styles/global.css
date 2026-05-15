@@ -32,6 +32,7 @@
             background-clip: text;
             color: transparent;
         }
+
         .gradient-text-full {
             background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 100%);
         }
@@ -228,58 +229,9 @@
             width: 100%;
         }
 
-        /* ══ FLUID SILK / DEEP GLOW BACKGROUND ════════════════════════════ */
-        #deep-glow {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-            /* Kein background-color hier – body hat bereits #0B0C10 */
-        }
+        /* Hintergruendelemente werden nun direkt ueber Tailwind in BaseLayout (z.B. #deep-glow) gestyled */
 
-        #deep-glow .glow-teal,
-        #deep-glow .glow-purple {
-            position: absolute;
-            filter: blur(120px);
-            opacity: 0.12;
-            animation: floatSilk 25s ease-in-out infinite alternate;
-            will-change: transform;
-        }
-
-        #deep-glow .glow-teal {
-            width: 70vw;
-            height: 70vw;
-            top: -20vh;
-            right: -10vw;
-            background: radial-gradient(circle at center, #00CFC4 0%, transparent 70%);
-            border-radius: 45% 55% 60% 40% / 55% 45% 60% 40%;
-            animation-delay: 0s;
-        }
-
-        #deep-glow .glow-purple {
-            width: 80vw;
-            height: 80vw;
-            bottom: -30vh;
-            left: -15vw;
-            background: radial-gradient(circle at center, #8934F0 0%, transparent 70%);
-            border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
-            animation-duration: 35s;
-            animation-delay: -5s;
-        }
-
-        @keyframes floatSilk {
-            0%   { transform: translate(0, 0)      rotate(0deg)  scale(1);    }
-            33%  { transform: translate(-4vw, 6vh)  rotate(8deg)  scale(1.05); }
-            66%  { transform: translate(4vw, -4vh)  rotate(-5deg) scale(0.95); }
-            100% { transform: translate(0, 0)      rotate(0deg)  scale(1);    }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            #deep-glow .glow-teal, #deep-glow .glow-purple { animation: none !important; }
-        }
-
-        /* ══ NOISE / GRAIN OVERLAY ══════════════════════════════════ */
+        /* ══ NOISE / GRAIN OVERLAY (statisch, v1) ════════════════════ */
         #page-grain {
             position: fixed; inset: 0;
             z-index: 1;
@@ -287,13 +239,5 @@
             opacity: 0.024;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)'/%3E%3C/svg%3E");
             background-size: 280px 280px;
-            animation: grainBreathe 10s ease-in-out infinite;
         }
-        @keyframes grainBreathe {
-            0%,100% { opacity: 0.018; background-position: 0 0; }
-            33%     { opacity: 0.032; background-position: 42px 18px; }
-            66%     { opacity: 0.024; background-position: 14px 54px; }
-        }
-        @media (prefers-reduced-motion: reduce) { #page-grain { animation: none !important; } }
-        @media (max-width: 767px) { #page-grain { animation: none; } }
 

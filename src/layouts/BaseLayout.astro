@@ -473,10 +473,10 @@ const footerLogoSvg = `
 
 <body class="text-gray-300">
 
-<!-- Deep Glow background (fixed, below grain) -->
-<div id="deep-glow" aria-hidden="true">
-    <div class="glow-teal"></div>
-    <div class="glow-purple"></div>
+<!-- Hero Background (Static Image) -->
+<div id="deep-glow" class="fixed inset-0 w-full h-full -z-20 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero-bg.png');" aria-hidden="true">
+    <!-- Optional: Dark overlay to ensure text readability -->
+    <div class="absolute inset-0 bg-gray-900/30 mix-blend-multiply"></div>
 </div>
 <!-- Noise grain overlay (CSS-only, breathing) -->
 <div id="page-grain" aria-hidden="true"></div>
@@ -780,6 +780,7 @@ const footerLogoSvg = `
   })();
 </script>
 
+<!-- Scripts removed (ThreeJS and Shader) -->
 <!-- Lenis Smooth Scroll (lokal) -->
 <script defer src="/libs/lenis.min.js" is:inline></script>
 <!-- GSAP + ScrollTrigger (lokal) -->
