@@ -6,6 +6,9 @@ const calendlyUrl = "https://calendly.com/aisabella-ai/erstgesprach";
   <!-- Harte radial-gradient Maske: Zwingt die Mitte unter dem Text spürbar abgedunkelt zu werden, während die Ränder auslaufen -->
   <div class="absolute inset-0 pointer-events-none z-0" style="background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0.4) 45%, transparent 75%);"></div>
 
+  <!-- Lesbarkeits-Overlay: vertikaler Plateau-Verlauf in --black-warm (#100A1E, lila-stichig). Liegt zwischen Bild-/Radial-Layer (z-0) und Text-Container (z-10) auf z-1. Stops + Mobile-Variante im <style>-Block. -->
+  <div class="hero-readability-overlay absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+
   <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-10 leading-tight text-white" style="text-shadow: 0 4px 16px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8);">
       Strategisches KI-Sparring<br />
@@ -47,5 +50,36 @@ const calendlyUrl = "https://calendly.com/aisabella-ai/erstgesprach";
     background: var(--section-divider);
     z-index: 3;
     pointer-events: none;
+  }
+
+  /* Lesbarkeits-Overlay zwischen Hero-Bild und Text-Container.
+     Lila-stichiger Dunkelton aus --black-warm = #100A1E = rgb(16, 10, 30)
+     abgeleitet (NICHT reines Schwarz – Spec). Peak-Alpha 0.35 (justierbar
+     im Bereich 0.30–0.40). Vertikaler Plateau-Verlauf, Auslauf zu Alpha 0
+     am oberen und unteren Sektions-Rand, damit das Bild als Stimmung an den
+     Rändern voll sichtbar bleibt.
+     z-index: 1 → zwischen radial-gradient (z-0) und Text-Container (z-10). */
+  .hero-readability-overlay {
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 10, 30, 0) 0%,
+      rgba(16, 10, 30, 0.35) 30%,
+      rgba(16, 10, 30, 0.35) 80%,
+      rgba(16, 10, 30, 0) 100%
+    );
+  }
+
+  /* Mobile: Plateau breiter (Text-Block ist auf Mobile länger). */
+  @media (max-width: 767px) {
+    .hero-readability-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(16, 10, 30, 0) 0%,
+        rgba(16, 10, 30, 0.35) 25%,
+        rgba(16, 10, 30, 0.35) 90%,
+        rgba(16, 10, 30, 0) 100%
+      );
+    }
   }
 </style>
