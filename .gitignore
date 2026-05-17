@@ -51,3 +51,7 @@ node_modules/
 # Astro
 dist/
 .astro/
+
+# Bild-Backups (inaktive Original- und Zwischenstände, lokal/Tresorit, nicht im Repo)
+src/assets/beraterstab-netz-original.png
+src/assets/beraterstab-netz-step2-sparkle-removed.png
