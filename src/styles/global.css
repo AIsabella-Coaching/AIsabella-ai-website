@@ -1,5 +1,76 @@
 @import "tailwindcss";
 
+/* === Sektions-Subline (gesperrte Türkis-Eyebrow über jeder Hauptsektions-Überschrift,
+       Pattern aus AIsabella Beraterstab-Präsentation, z.B. „DAS PROBLEM", „MEET THE TEAM") === */
+.section-subline {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 16px 0;
+  line-height: 1;
+}
+
+/* === CI-Variablen (Sektions-Architektur, 16.05.2026) === */
+:root {
+  /* Schwarz-Töne */
+  --black:         #070707;
+  --black-soft:    #0D0D12;
+  --black-warm:    #100A1E;
+
+  /* Lila & Türkis */
+  --purple-deep:   #5F29D1;
+  --purple-mid:    #7937E0;
+  --purple-light:  #8934F0;
+  --purple-hi:     #A62AEB;
+  --purple-blue:   #4C30ED;
+  --teal:          #00CFC4;
+  --white:         #FFFFFF;
+
+  /* Textfarben */
+  --text-soft:     rgba(255, 255, 255, 0.82);
+  --text-quiet:    rgba(255, 255, 255, 0.62);
+  --hairline:      rgba(255, 255, 255, 0.08);
+
+  /* Card-Werte (16.05.2026 Akzent-Pattern: ruhige Hülle, farbiger Streifen oben) */
+  --card-bg:       rgba(20, 14, 38, 0.72);
+  --card-border:   rgba(255, 255, 255, 0.10);   /* neutral, nicht lila-dominant */
+  --card-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),         /* Outer-Linien-Glow: neutral, leise */
+    0 0 24px 2px rgba(95, 41, 209, 0.10),        /* Lila-Halo: dezent, kompakter */
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);     /* Inner-Top-Highlight: unverändert */
+  --card-blur:     12px;
+  --card-accent-width: 4px;                     /* Höhe des Akzent-Streifens oben */
+
+  /* Akzent-Farben für Card-Streifen (Volltonfarbe, ::before-Pseudo) */
+  --accent-purple:  var(--purple-deep);   /* #5F29D1 */
+  --accent-teal:    var(--teal);          /* #00CFC4 */
+  --accent-magenta: var(--purple-hi);     /* #A62AEB */
+
+  /* Verlaufstrich für card-freie Sektionen (Marken-Geste analog zum
+     Onepager-Template, Lila → Magenta → Türkis horizontal). Zweites Pattern,
+     klar getrennt vom Volltonfarb-Akzent über Cards. */
+  --accent-gradient: linear-gradient(
+    90deg,
+    var(--purple-deep) 0%,
+    var(--purple-hi) 50%,
+    var(--teal) 100%
+  );
+
+  /* Sektions-Trennstrich (3 px ::after unter jeder Sektion). Orientiert am
+     Footer-Strich des Onepager-Templates: Türkis links → Lila Mitte → Magenta
+     rechts, asymmetrischer Verlauf. Eigene Variable, damit --accent-gradient
+     für andere Zwecke unverändert bleibt. */
+  --section-divider: linear-gradient(
+    90deg,
+    var(--teal) 0%,
+    var(--purple-deep) 50%,
+    var(--purple-hi) 100%
+  );
+}
+
 /* === Custom CSS aus alter index.html (1:1 übernommen) === */
         /* Verhindert, dass sticky Header anchor-targets überlagert */
         html {

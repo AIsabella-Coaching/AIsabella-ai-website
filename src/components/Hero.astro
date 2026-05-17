@@ -34,3 +34,18 @@ const calendlyUrl = "https://calendly.com/aisabella-ai/erstgesprach";
     </a>
   </div>
 </section>
+
+<style>
+  /* Verlaufstrich am unteren Sektions-Ende als Marken-Geste / Sektions-Trenner. */
+  #hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+</style>
