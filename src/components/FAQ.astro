@@ -55,8 +55,8 @@ const faqs = [
     <h2 class="faq-heading">Häufige Fragen</h2>
 
     <div class="faq-list">
-      {faqs.map((faq) => (
-        <article class="faq-card">
+      {faqs.map((faq, index) => (
+        <article class="faq-card scroll-reveal" data-reveal-stagger={index}>
           <h3>{faq.question}</h3>
           {faq.answer.map((para) => <p>{para}</p>)}
         </article>
@@ -134,6 +134,14 @@ const faqs = [
     backdrop-filter: blur(var(--card-blur));
     -webkit-backdrop-filter: blur(var(--card-blur));
     box-shadow: var(--card-shadow);
+    /* Hover-Float (Schritt 5, 17.05.2026): siehe Begründung in
+       Sparring.astro. */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .faq-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
   }
 
   .faq-card::before {

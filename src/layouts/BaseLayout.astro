@@ -676,6 +676,46 @@ const footerLogoSvg = `
 </script>
 </script>
 
+<!-- Scroll-Reveal (Schritt 5, 17.05.2026) – IntersectionObserver in Vanilla JS,
+     keine Library. threshold 0.15, einmaliges Triggern (kein Re-Trigger beim
+     Rückwärtsscrollen). data-reveal-stagger="N" auf einem Reveal-Element
+     setzt transition-delay auf N×100 ms für gestaffelten Versatz innerhalb
+     einer Card-Gruppe (Sparring, FAQ).
+     Klassenname .scroll-reveal (nicht .reveal) wegen Namespace-Konflikt
+     mit public/ai-design-system.js, das .reveal-Klassen bei Page-Load
+     aktiv entfernt (alter GSAP-Cleanup, siehe docs/lessons.md L-008).
+     Reduced-motion: in global.css setzt die @media-Regel .scroll-reveal
+     auf opacity:1 + transform:none + transition:none – Elemente sind dann
+     sofort sichtbar, .is-visible-Klasse vom Observer hat keinen Effekt. -->
+<script is:inline>
+  (function () {
+    var reveals = document.querySelectorAll('.scroll-reveal');
+    if (!reveals.length) return;
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: ältere Browser ohne IO → alles sofort sichtbar machen.
+      Array.prototype.forEach.call(reveals, function (el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var stagger = parseInt(el.getAttribute('data-reveal-stagger') || '0', 10);
+        if (stagger > 0) {
+          el.style.transitionDelay = (stagger * 100) + 'ms';
+        }
+        el.classList.add('is-visible');
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.15 });
+    Array.prototype.forEach.call(reveals, function (el) {
+      observer.observe(el);
+    });
+  })();
+</script>
+
 <!-- Consent + GA4 (GDPR) -->
 <script is:inline>
   (function () {

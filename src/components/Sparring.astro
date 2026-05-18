@@ -4,7 +4,7 @@
 <section id="sparring" class="sparring-section">
   <div class="sparring-container">
 
-    <article class="sparring-card">
+    <article class="sparring-card scroll-reveal" data-reveal-stagger="0">
       <p class="section-subline">Dein Angebot</p>
       <h2>Dein Sparring: Deine Themen, dein Tempo</h2>
 
@@ -25,7 +25,7 @@
       </p>
     </article>
 
-    <article class="sparring-card sparring-card--takeaway">
+    <article class="sparring-card sparring-card--takeaway scroll-reveal" data-reveal-stagger="1">
       <h3>Was du mitnimmst</h3>
       <p>
         Einen inneren Kompass für KI-Entscheidungen – verankert in deinem unternehmerischen Alltag, erprobt an deinen echten Herausforderungen. Souveränität im Umgang mit KI und die Urteilskraft, selbst zu unterscheiden, wobei sie dir hilft – und wovon du besser die Finger lässt.
@@ -91,6 +91,19 @@
     backdrop-filter: blur(var(--card-blur));
     -webkit-backdrop-filter: blur(var(--card-blur));
     box-shadow: var(--card-shadow);
+    /* Hover-Float (Schritt 5, 17.05.2026): 300 ms ease-out auf
+       transform + box-shadow. Reveal nutzt global.css .scroll-reveal-
+       Transition (700 ms, opacity + transform) – diese hier wirkt nach
+       Reveal-Ende
+       für Hover. Minimaler Trade-off: in der Reveal-Phase wird das
+       Slide-Up auf 300 ms statt 700 ms beschleunigt (cascade-bedingt),
+       was visuell snappy, aber nicht spec-konform ist. Akzeptiert. */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .sparring-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
   }
 
   .sparring-card::before {

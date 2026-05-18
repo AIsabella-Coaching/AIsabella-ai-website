@@ -35,12 +35,19 @@
   --hairline:      rgba(255, 255, 255, 0.08);
 
   /* Card-Werte (16.05.2026 Akzent-Pattern: ruhige Hülle, farbiger Streifen oben) */
-  --card-bg:       rgba(20, 14, 38, 0.72);
+  --card-bg:       rgba(28, 20, 50, 0.92);
   --card-border:   rgba(255, 255, 255, 0.10);   /* neutral, nicht lila-dominant */
   --card-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.04),         /* Outer-Linien-Glow: neutral, leise */
     0 0 24px 2px rgba(95, 41, 209, 0.10),        /* Lila-Halo: dezent, kompakter */
     inset 0 1px 0 rgba(255, 255, 255, 0.04);     /* Inner-Top-Highlight: unverändert */
+  /* Hover-Variante: stärkerer Lila-Halo, weiter ausladend, plus etwas
+     lebendigeres Inner-Top-Highlight. Wird auf .sparring-card:hover und
+     .faq-card:hover gesetzt (Schritt 5, Hover-Float). */
+  --card-shadow-hover:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 12px 40px 4px rgba(95, 41, 209, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   --card-blur:     12px;
   --card-accent-width: 4px;                     /* Höhe des Akzent-Streifens oben */
 
@@ -83,13 +90,34 @@
         .cta-button {
             background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
             background-size: 200% auto;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px 0 rgba(8, 211, 187, 0.25);
+            /* Asymmetrische Hover-Transition (Schritt C-5, 18.05.2026):
+               200 ms ease-out beim Hover-In (auf :hover gesetzt),
+               400 ms ease-out beim Hover-Out (Base wirkt, wenn :hover
+               wegfällt). Gilt für beide Hover-Properties, damit
+               Gradient-Verschiebung und Glow als Einheit reagieren. */
+            transition: background-position 0.4s ease-out,
+                        box-shadow 0.4s ease-out;
+            /* Default-Shadow in em (skaliert proportional zur font-size
+               des jeweiligen Buttons). 0.25em / 0.94em entsprechen am
+               16px-Button exakt den vorherigen 4px / 15px. */
+            box-shadow: 0 0.25em 0.94em 0 rgba(8, 211, 187, 0.25);
         }
+        /* Hover: Farbverlauf-Verschiebung über 200%-Gradient (kein Anheben)
+           plus weicher Türkis-Glow als Marken-Geste (Schritt C-5).
+           - Glow-Farbe: var(--teal) via color-mix() (nicht hartkodiert).
+           - Zwei Shadow-Schichten: kompakter Kern (1em blur, 55 % Alpha)
+             + breites Halo (2.25em blur, 0.5em spread, 28 % Alpha) für
+             „weich gestreut, ohne harte Kante".
+           - em-Werte skalieren mit der Schriftgröße des Buttons.
+           - Transition 0.2s = Hover-In (asymmetrisch zu 0.4s Hover-Out
+             auf der Base-Klasse). */
         .cta-button:hover {
             background-position: right center;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px 0 rgba(138, 63, 252, 0.4);
+            box-shadow:
+              0 0 1em 0        color-mix(in srgb, var(--teal) 55%, transparent),
+              0 0 2.25em 0.5em color-mix(in srgb, var(--teal) 28%, transparent);
+            transition: background-position 0.2s ease-out,
+                        box-shadow 0.2s ease-out;
         }
         .gradient-text {
             background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 50%, #8A3FFC 100%);
@@ -248,25 +276,58 @@
             .three-canvas { display: none !important; }
         }
 
-        /* ── Scroll Reveal Animations ─────────────────────────── */
-        .reveal {
+        /* ── Scroll Reveal Animations (Schritt 5, 17.05.2026) ─────────
+           Klassenname .scroll-reveal (nicht .reveal) wegen Namespace-
+           Konflikt mit public/ai-design-system.js, das .reveal-Klassen
+           bei Page-Load aktiv entfernt (alter GSAP-Cleanup, siehe L-008).
+           Startzustand: opacity 0 + 20 px Versatz nach unten. Wechsel auf
+           .is-visible via IntersectionObserver in BaseLayout (threshold
+           0.15, einmaliges Triggern). Gestaffeltes Erscheinen für Card-
+           Gruppen: data-reveal-stagger="N" → transition-delay N×100 ms
+           wird vom Script gesetzt. */
+        .scroll-reveal {
             opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: opacity, transform;
         }
-        .reveal.is-visible {
+        .scroll-reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* ── Hero-Staffelung (Schritt 5, 17.05.2026) ─────────────────
+           Hero-Bild bleibt sofort sichtbar (kein Fade), nur die Text-
+           Elemente staffeln nach Page-Load via CSS-Animation. Hero hat
+           keine separate Subline → 5 Stufen (Headline + 3 Fließtext-
+           absätze + CTA) statt der 4 Stufen aus der Spec, je 200 ms
+           Versatz. data-hero-stagger="N" steuert animation-delay. */
+        .hero-stagger {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: heroStaggerIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-stagger[data-hero-stagger="1"] { animation-delay:    0ms; }
+        .hero-stagger[data-hero-stagger="2"] { animation-delay:  200ms; }
+        .hero-stagger[data-hero-stagger="3"] { animation-delay:  400ms; }
+        .hero-stagger[data-hero-stagger="4"] { animation-delay:  600ms; }
+        .hero-stagger[data-hero-stagger="5"] { animation-delay:  800ms; }
+        @keyframes heroStaggerIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ── Accessibility: prefers-reduced-motion ──────────────── */
         @media (prefers-reduced-motion: reduce) {
-            .reveal {
+            .scroll-reveal {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
+            }
+            .hero-stagger {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
             }
             .animate-float,
             .animate-float-slow,
