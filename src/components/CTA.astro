@@ -1,0 +1,151 @@
+---
+import { calendlyUrl } from '../config/site';
+---
+
+<section id="erstgespraech" class="cta-section">
+
+  <div class="cta-mobile-bg" aria-hidden="true"></div>
+  <div class="cta-readability-overlay" aria-hidden="true"></div>
+
+  <div class="cta-container">
+    <h2>Dein Erstgespräch</h2>
+
+    <p class="cta-subline">
+      20 Minuten, online, vertraulich – und ohne Verpflichtung. Wir klären, wo du mit KI gerade stehst, was dich beschäftigt und ob das Sparring zu deiner Situation passt. Du bekommst eine ehrliche Einschätzung von mir – und danach entscheidest du in Ruhe, ob du weitergehen willst.
+    </p>
+
+    <a
+      href={calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cta-button inline-block text-white font-bold py-4 px-10 rounded-lg text-lg"
+    >
+      Erstgespräch vereinbaren
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Desktop: kein background-color, keine Aurora-::before – #deep-glow
+     (seitenweite Tapete via BaseLayout) trägt die Sektion. Sektion bleibt
+     bewusst transparent. */
+  .cta-section {
+    position: relative;
+    z-index: 1;
+    padding: 120px 48px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  /* Verlaufstrich am unteren Sektions-Ende – letzter Trenner vor Footer. */
+  .cta-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* Mobile-Hintergrund-Layer. Auf Desktop display:none, damit das Bild
+     gar nicht erst geladen wird. Auf Mobile (≤767 px) via Media-Query
+     aktiviert – #deep-glow ist auf Mobile durch andere Mechanismen
+     ausgeblendet, deshalb braucht die Sektion hier eine eigene Tapete. */
+  .cta-mobile-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    display: none;
+  }
+
+  /* Lesbarkeits-Overlay: radialer Verlauf in --black-warm, zentriert auf
+     den Text-Block. Ellipse (60 % horizontal, 70 % vertikal) dämpft die
+     #deep-glow-Aurora im Text-Bereich, lässt sie an den Sektions-Rändern
+     (oben/unten/links/rechts) voll sichtbar – keine horizontalen Kanten
+     mehr wie bei einem Plateau-Verlauf. Peak im Zentrum 0.75 (deutlich
+     über Hero 0.60), weil CTA als Schluss-Moment den Text-Kontrast
+     stärker betont. Mobile-Overlay bleibt linear (Peak 0.45 über
+     statischem Bild) – siehe Media-Query unten. */
+  .cta-readability-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 60% 70% at 50% 50%,
+      rgba(16, 10, 30, 0.75) 0%,
+      rgba(16, 10, 30, 0.55) 40%,
+      rgba(16, 10, 30, 0.25) 70%,
+      rgba(16, 10, 30, 0) 100%
+    );
+  }
+
+  .cta-container {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 28px 0;
+  }
+
+  .cta-subline {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin: 0 0 40px 0;
+  }
+
+  @media (max-width: 767px) {
+    .cta-section {
+      padding: 80px 24px;
+    }
+    .cta-section h2 {
+      font-size: 28px;
+      /* Text-shadow analog zum Hero-H1 plus omnidirektionalem Halo –
+         hebt die Headline vom Bild-Hintergrund klar ab. */
+      text-shadow:
+        0 0 24px rgba(0, 0, 0, 0.95),
+        0 4px 16px rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    .cta-subline {
+      /* Volles Weiß statt --text-soft (rgba 0.82): Kontrast zum
+         Bild-Hintergrund anheben. */
+      color: var(--white);
+      text-shadow:
+        0 0 16px rgba(0, 0, 0, 0.95),
+        0 2px 10px rgba(0, 0, 0, 0.9),
+        0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+    .cta-mobile-bg {
+      display: block;
+      background-image: url("/images/cta-bg-mobile.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .cta-readability-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(16, 10, 30, 0) 0%,
+        rgba(16, 10, 30, 0.45) 20%,
+        rgba(16, 10, 30, 0.45) 80%,
+        rgba(16, 10, 30, 0) 100%
+      );
+    }
+  }
+</style>
