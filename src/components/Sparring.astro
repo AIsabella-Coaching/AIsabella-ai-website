@@ -42,6 +42,17 @@
     background-color: var(--black-warm);
     padding: 120px 48px;
     overflow: hidden;
+    /* Card-Hüllen-Verstärkung (ADR-035, Schritt 1a 20.05. + Schritt 1b
+       24.05.2026, Variante 1.1 final): sektions-spezifischer Override der
+       globalen ADR-031-Baseline – beschränkt auf --card-bg (~13 % Aufhellung).
+       Inner Glow trägt die Wirkung allein, aus dem ::after der Card-Klasse.
+       Stütz-Rand (warmes Weiß-Lila, 15 % Opacity) war in der 1b-Erstumsetzung
+       drin, im Browser-Check als unsichtbar bewertet und verworfen. Erhöhen
+       der Opacity würde Konkurrenz zu Pattern A (ADR-024) riskieren – analog
+       zum bereits in Schritt 1a verworfenen Türkis-Rand. Andere Card-Variablen
+       (--card-border, --card-shadow*, --card-blur, --card-accent-width) erben
+       damit alle aus :root. */
+    --card-bg: rgba(44, 32, 68, 0.95);
   }
 
   /* Aurora-Schimmer: Lila unten links + Türkis oben rechts (dezent) */
@@ -87,6 +98,18 @@
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 14px;
+    /* Clippt den ::before-Akzent-Streifen sauber an die Card-Rundung
+       (ADR-035, 20.05.2026). Ohne overflow:hidden bleibt der 4-px-Streifen
+       gerade, weil seine eigene border-radius auf max. 2 px geclampt wird –
+       sichtbarer Versatz an den oberen Ecken. Outer-Box-Shadow liegt
+       außerhalb des Borderbox, daher unberührt. */
+    overflow: hidden;
+    /* Eigener Stacking-Context für den Inner Glow (ADR-035, Schritt 1b
+       24.05.2026): erlaubt ::after mit z-index:-1 zwischen Card-Background
+       und Card-Inhalt zu platzieren, ohne dass das Glow den Text überlagert.
+       ::before (z-index auto, positioned) bleibt damit IMMER über dem Glow
+       und behält Pattern A in voller Farbintensität (ADR-024). */
+    isolation: isolate;
     padding: 40px 44px;
     backdrop-filter: blur(var(--card-blur));
     -webkit-backdrop-filter: blur(var(--card-blur));
@@ -114,8 +137,34 @@
     right: 0;
     height: var(--card-accent-width);
     background: var(--accent);
+    /* zusätzlich zum overflow:hidden des Parents, für Robustheit */
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+  }
+
+  /* Inner Glow (ADR-035, Schritt 1b, 24.05.2026, Variante 1.1 final):
+     Elliptischer Lila-Glow im oberen Drittel der Card. Position bei 50% 20%
+     (bewusst weg vom oberen Rand, damit der Glow nicht halb hinter dem
+     Akzent-Streifen sitzt und eine eigene Position im Card-Raum bekommt).
+     Opacity 28 % – muss sich gegen den lila-warmen Sektions-Hintergrund
+     durchsetzen; 18 % aus der 1b-Erstumsetzung war für neutrale Umgebung
+     kalkuliert und verschmolz im Browser-Check.
+     Liegt durch z-index:-1 im isolierten Stacking-Context der Card zwischen
+     Card-Background und Static-Content – Akzent-Streifen (::before, z-index
+     auto) bleibt darüber in voller Farbintensität.
+     Hover-Verhalten: statisch (siehe ADR-035, Schritt 1b). */
+  .sparring-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse 75% 55% at 50% 20%,
+      color-mix(in srgb, var(--purple-light) 28%, transparent),
+      transparent 70%
+    );
   }
 
   /* Card 2: „Was du mitnimmst" – Türkis-Akzent (CI-zweite-Hauptfarbe) */

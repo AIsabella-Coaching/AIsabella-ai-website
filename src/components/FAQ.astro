@@ -72,6 +72,9 @@ const faqs = [
     background-color: var(--black-warm);
     padding: 120px 48px;
     overflow: hidden;
+    /* Card-Hüllen-Verstärkung (ADR-035, Schritt 1a + 1b Variante 1.1 final):
+       identisch zu Sparring – siehe dort für ausführliche Begründung. */
+    --card-bg: rgba(44, 32, 68, 0.95);
   }
 
   /* Aurora (Farb-Bogen): Lila-Heimkehr, deutlich gedämpfter als Sparring (0.10 statt 0.22) */
@@ -130,6 +133,12 @@ const faqs = [
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
+    /* Clippt den ::before-Akzent-Streifen an die Card-Rundung
+       (ADR-035, 20.05.2026) – Begründung siehe Sparring.astro. */
+    overflow: hidden;
+    /* Eigener Stacking-Context für den Inner Glow (ADR-035, Schritt 1b
+       24.05.2026) – Begründung siehe Sparring.astro. */
+    isolation: isolate;
     padding: 28px 32px;
     backdrop-filter: blur(var(--card-blur));
     -webkit-backdrop-filter: blur(var(--card-blur));
@@ -152,8 +161,29 @@ const faqs = [
     right: 0;
     height: var(--card-accent-width);
     background: var(--accent);
+    /* zusätzlich zum overflow:hidden des Parents, für Robustheit */
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+  }
+
+  /* Inner Glow (ADR-035, Schritt 1b, 24.05.2026, Variante 1.1 final) –
+     Spec identisch zu Sparring, siehe dort für Werte-Begründung
+     (Opacity 28 %, Position 50% 20%) und Stacking-Begründung. Wirkt auf
+     alle FAQ-Cards einheitlich – nth-child-Rotation des Streifens
+     (lila/türkis/magenta) bleibt unberührt, da ::after im Card-Stacking-
+     Context unter dem ::before liegt. */
+  .faq-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse 75% 55% at 50% 20%,
+      color-mix(in srgb, var(--purple-light) 28%, transparent),
+      transparent 70%
+    );
   }
 
   /* Drei-Farben-Rotation: purple → teal → magenta → purple → teal → magenta
