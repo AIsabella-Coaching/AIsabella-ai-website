@@ -437,7 +437,7 @@ const footerLogoSvg = `
     <meta name="description" content={description ?? defaultDescription}>
     <meta name="author" content="Isabella Bogdanovic">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://aisabella.ai/">
+    <link rel="canonical" href="https://aisabella.ai">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -450,7 +450,7 @@ const footerLogoSvg = `
     <meta property="og:url" content="https://aisabella.ai">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description ?? defaultDescription}>
-    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
+    <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
     <meta property="og:site_name" content="AIsabella">
     <meta property="og:locale" content="de_AT">
 
@@ -459,7 +459,7 @@ const footerLogoSvg = `
     <meta name="twitter:url" content="https://aisabella.ai">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description ?? defaultDescription}>
-    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.webp">
+    <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
 
     <!-- Schema.org Data for SEO (default = Index, override via slot="schema") -->
     <slot name="schema">
@@ -470,6 +470,7 @@ const footerLogoSvg = `
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-new.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-small-new.png">
     <link rel="shortcut icon" href="/images/favicon-new.png">
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body class="text-gray-300">
