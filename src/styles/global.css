@@ -13,6 +13,13 @@
   line-height: 1;
 }
 
+/* === Mikrotypografie: Fließtext-Absätze glätten (vermeidet ragend-lange
+       Zeilen und Schusterjungen). Eyebrows (.section-subline) bewusst
+       ausgeschlossen. Progressive Enhancement – Firefox ignoriert die Regel. === */
+p:not(.section-subline) {
+  text-wrap: pretty;
+}
+
 /* === CI-Variablen (Sektions-Architektur, 16.05.2026) === */
 :root {
   /* Schwarz-Töne */
