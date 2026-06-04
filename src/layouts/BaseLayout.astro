@@ -5,9 +5,18 @@ import { calendlyUrl } from '../config/site';
 interface Props {
   title: string;
   description?: string;
+  robots?: string;
+  canonical?: string;
+  legalPage?: boolean;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  robots = "index, follow",
+  canonical = "https://aisabella.ai",
+  legalPage = false,
+} = Astro.props;
 const defaultDescription = "KI-Sparring für Unternehmer:innen & Führungskräfte in Wien. Entwickeln Sie strategisches KI-Denken in 1:1 Sessions – keine Kurse, sondern individuelle Befähigung für echten Wettbewerbsvorteil. Zertifizierte KI-Managerin.";
 
 const defaultJsonLd = `
@@ -436,8 +445,8 @@ const footerLogoSvg = `
     <title>{title}</title>
     <meta name="description" content={description ?? defaultDescription}>
     <meta name="author" content="Isabella Bogdanovic">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://aisabella.ai">
+    <meta name="robots" content={robots}>
+    <link rel="canonical" href={canonical}>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -447,7 +456,7 @@ const footerLogoSvg = `
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aisabella.ai">
+    <meta property="og:url" content={canonical}>
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description ?? defaultDescription}>
     <meta property="og:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
@@ -456,7 +465,7 @@ const footerLogoSvg = `
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://aisabella.ai">
+    <meta name="twitter:url" content={canonical}>
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description ?? defaultDescription}>
     <meta name="twitter:image" content="https://aisabella.ai/images/AIsabella-Banner.png">
@@ -473,15 +482,19 @@ const footerLogoSvg = `
     <link rel="manifest" href="/site.webmanifest" />
 </head>
 
-<body class="text-gray-300">
+<body class:list={["text-gray-300", { "legal-page": legalPage }]}>
 
-<!-- Hero Background (Static Image) -->
-<div id="deep-glow" class="fixed inset-0 w-full h-full -z-20 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero-bg.png');" aria-hidden="true">
-    <!-- Optional: Dark overlay to ensure text readability -->
-    <div class="absolute inset-0 bg-gray-900/30 mix-blend-multiply"></div>
-</div>
-<!-- Noise grain overlay (CSS-only, breathing) -->
-<div id="page-grain" aria-hidden="true"></div>
+{!legalPage && (
+    <>
+        <!-- Hero Background (Static Image) -->
+        <div id="deep-glow" class="fixed inset-0 w-full h-full -z-20 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero-bg.png');" aria-hidden="true">
+            <!-- Optional: Dark overlay to ensure text readability -->
+            <div class="absolute inset-0 bg-gray-900/30 mix-blend-multiply"></div>
+        </div>
+        <!-- Noise grain overlay (CSS-only, breathing) -->
+        <div id="page-grain" aria-hidden="true"></div>
+    </>
+)}
 
 <!-- GDPR Cookie Banner (German) -->
 <div id="cookie-consent-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background-color:rgba(15,23,42,0.4);background-color:color-mix(in oklab,#0f172a 40%,transparent)" role="dialog" aria-modal="true" aria-labelledby="cookie-main-heading">

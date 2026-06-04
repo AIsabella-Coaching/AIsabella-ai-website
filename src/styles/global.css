@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* === Pflichtseiten-Body (Impressum, Datenschutz, 404):
+       Ruhiger einfarbiger Hintergrund statt Hero-Aurora. Aktiviert über die
+       Body-Klasse `legal-page`, gesetzt im BaseLayout via `legalPage`-Prop.
+       Farbwert #0B0C10 entspricht dem master-Stand der alten statischen
+       imprint.html / privacy.html (inline-CSS, überschreibt bg-gray-900). === */
+body.legal-page {
+  background-color: #0B0C10;
+}
+
 /* === Sektions-Subline (gesperrte Türkis-Eyebrow über jeder Hauptsektions-Überschrift,
        Pattern aus AIsabella Beraterstab-Präsentation, z.B. „DAS PROBLEM", „MEET THE TEAM") === */
 .section-subline {
