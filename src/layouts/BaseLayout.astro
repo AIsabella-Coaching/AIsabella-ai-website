@@ -552,7 +552,7 @@ const footerLogoSvg = `
 
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-        <a href="#hero" aria-label="AIsabella – zur Startseite" class="inline-flex items-center flex-shrink-0"><Fragment set:html={headerLogoSvg} /></a>
+        <a href={legalPage ? "/" : "#hero"} aria-label="AIsabella – zur Startseite" class="inline-flex items-center flex-shrink-0"><Fragment set:html={headerLogoSvg} /></a>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10">
