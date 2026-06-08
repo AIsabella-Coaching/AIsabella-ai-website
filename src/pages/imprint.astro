@@ -41,14 +41,23 @@ const imprintJsonLd = `
 >
   <script slot="schema" type="application/ld+json" is:inline set:html={imprintJsonLd}></script>
 
-  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Impressum</h1>
-      <div class="mt-8 text-gray-300 leading-relaxed">
-        <p>Angaben gemäß § 5 E-Commerce-Gesetz (ECG) und Offenlegung gemäß § 25 Mediengesetz.</p>
+  <!-- Hero -->
+  <section class="relative pt-20 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Impressum</h1>
+    </div>
+  </section>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-10">Diensteanbieter / Medieninhaber:</h2>
-        <p>
+  <!-- Content -->
+  <main class="py-10 md:py-16">
+    <div class="container mx-auto px-6 space-y-8">
+
+      <section class="glass-card rounded-xl p-6 md:p-8">
+        <p class="text-base">Angaben gemäß § 5 E-Commerce-Gesetz (ECG) und Offenlegung gemäß § 25 Mediengesetz.</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Diensteanbieter / Medieninhaber:</h2>
+        <p class="text-base mt-3">
           Isabella Bogdanovic<br>
           AIsabella – Lerne, KI zu denken<br>
           Kaltenleutgebner Straße 24/10/14<br>
@@ -56,32 +65,40 @@ const imprintJsonLd = `
           Österreich
         </p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Kontaktdaten:</h2>
-        <p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Kontaktdaten:</h2>
+        <p class="text-base mt-3">
           <strong>E-Mail:</strong> <a href="mailto:aisabella@aisabella.ai" class="text-cyan-400 hover:text-cyan-300">aisabella@aisabella.ai</a><br>
           <strong>Telefon:</strong> <a href="tel:+4367761382277" class="text-cyan-400 hover:text-cyan-300">+43 677 613 822 77</a>
         </p>
+      </section>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Unternehmensgegenstand:</h2>
-        <p>Praxisorientierte Wissensvermittlung und strategisches Sparring im Bereich der künstlichen Intelligenz</p>
+      <section class="glass-card rounded-xl p-6 md:p-8">
+        <h2 class="text-lg md:text-xl font-bold text-white">Unternehmensgegenstand:</h2>
+        <p class="text-base mt-3">Praxisorientierte Wissensvermittlung und strategisches Sparring im Bereich der künstlichen Intelligenz</p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Kammerzugehörigkeit:</h2>
-        <p>Mitglied der Wirtschaftskammer Wien (WKO)</p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Kammerzugehörigkeit:</h2>
+        <p class="text-base mt-3">Mitglied der Wirtschaftskammer Wien (WKO)</p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Gewerbe- und berufsrechtliche Vorschriften:</h2>
-        <p>Gewerbeordnung 1994 (GewO), abrufbar unter <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007517" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">www.ris.bka.gv.at</a></p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Gewerbe- und berufsrechtliche Vorschriften:</h2>
+        <p class="text-base mt-3">Gewerbeordnung 1994 (GewO), abrufbar unter <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007517" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">www.ris.bka.gv.at</a></p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Berufsbezeichnung:</h2>
-        <p>Zertifizierte KI-Managerin (ISO/IEC 17024, Austrian Standards), Zertifizierte AI Trainerin (TÜV Rheinland)</p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Berufsbezeichnung:</h2>
+        <p class="text-base mt-3">Zertifizierte KI-Managerin (ISO/IEC 17024, Austrian Standards), Zertifizierte AI Trainerin (TÜV Rheinland)</p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Aufsichtsbehörde/Gewerbebehörde:</h2>
-        <p>Magistratisches Bezirksamt für den 23. Bezirk, Wien</p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Aufsichtsbehörde/Gewerbebehörde:</h2>
+        <p class="text-base mt-3">Magistratisches Bezirksamt für den 23. Bezirk, Wien</p>
+      </section>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Haftungsausschluss:</h2>
-        <p>Diese Webseite enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <section class="glass-card rounded-xl p-6 md:p-8">
+        <h2 class="text-lg md:text-xl font-bold text-white">Haftungsausschluss:</h2>
+        <p class="text-base mt-3">Diese Webseite enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
 
-        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Urheberrecht:</h2>
-        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-6">Urheberrecht:</h2>
+        <p class="text-base mt-3">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      </section>
+
+      <div class="text-center pt-2">
+        <a href="/" class="inline-block mt-2 text-sm underline hover:text-gray-200">Zurück zur Startseite</a>
       </div>
     </div>
   </main>
