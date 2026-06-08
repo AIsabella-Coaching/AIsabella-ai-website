@@ -215,7 +215,7 @@
             wrapper.addEventListener('mouseleave', function () {
                 cachedRect = null;
                 if (hasGSAP) {
-                    gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)', overwrite: true });
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'power3.out', overwrite: true });
                 } else {
                     btn.style.transform = '';
                 }
