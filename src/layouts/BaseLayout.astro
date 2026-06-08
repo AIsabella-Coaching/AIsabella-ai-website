@@ -17,6 +17,18 @@ const {
   canonical = "https://aisabella.ai",
   legalPage = false,
 } = Astro.props;
+
+// Header-Menü-Items zentral definiert (DRY): Desktop- und Mobile-Nav beziehen
+// sich beide hierauf. Auf Legal-/404-Seiten (legalPage) zeigen die Anchors als
+// Cross-Page-Links auf die Hauptseiten-Sections (/#id) statt auf In-Page-Anchors
+// (#id), die dort nicht existieren. Auf der Hauptseite bleibt es #id (In-Page-Scroll).
+const navItems = [
+  { id: 'sparring', label: 'Sparring' },
+  { id: 'beraterstab', label: 'Beraterstab' },
+  { id: 'ueber-mich', label: 'Über Mich' },
+  { id: 'faq', label: 'FAQ' },
+];
+const navHref = (id: string) => (legalPage ? `/#${id}` : `#${id}`);
 const defaultDescription = "KI-Sparring für Unternehmer:innen & Führungskräfte in Wien. Entwickeln Sie strategisches KI-Denken in 1:1 Sessions – keine Kurse, sondern individuelle Befähigung für echten Wettbewerbsvorteil. Zertifizierte KI-Managerin.";
 
 const defaultJsonLd = `
@@ -557,10 +569,9 @@ const footerLogoSvg = `
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10">
             <div class="space-x-8">
-                 <a href="#sparring" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Sparring</a>
-                 <a href="#beraterstab" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Beraterstab</a>
-                 <a href="#ueber-mich" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
-                 <a href="#faq" class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
+                 {navItems.map((item) => (
+                   <a href={navHref(item.id)} class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
+                 ))}
             </div>
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="cta-button text-white font-bold py-3 px-7 rounded-lg text-base">Erstgespräch vereinbaren</a>
         </div>
@@ -578,10 +589,9 @@ const footerLogoSvg = `
     </nav>
     <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
         <div class="flex flex-col space-y-2">
-            <a href="#sparring" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Sparring</a>
-            <a href="#beraterstab" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Beraterstab</a>
-            <a href="#ueber-mich" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">Über Mich</a>
-            <a href="#faq" class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">FAQ</a>
+            {navItems.map((item) => (
+              <a href={navHref(item.id)} class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
+            ))}
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Erstgespräch vereinbaren</a>
         </div>
     </div>
