@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const imprintJsonLd = `
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ProfessionalService",
+            "@id": "https://aisabella.ai/#organization",
+            "name": "AIsabella | KI-Coaching Wien",
+            "url": "https://aisabella.ai/",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Kaltenleutgebner Straße 24/10/14",
+                "addressLocality": "Wien",
+                "postalCode": "1230",
+                "addressCountry": "AT"
+            },
+            "email": "aisabella@aisabella.ai"
+        },
+        {
+            "@type": "Person",
+            "@id": "https://aisabella.ai/#person",
+            "name": "Isabella Bogdanovic",
+            "worksFor": {
+                "@type": "Organization",
+                "@id": "https://aisabella.ai/#organization"
+            }
+        }
+    ]
+}
+`;
+---
+<BaseLayout
+  title="Impressum | AIsabella"
+  description="Impressum von AIsabella – Strategisches KI-Sparring: Alle rechtlichen Angaben und Kontaktdaten von Isabella Bogdanovic."
+  robots="noindex, follow"
+  canonical="https://aisabella.ai/imprint"
+  legalPage
+>
+  <script slot="schema" type="application/ld+json" is:inline set:html={imprintJsonLd}></script>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Impressum</h1>
+      <div class="mt-8 text-gray-300 leading-relaxed">
+        <p>Angaben gemäß § 5 E-Commerce-Gesetz (ECG) und Offenlegung gemäß § 25 Mediengesetz.</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-10">Diensteanbieter / Medieninhaber:</h2>
+        <p>
+          Isabella Bogdanovic<br>
+          AIsabella – Lerne, KI zu denken<br>
+          Kaltenleutgebner Straße 24/10/14<br>
+          1230 Wien<br>
+          Österreich
+        </p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Kontaktdaten:</h2>
+        <p>
+          <strong>E-Mail:</strong> <a href="mailto:aisabella@aisabella.ai" class="text-cyan-400 hover:text-cyan-300">aisabella@aisabella.ai</a><br>
+          <strong>Telefon:</strong> <a href="tel:+4367761382277" class="text-cyan-400 hover:text-cyan-300">+43 677 613 822 77</a>
+        </p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Unternehmensgegenstand:</h2>
+        <p>Praxisorientierte Wissensvermittlung und strategisches Sparring im Bereich der künstlichen Intelligenz</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Kammerzugehörigkeit:</h2>
+        <p>Mitglied der Wirtschaftskammer Wien (WKO)</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Gewerbe- und berufsrechtliche Vorschriften:</h2>
+        <p>Gewerbeordnung 1994 (GewO), abrufbar unter <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007517" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">www.ris.bka.gv.at</a></p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Berufsbezeichnung:</h2>
+        <p>Zertifizierte KI-Managerin (ISO/IEC 17024, Austrian Standards), Zertifizierte AI Trainerin (TÜV Rheinland)</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Aufsichtsbehörde/Gewerbebehörde:</h2>
+        <p>Magistratisches Bezirksamt für den 23. Bezirk, Wien</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Haftungsausschluss:</h2>
+        <p>Diese Webseite enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+        <h2 class="text-lg md:text-xl font-bold text-white mt-8">Urheberrecht:</h2>
+        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

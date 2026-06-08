@@ -1,0 +1,237 @@
+---
+---
+
+<section id="ueber-mich" class="uebermich-section">
+  <div class="uebermich-container">
+
+    <div class="uebermich-grid scroll-reveal" data-reveal-stagger="0">
+      <div class="uebermich-left">
+        <p class="section-subline">Die Person dahinter</p>
+        <h2>Über mich</h2>
+        <figure class="uebermich-photo">
+          <img
+            src="/images/Bogdanovic_Profile_Photo.webp"
+            alt="Isabella Bogdanovic"
+            width="320"
+            height="400"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <div class="uebermich-text">
+        <p class="uebermich-intro">Ich bin Isabella Bogdanovic.</p>
+
+        <p>
+          Wer fragt, führt. Und ich frage viel und gerne. Ich will Hintergründe verstehen, Zusammenhänge erkennen, das große Ganze begreifen. Erst wenn ich das habe, gebe ich mich zufrieden. Genau diese Art zu fragen und zu hinterfragen ist heute mein Vorteil im Umgang mit KI.
+        </p>
+
+        <p>
+          Mein Berufsweg führt von der Stadtverwaltung in die Privatwirtschaft, von der Politik in die Baubranche, vom Konzern ins Startup, von der Personalverantwortung zur Verantwortung für Finanzen, vom Team in die Selbständigkeit. KI kam im HR-Bereich zum ersten Mal in meinen Arbeitsalltag – und seither auch nicht mehr heraus.
+        </p>
+
+        <p>
+          Markenpräsenz, Recherchen, Analysen, Entscheidungsvorbereitungen, Dokumente – bei all dem ist KI heute mein Begleiter. Sie ist für mich eine Erweiterung des eigenen Denkens und der eigenen Perspektive geworden. Ich erschließe mir damit in kürzester Zeit Themen, in die ich früher Wochen investiert hätte. Wer einmal so arbeitet, will nie wieder zurück.
+        </p>
+      </div>
+    </div>
+
+    <div class="uebermich-credentials scroll-reveal" data-reveal-stagger="1">
+      <p class="uebermich-credentials-text">
+        Geprüfte Qualifikationen: KI-Managerin nach ISO/IEC 17024 (Austrian Standards) und AI Trainer (TÜV Rheinland).
+      </p>
+      <div class="uebermich-logos">
+        <img
+          src="/images/AST_Guetesiegel_CERTIFIED.webp"
+          alt="Austrian Standards – Certified"
+          width="110"
+          height="110"
+          loading="lazy"
+        />
+        <img
+          src="/images/TUV-certified-Isabella-Bogdanovic.webp"
+          alt="TÜV Rheinland – Certified AI Trainer"
+          width="110"
+          height="110"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Oberer Verlaufstrich entfernt – Verlaufstrich-Konsistenz: pro Sektion nur unten.
+     Unterer Strich kommt über ::after, siehe unten. */
+  .uebermich-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--black-soft);
+    padding: 120px 48px;
+    overflow: hidden;
+  }
+
+  /* Verlaufstrich am unteren Sektions-Ende als Marken-Geste / Sektions-Trenner. */
+  .uebermich-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+
+  /* Aurora (Farb-Bogen): Magenta-Indigo als gedeckter Drittton */
+  /* Weder pures Lila noch Türkis – persönlicher Moment in eigenständigem Ton */
+  /* --purple-hi (#A62AEB, magenta-haltig) rechts mittig + --purple-blue (#4C30ED, indigo-haltig) links oben */
+  .uebermich-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 70% at 100% 50%, rgba(166, 42, 235, 0.16), transparent 65%),
+      radial-gradient(ellipse 45% 60% at 0% 30%, rgba(76, 48, 237, 0.12), transparent 70%);
+  }
+
+  .uebermich-container {
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  /* Subline-Override: line-height: 1.75 statt globalem 1 plus padding-top: 2px.
+     line-height gleicht die Zeilen-Höhe zur Intro an (.uebermich-intro erbt
+     1.75 von .uebermich-text p). padding-top schließt den verbliebenen
+     ~2 px Versatz wegen unterschiedlichem half-leading (Subline 4.875 px
+     vs. Intro 7.125 px). Subline-Schrift sitzt damit visuell auf gleicher
+     Höhe wie "Ich bin Isabella Bogdanovic." rechts. */
+  .uebermich-section .section-subline {
+    line-height: 1.75;
+    padding-top: 3px;
+  }
+
+  /* H2 margin-bottom 56 px: Subline + H2 bleiben oben bündig zum rechten
+     Text-Block, das Foto rückt durch den großzügigen H2-Abstand nach unten
+     auf Höhe der Intro-Zeile ("Ich bin Isabella Bogdanovic.") rechts. */
+  .uebermich-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 56px 0;
+  }
+
+  .uebermich-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .uebermich-photo {
+    margin: 0;
+  }
+
+  .uebermich-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    display: block;
+  }
+
+  .uebermich-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--white) !important;
+    margin: 0 0 24px 0 !important;
+  }
+
+  .uebermich-text p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin: 0 0 22px 0;
+  }
+
+  .uebermich-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Innen-Trenner: dünne Türkis-Linie (1 px) statt Verlaufstrich (3 px).
+     Dezenter als der unten/oben gesetzte Marken-Strich, weil hier eine
+     Innen-Trennung zwischen Text und Zertifikaten und keine Sektionsgrenze.
+     Default-Breite: zentriert 60 % (left/right je 20 %). Falls visuell zu
+     schmal: auf 80–90 % oder volle Breite anpassen. */
+  .uebermich-credentials {
+    position: relative;
+    margin-top: 56px;
+    padding-top: 36px;
+    text-align: center;
+  }
+
+  .uebermich-credentials::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .uebermich-credentials-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-quiet);
+    margin: 0 0 24px 0;
+  }
+
+  .uebermich-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .uebermich-logos img {
+    height: 80px;
+    width: auto;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 767px) {
+    .uebermich-section {
+      padding: 80px 24px;
+    }
+    .uebermich-section h2 {
+      font-size: 28px;
+      margin-bottom: 28px;
+    }
+    .uebermich-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .uebermich-photo {
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .uebermich-logos {
+      gap: 20px;
+    }
+    .uebermich-logos img {
+      height: 64px;
+    }
+  }
+</style>

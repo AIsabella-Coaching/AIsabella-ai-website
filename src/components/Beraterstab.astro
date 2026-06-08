@@ -1,0 +1,292 @@
+---
+import { Image } from 'astro:assets';
+import netzGrafik from '../assets/beraterstab-netz.png';
+---
+
+<section id="beraterstab" class="beraterstab-section">
+
+  <div class="beraterstab-image" aria-hidden="true">
+    <Image
+      src={netzGrafik}
+      alt=""
+      widths={[800, 1200, 1600]}
+      sizes="(max-width: 767px) 100vw, 1200px"
+    />
+  </div>
+
+  <div class="beraterstab-readability-overlay" aria-hidden="true"></div>
+
+  <div class="beraterstab-vignette" aria-hidden="true"></div>
+
+  <div class="beraterstab-container scroll-reveal">
+
+    <p class="section-subline">Das Instrument</p>
+    <h2>Mein Beraterstab</h2>
+
+    <p>
+      Stell dir vor, du hättest ein Gremium an deiner Seite – Experten, die dein Unternehmen verstehen, deine Ziele kennen und jederzeit ansprechbar sind, wenn du sie brauchst. Genau das ist mein Beraterstab: ein digitales Gremium, das ich mir selbst zusammengestellt habe, zugeschnitten auf mein Unternehmen, meine Herausforderungen, meine Ziele.
+    </p>
+
+    <p>
+      Entstanden ist das aus einer Grundüberzeugung – es gibt einen Satz von Sokrates, der mich schon seit langem begleitet: <em>Ich weiß, dass ich nichts weiß.</em> Bevor ich mich selbständig gemacht habe, war mein Startpunkt eine klare Vision, aber keine Ahnung, wo ich ansetze – von der Positionierung über Rechtliches bis zu Themen, von denen ich vorher gar nicht wusste, dass sie auf mich zukommen. Genau dafür ist mein Beraterstab seither da.
+    </p>
+
+    <p>
+      Was er für mich leistet, lässt sich so zusammenfassen: wissen, verstehen und besser entscheiden. Er liefert mir das Wissen, das mir fehlt, bereitet es so auf, dass ich es wirklich begreife und gibt mir somit die Grundlage für fundierte Entscheidungen – die großen wie die kleinen.
+    </p>
+
+    <p>
+      Er ist der Experte, den ich brauche – jederzeit verfügbar, zu jedem Thema.
+    </p>
+
+    <p>
+      Und genau das macht diesen Ansatz auch für andere so spannend: Jeder Beraterstab wäre anders. Andere Rollen, andere Schwerpunkte, andere Anzahl, zugeschnitten auf das jeweilige Unternehmen oder den jeweiligen unternehmerischen Kontext. Meiner hat 16 Rollen. Deiner hätte vielleicht 5. Oder 20.
+    </p>
+
+    <p class="beraterstab-bridge">
+      Wenn dich das neugierig macht, erzähle ich dir im Erstgespräch gerne mehr darüber.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* Untere Trennlinie kommt über ::after (siehe unten).
+     Oberer Verlaufstrich entfernt – Verlaufstrich-Konsistenz: pro Sektion nur unten. */
+  .beraterstab-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--black);
+    padding: 120px 48px;
+    overflow: hidden;
+  }
+
+  /* Halo-Schicht: drei verteilte Halos (Türkis-Hotspot oben rechts,
+     Türkis-Quelle mittig links, Indigo-Akzent unten links) – wie in
+     der ursprünglichen Aurora-Anordnung. Werte gegenüber dem Original
+     bewusst weicher: größere Ellipsen, niedrigere Alphas und der
+     Auslauf erst bei transparent 95 % (war 65–70 %), damit die Halos
+     als diffuser Schein wirken und nicht als sichtbare Ring-Konturen.
+     Das Streifen-Problem an den Sektions-Rändern wird durch die
+     darüberliegende Vignette (.beraterstab-vignette, z-1) gedämpft. */
+  .beraterstab-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 75% 65% at 90% 15%, rgba(0, 207, 196, 0.22), transparent 95%),
+      radial-gradient(ellipse 55% 45% at 20% 45%, rgba(0, 207, 196, 0.14), transparent 95%),
+      radial-gradient(ellipse 55% 45% at 10% 80%, rgba(76, 48, 237, 0.10), transparent 95%);
+  }
+
+  /* Verlaufstrich am unteren Sektions-Ende: Marken-Geste / Sektions-Trenner.
+     Nutzt --section-divider (symmetrisch, Türkis in der Mitte) statt der
+     lila-lastigen --accent-gradient-Variante. */
+  .beraterstab-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .beraterstab-container {
+    position: relative;
+    z-index: 10;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .beraterstab-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 36px 0;
+    /* Text-shadow analog zum Hero-H1 plus omnidirektionaler Halo (0 0):
+       Drei Schichten gestaffelt – ein weicher Glow rundum (24 px blur,
+       Alpha 0.95), die Hero-Tiefe (16 px blur unten) und der harte
+       Nahschatten (4 px blur). Der 0 0-Layer erzeugt den klar
+       erkennbaren "Schatten hinter dem Text"-Effekt. */
+    text-shadow:
+      0 0 24px rgba(0, 0, 0, 0.95),
+      0 4px 16px rgba(0, 0, 0, 0.9),
+      0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .beraterstab-section p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.75;
+    /* Volles Weiß statt --text-soft (rgba 0.82): Kontrast zum
+       Bild-Hintergrund anheben, damit der Text dort, wo Knoten sitzen,
+       sauber lesbar bleibt. Subline (Türkis) und H2 (white) waren
+       schon auf maximalem Kontrast. */
+    color: var(--white);
+    margin: 0 0 22px 0;
+    /* Text-shadow analog zum Hero-Fließtext plus omnidirektionaler Halo:
+       Drei Schichten – weicher Glow rundum (16 px blur, Alpha 0.95),
+       die Hero-Tiefe (10 px blur unten) und der harte Nahschatten (3 px).
+       Wird automatisch auch von .beraterstab-bridge geerbt. */
+    text-shadow:
+      0 0 16px rgba(0, 0, 0, 0.95),
+      0 2px 10px rgba(0, 0, 0, 0.9),
+      0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Override: scoped .beraterstab-section p hat höhere Spezifität als globale .section-subline.
+     Diese Regel hat 0,4,0 und gewinnt. */
+  .beraterstab-section .section-subline {
+    color: var(--teal);
+    font-size: 13px;
+    line-height: 1;
+    margin: 0 0 16px 0;
+  }
+
+  .beraterstab-section p em {
+    font-style: italic;
+    color: var(--white);
+  }
+
+  .beraterstab-bridge {
+    margin-top: 32px !important;
+    color: var(--white) !important;
+  }
+
+  /* Netz-Grafik als absolut positionierter Background-Layer.
+     Liegt zwischen Aurora (::before, z-0) und Text-Container (z-2).
+     Bild ist rein dekorativ → aria-hidden + alt=""; pointer-events: none. */
+  .beraterstab-image {
+    position: absolute;
+    /* Wrapper deckungsgleich mit der Sektion. Mit object-fit: contain auf
+       dem Bild wird das gesamte Netz proportional eingepasst – alle Punkte
+       sichtbar, zentriert. */
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    /* Opacity: 0.40 (vorher 0.25) – das Bild war doppelt/dreifach gedimmt
+       durch Plateau-Overlay + Vignette + text-shadows; jetzt die Bild-
+       Helligkeit selbst anheben, statt weiter an Overlay-Layern zu drehen.
+       Punkte sind präsenter, text-shadow schützt den Text-Bereich. */
+    opacity: 0.40;
+    /* Filter: saturate(0.6) verhindert das ursprüngliche Neon-Grell der
+       Türkis-Knoten. brightness(0.95) gibt fast natürliche Helligkeit
+       zurück (vorher 0.85, zu stark gedimmt im Zusammenspiel). */
+    filter: saturate(0.6) brightness(0.95);
+    /* Bild-Mask entfernt – die Randabdunklung übernimmt jetzt der
+       dedizierte .beraterstab-vignette-Layer (z-index: 1), der über
+       Bild UND Aurora wirkt statt nur über das Bild. */
+  }
+
+  /* Lesbarkeits-Overlay: vertikaler Plateau-Verlauf in --black-warm,
+     dimmt den Text-Bereich. Stops 15 %/85 % (Text füllt fast die ganze
+     Sektion). Die zuvor zusätzlich kombinierte zentrale Schwarz-Maske
+     ist entfernt – sie hat bei den niedrigen Alpha-Werten, die für das
+     stark gedimmte Bild (opacity 0.25) nötig waren, keine erkennbare
+     Wirkung mehr gehabt. Der "Schatten hinter dem Text"-Effekt aus dem
+     Hero wird stattdessen über stärkere text-shadows am Glyph erzeugt. */
+  .beraterstab-readability-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 10, 30, 0) 0%,
+      rgba(16, 10, 30, 0.30) 15%,
+      rgba(16, 10, 30, 0.30) 85%,
+      rgba(16, 10, 30, 0) 100%
+    );
+  }
+
+  /* Inset-Vignette: dunkelt die Sektions-Ränder ab, sodass der visuelle
+     Übergang vom Bild-Bereich (Mitte) zur Aurora-Schicht (Ränder) weich
+     wird und keinen sichtbaren "Bild-Rand" erzeugt. Liegt über Aurora
+     und Bild, unter Verlaufstrich (::after, z-3) und Text-Container
+     (z-10). Farbe rgba(16,10,30) entspricht --black-warm (lila-stichig,
+     konsistent zum Hero-Overlay). Ellipse statt Circle, damit die
+     Vignette der Sektions-Form folgt. */
+  .beraterstab-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    /* Zwei kombinierte Layer:
+       1. Horizontal linear-gradient (Side-Vignette): dunkelt explizit links
+          und rechts ab, unabhängig vom Aspect-Verhältnis – gezielt gegen
+          die seitlichen Streifen, die die radial-Ellipse bei breiten
+          Sektionen seitlich erst spät erreicht.
+       2. Radial-ellipse (Corner-Vignette): rundet die Ecken zusätzlich ab. */
+    background:
+      linear-gradient(
+        to right,
+        rgba(16, 10, 30, 1.0) 0%,
+        rgba(16, 10, 30, 0.85) 4%,
+        rgba(16, 10, 30, 0.55) 10%,
+        rgba(16, 10, 30, 0.25) 16%,
+        rgba(16, 10, 30, 0.0) 22%,
+        rgba(16, 10, 30, 0.0) 78%,
+        rgba(16, 10, 30, 0.25) 84%,
+        rgba(16, 10, 30, 0.55) 90%,
+        rgba(16, 10, 30, 0.85) 96%,
+        rgba(16, 10, 30, 1.0) 100%
+      ),
+      radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        transparent 50%,
+        rgba(16, 10, 30, 0.40) 70%,
+        rgba(16, 10, 30, 0.70) 85%,
+        rgba(16, 10, 30, 0.90) 95%,
+        rgba(16, 10, 30, 1.0) 100%
+      );
+  }
+
+  /* Bild füllt den ganzen Wrapper als Vollflächen-Hintergrund.
+     - object-fit: cover skaliert das Bild proportional und beschneidet
+       seitlich (und bei hohen Sektionen vertikal), damit beide
+       Container-Dimensionen abgedeckt sind.
+     - object-position: center 40% verschiebt den vertikalen Bild-Anker
+       leicht nach oben. Effekt: bei vertikal überstrichenen Sektionen
+       (Container-Aspect < Bild-Aspect 1.79 – im Normal-Use immer der Fall)
+       wandert der untere Bild-Bereich unter den Sektions-Rand und wird
+       durch overflow:hidden der Sektion automatisch beschnitten. Damit
+       fällt der Gemini-Sparkle (~94 % Bild-Höhe) systematisch aus dem
+       sichtbaren Bereich – robuster als ein fester Prozent-Crop, der bei
+       wachsender Sektions-Höhe einen schwarzen Balken erzeugt hätte.
+     - mix-blend-mode: lighten hebt das Netz gegen die Aurora hervor,
+       ohne additiv aufzuhellen. ALTERNATIVE: 'screen' (auskommentiert). */
+  .beraterstab-image :global(img) {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover füllt die ganze Sektion. Das Bild wurde seitlich
+       physisch um schwarze Pixel auf 4000×1536 erweitert (Aspect 2.60) –
+       damit gibt es bei normalen Browser-Viewports (Aspect 1.5–2.5) keine
+       sichtbare Bild-Element-Kante mehr seitlich. Punkte zentral, schwarze
+       Erweiterungs-Pixel seitlich werden mit mix-blend-mode: lighten
+       transparent, durch sie scheint die Aurora hindurch. */
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    mix-blend-mode: lighten;
+    /* mix-blend-mode: screen; */
+  }
+
+  @media (max-width: 767px) {
+    .beraterstab-section {
+      padding: 80px 24px;
+    }
+    .beraterstab-section h2 {
+      font-size: 28px;
+    }
+  }
+</style>

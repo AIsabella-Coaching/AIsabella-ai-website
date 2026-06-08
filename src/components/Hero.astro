@@ -1,0 +1,129 @@
+---
+import { calendlyUrl } from '../config/site';
+---
+
+<section id="hero" class="relative pt-24 pb-16 flex flex-col justify-center min-h-[85vh]">
+  <!-- Harte radial-gradient Maske: Zwingt die Mitte unter dem Text spürbar abgedunkelt zu werden, während die Ränder auslaufen -->
+  <div class="absolute inset-0 pointer-events-none z-0" style="background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0.4) 45%, transparent 75%);"></div>
+
+  <!-- Aurora-Video als zusätzliche Hintergrundebene. z-index 0 wie die Radial-Maske, DOM-Reihenfolge legt das Video über die Maske. media-Queries auf den <source>-Elementen verhindern Download bei Mobile (< 769 px) und reduced-motion - dort greift das Section-background-image (Poster) als Standbild-Fallback. -->
+  <video
+    class="hero-video absolute inset-0 w-full h-full object-cover pointer-events-none"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/images/hero-poster.jpg"
+    aria-hidden="true"
+  >
+    <source src="/video/hero.webm" type="video/webm" media="(min-width: 769px) and (prefers-reduced-motion: no-preference)" />
+    <source src="/video/hero.mp4" type="video/mp4" media="(min-width: 769px) and (prefers-reduced-motion: no-preference)" />
+  </video>
+
+  <!-- Lesbarkeits-Overlay: vertikaler Plateau-Verlauf in --black-warm (#100A1E, lila-stichig). Liegt zwischen Video/Radial-Layer (z-0) und Text-Container (z-10) auf z-1. Stops + Mobile-Variante im <style>-Block. -->
+  <div class="hero-readability-overlay absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+    <h1 class="hero-stagger text-4xl md:text-5xl lg:text-6xl font-bold mb-10 leading-tight text-white" data-hero-stagger="1" style="text-shadow: 0 4px 16px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8);">
+      Strategisches KI-Sparring<br />
+      für Unternehmer und Führungskräfte
+    </h1>
+
+    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-6 leading-relaxed" data-hero-stagger="2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
+      Viele nutzen KI für E-Mails, Texte und Zusammenfassungen. Was darüber hinausgeht, ist eine andere Form von Arbeit: KI als Denkpartner für strategische Fragen, Entscheidungen und alles, was tatsächlich Gewicht hat in deinem täglichen Geschäft.
+    </p>
+
+    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-6 leading-relaxed" data-hero-stagger="3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
+      Im Sparring arbeiten wir genau daran. 1:1, zwölf Wochen, vertraulich. Egal, ob du gerade erst ansetzt oder KI schon nutzt und merkst, dass du dort nicht stehen bleiben und tiefer gehen&nbsp;willst.
+    </p>
+
+    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-10 leading-relaxed font-medium" data-hero-stagger="4" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
+      Am Ende steht deine Souveränität – in einem Feld, das sich gerade neu sortiert.
+    </p>
+
+    <a
+      href={calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hero-stagger cta-button inline-block text-white font-bold py-4 px-10 rounded-lg text-lg"
+      data-hero-stagger="5"
+    >
+      Zum Erstgespräch
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Verlaufstrich am unteren Sektions-Ende als Marken-Geste / Sektions-Trenner. */
+  #hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* Section-Background: hero-bg-mobile.jpg (4:5-Ausschnitt aus hero-bg.png, lila-türkis-betont). Liegt hinter allen absolut positionierten Child-Elementen und wird sichtbar, sobald das <video> per display:none verschwindet (Mobile, reduced-motion). hero-bg.png im vollen Querformat wirkt im Mobile-Hochformat zu schmal beschnitten - der dedizierte Hochformat-Crop trägt das Mobile-Layout deutlich besser. */
+  #hero {
+    background-image: url('/images/hero-bg-mobile.jpg');
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* Video-Layer: z-index 0 wie die Radial-Maske, DOM-Reihenfolge stellt es im Stack drüber. */
+  .hero-video {
+    z-index: 0;
+  }
+
+  /* Mobile: Video komplett ausblenden, Section-background-image (hero-bg-mobile.jpg) übernimmt. media-Attribut auf den <source>-Elementen verhindert zusätzlich den Download. */
+  @media (max-width: 768px) {
+    .hero-video {
+      display: none;
+    }
+  }
+
+  /* Reduced-Motion: gleiche Logik wie Mobile - Standbild statt bewegtem Video. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video {
+      display: none;
+    }
+  }
+
+  /* Lesbarkeits-Overlay zwischen Hero-Bild und Text-Container.
+     Lila-stichiger Dunkelton aus --black-warm = #100A1E = rgb(16, 10, 30)
+     abgeleitet (NICHT reines Schwarz – Spec). Peak-Alpha 0.60 (vom Standbild-
+     Peak 0.35 deutlich angehoben, weil das bewegte Video mehr Lesbarkeitshilfe
+     braucht als das statische Hero-Bild zuvor; 0.50 war im Browser-Check zu
+     schwach). Vertikaler Plateau-Verlauf, Auslauf
+     zu Alpha 0 am oberen und unteren Sektions-Rand, damit das Video als
+     Stimmung an den Rändern voll sichtbar bleibt.
+     z-index: 1 → zwischen radial-gradient/Video (z-0) und Text-Container (z-10). */
+  .hero-readability-overlay {
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 10, 30, 0) 0%,
+      rgba(16, 10, 30, 0.60) 30%,
+      rgba(16, 10, 30, 0.60) 80%,
+      rgba(16, 10, 30, 0) 100%
+    );
+  }
+
+  /* Mobile: Plateau breiter (Text-Block ist auf Mobile länger), Peak-Alpha dezenter (0.45 statt 0.60). Begründung: Auf bewegtem Video wirken 0.60 stimmig, auf statischem Bild ist derselbe Wert subjektiv zu stark - Bild kommt mit weniger Dämpfung besser zur Geltung. */
+  @media (max-width: 767px) {
+    .hero-readability-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(16, 10, 30, 0) 0%,
+        rgba(16, 10, 30, 0.45) 25%,
+        rgba(16, 10, 30, 0.45) 90%,
+        rgba(16, 10, 30, 0) 100%
+      );
+    }
+  }
+</style>

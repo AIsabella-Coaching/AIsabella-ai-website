@@ -1,0 +1,226 @@
+---
+---
+
+<section id="sparring" class="sparring-section">
+  <div class="sparring-container">
+
+    <article class="sparring-card scroll-reveal" data-reveal-stagger="0">
+      <p class="section-subline">Dein Angebot</p>
+      <h2>Dein Sparring: Deine Themen, dein Tempo</h2>
+
+      <p>
+        Acht Sessions à 60 Minuten über zwölf Wochen – online und ausschließlich 1:1. Kein Gruppenformat, keine Zuhörer, kein Publikum. Was in unseren Gesprächen passiert, bleibt dort.
+      </p>
+
+      <p>
+        Wir arbeiten an dem, was dich in deinem unternehmerischen Alltag gerade beschäftigt – und daran, wie KI dir dabei konkret helfen kann. Vielleicht hast du schon erste Erfahrungen mit KI gesammelt und willst sie auf eine strategische Ebene heben. Vielleicht weißt du noch gar nicht, wo du ansetzen sollst. Beides ist ein guter Startpunkt, denn genau dafür ist das Sparring da – ich hole dich dort ab, wo du stehst, und wir finden gemeinsam heraus, wo KI in deinem Business den größten Unterschied macht.
+      </p>
+
+      <p>
+        Wir starten wöchentlich, damit die neue Denkweise Fuß fasst und du schnell ins Tun kommst. Nach den ersten Wochen bekommst du mehr Raum für die eigene Umsetzung – wir treffen uns zweiwöchentlich und vertiefen, was in der Praxis auftaucht.
+      </p>
+
+      <p>
+        Zwischen den Sessions bin ich für Rückfragen erreichbar – denn gute Fragen kommen selten auf Knopfdruck.
+      </p>
+    </article>
+
+    <article class="sparring-card sparring-card--takeaway scroll-reveal" data-reveal-stagger="1">
+      <h3>Was du mitnimmst</h3>
+      <p>
+        Souveränität im Umgang mit KI und die Urteilskraft, selbst zu unterscheiden, wobei sie dir hilft – und wovon du besser die Finger lässt. Einen inneren Kompass für KI-Entscheidungen, verankert in deinem unternehmerischen Alltag, erprobt an deinen echten Herausforderungen.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<style>
+  .sparring-section {
+    position: relative;
+    z-index: 1;
+    background-color: var(--black-warm);
+    padding: 120px 48px;
+    overflow: hidden;
+    /* Card-Hüllen-Verstärkung (ADR-035, Schritt 1a 20.05. + Schritt 1b
+       24.05.2026, Variante 1.1 final): sektions-spezifischer Override der
+       globalen ADR-031-Baseline – beschränkt auf --card-bg (~13 % Aufhellung).
+       Inner Glow trägt die Wirkung allein, aus dem ::after der Card-Klasse.
+       Stütz-Rand (warmes Weiß-Lila, 15 % Opacity) war in der 1b-Erstumsetzung
+       drin, im Browser-Check als unsichtbar bewertet und verworfen. Erhöhen
+       der Opacity würde Konkurrenz zu Pattern A (ADR-024) riskieren – analog
+       zum bereits in Schritt 1a verworfenen Türkis-Rand. Andere Card-Variablen
+       (--card-border, --card-shadow*, --card-blur, --card-accent-width) erben
+       damit alle aus :root. */
+    --card-bg: rgba(44, 32, 68, 0.95);
+  }
+
+  /* Aurora-Schimmer: Lila unten links + Türkis oben rechts (dezent) */
+  .sparring-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 5% 90%, rgba(95, 41, 209, 0.22), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 95% 10%, rgba(0, 207, 196, 0.10), transparent 65%);
+  }
+
+  /* Verlaufstrich am unteren Sektions-Ende als Marken-Geste / Sektions-Trenner. */
+  .sparring-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .sparring-container {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Akzent-Streifen oben via ::before-Pseudo (Minifier-robust gegenüber Border-Tricks).
+     CSS-Custom-Property --accent steuert die Streifen-Farbe pro Card-Variante. */
+  .sparring-card {
+    --accent: var(--accent-purple);
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    /* Clippt den ::before-Akzent-Streifen sauber an die Card-Rundung
+       (ADR-035, 20.05.2026). Ohne overflow:hidden bleibt der 4-px-Streifen
+       gerade, weil seine eigene border-radius auf max. 2 px geclampt wird –
+       sichtbarer Versatz an den oberen Ecken. Outer-Box-Shadow liegt
+       außerhalb des Borderbox, daher unberührt. */
+    overflow: hidden;
+    /* Eigener Stacking-Context für den Inner Glow (ADR-035, Schritt 1b
+       24.05.2026): erlaubt ::after mit z-index:-1 zwischen Card-Background
+       und Card-Inhalt zu platzieren, ohne dass das Glow den Text überlagert.
+       ::before (z-index auto, positioned) bleibt damit IMMER über dem Glow
+       und behält Pattern A in voller Farbintensität (ADR-024). */
+    isolation: isolate;
+    padding: 40px 44px;
+    backdrop-filter: blur(var(--card-blur));
+    -webkit-backdrop-filter: blur(var(--card-blur));
+    box-shadow: var(--card-shadow);
+    /* Hover-Float (Schritt 5, 17.05.2026): 300 ms ease-out auf
+       transform + box-shadow. Reveal nutzt global.css .scroll-reveal-
+       Transition (700 ms, opacity + transform) – diese hier wirkt nach
+       Reveal-Ende
+       für Hover. Minimaler Trade-off: in der Reveal-Phase wird das
+       Slide-Up auf 300 ms statt 700 ms beschleunigt (cascade-bedingt),
+       was visuell snappy, aber nicht spec-konform ist. Akzeptiert. */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .sparring-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .sparring-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--card-accent-width);
+    background: var(--accent);
+    /* zusätzlich zum overflow:hidden des Parents, für Robustheit */
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  /* Inner Glow (ADR-035, Schritt 1b, 24.05.2026, Variante 1.1 final):
+     Elliptischer Lila-Glow im oberen Drittel der Card. Position bei 50% 20%
+     (bewusst weg vom oberen Rand, damit der Glow nicht halb hinter dem
+     Akzent-Streifen sitzt und eine eigene Position im Card-Raum bekommt).
+     Opacity 28 % – muss sich gegen den lila-warmen Sektions-Hintergrund
+     durchsetzen; 18 % aus der 1b-Erstumsetzung war für neutrale Umgebung
+     kalkuliert und verschmolz im Browser-Check.
+     Liegt durch z-index:-1 im isolierten Stacking-Context der Card zwischen
+     Card-Background und Static-Content – Akzent-Streifen (::before, z-index
+     auto) bleibt darüber in voller Farbintensität.
+     Hover-Verhalten: statisch (siehe ADR-035, Schritt 1b). */
+  .sparring-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse 75% 55% at 50% 20%,
+      color-mix(in srgb, var(--purple-light) 28%, transparent),
+      transparent 70%
+    );
+  }
+
+  /* Card 2: „Was du mitnimmst" – Türkis-Akzent (CI-zweite-Hauptfarbe) */
+  .sparring-card--takeaway {
+    --accent: var(--accent-teal);
+  }
+
+  .sparring-card h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 28px 0;
+  }
+
+  .sparring-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--white);
+    margin: 0 0 16px 0;
+  }
+
+  .sparring-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin: 0 0 18px 0;
+  }
+
+  /* Override: scoped .sparring-card p hat höhere Spezifität als globale .section-subline.
+     Diese Regel (.sparring-card .section-subline) hat 0,4,0 und gewinnt. */
+  .sparring-card .section-subline {
+    color: var(--teal);
+    font-size: 13px;
+    line-height: 1;
+    margin: 0 0 16px 0;
+  }
+
+  .sparring-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    .sparring-section {
+      padding: 80px 24px;
+    }
+    .sparring-card {
+      padding: 28px 24px;
+    }
+    .sparring-card h2 {
+      font-size: 28px;
+    }
+  }
+</style>

@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+/* === Pflichtseiten-Body (Impressum, Datenschutz, 404):
+       Ruhiger einfarbiger Hintergrund statt Hero-Aurora. Aktiviert über die
+       Body-Klasse `legal-page`, gesetzt im BaseLayout via `legalPage`-Prop.
+       Farbwert #0B0C10 entspricht dem master-Stand der alten statischen
+       imprint.html / privacy.html (inline-CSS, überschreibt bg-gray-900). === */
+body.legal-page {
+  background-color: #0B0C10;
+}
+
+/* === Sektions-Subline (gesperrte Türkis-Eyebrow über jeder Hauptsektions-Überschrift,
+       Pattern aus AIsabella Beraterstab-Präsentation, z.B. „DAS PROBLEM", „MEET THE TEAM") === */
+.section-subline {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 16px 0;
+  line-height: 1;
+}
+
+/* === Mikrotypografie: Fließtext-Absätze glätten (vermeidet ragend-lange
+       Zeilen und Schusterjungen). Eyebrows (.section-subline) bewusst
+       ausgeschlossen. Progressive Enhancement – Firefox ignoriert die Regel. === */
+p:not(.section-subline) {
+  text-wrap: pretty;
+}
+
+/* === CI-Variablen (Sektions-Architektur, 16.05.2026) === */
+:root {
+  /* Schwarz-Töne */
+  --black:         #070707;
+  --black-soft:    #0D0D12;
+  --black-warm:    #100A1E;
+
+  /* Lila & Türkis */
+  --purple-deep:   #5F29D1;
+  --purple-mid:    #7937E0;
+  --purple-light:  #8934F0;
+  --purple-hi:     #A62AEB;
+  --purple-blue:   #4C30ED;
+  --teal:          #00CFC4;
+  --white:         #FFFFFF;
+
+  /* Textfarben */
+  --text-soft:     rgba(255, 255, 255, 0.82);
+  --text-quiet:    rgba(255, 255, 255, 0.62);
+  --hairline:      rgba(255, 255, 255, 0.08);
+
+  /* Card-Werte (16.05.2026 Akzent-Pattern: ruhige Hülle, farbiger Streifen oben) */
+  --card-bg:       rgba(28, 20, 50, 0.92);
+  --card-border:   rgba(255, 255, 255, 0.10);   /* neutral, nicht lila-dominant */
+  --card-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),         /* Outer-Linien-Glow: neutral, leise */
+    0 0 24px 2px rgba(95, 41, 209, 0.10),        /* Lila-Halo: dezent, kompakter */
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);     /* Inner-Top-Highlight: unverändert */
+  /* Hover-Variante: stärkerer Lila-Halo, weiter ausladend, plus etwas
+     lebendigeres Inner-Top-Highlight. Wird auf .sparring-card:hover und
+     .faq-card:hover gesetzt (Schritt 5, Hover-Float). */
+  --card-shadow-hover:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 12px 40px 4px rgba(95, 41, 209, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --card-blur:     12px;
+  --card-accent-width: 4px;                     /* Höhe des Akzent-Streifens oben */
+
+  /* Akzent-Farben für Card-Streifen (Volltonfarbe, ::before-Pseudo) */
+  --accent-purple:  var(--purple-deep);   /* #5F29D1 */
+  --accent-teal:    var(--teal);          /* #00CFC4 */
+  --accent-magenta: var(--purple-hi);     /* #A62AEB */
+
+  /* Verlaufstrich für card-freie Sektionen (Marken-Geste analog zum
+     Onepager-Template, Lila → Magenta → Türkis horizontal). Zweites Pattern,
+     klar getrennt vom Volltonfarb-Akzent über Cards. */
+  --accent-gradient: linear-gradient(
+    90deg,
+    var(--purple-deep) 0%,
+    var(--purple-hi) 50%,
+    var(--teal) 100%
+  );
+
+  /* Sektions-Trennstrich (3 px ::after unter jeder Sektion). Orientiert am
+     Footer-Strich des Onepager-Templates: Türkis links → Lila Mitte → Magenta
+     rechts, asymmetrischer Verlauf. Eigene Variable, damit --accent-gradient
+     für andere Zwecke unverändert bleibt. */
+  --section-divider: linear-gradient(
+    90deg,
+    var(--teal) 0%,
+    var(--purple-deep) 50%,
+    var(--purple-hi) 100%
+  );
+}
+
+/* === Custom CSS aus alter index.html (1:1 übernommen) === */
+        /* Verhindert, dass sticky Header anchor-targets überlagert */
+        html {
+            scroll-padding-top: 72px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0C10; /* Deep dark – "infinite space" */
+        }
+        .cta-button {
+            background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
+            background-size: 200% auto;
+            /* Asymmetrische Hover-Transition (Schritt C-5, 18.05.2026):
+               200 ms ease-out beim Hover-In (auf :hover gesetzt),
+               400 ms ease-out beim Hover-Out (Base wirkt, wenn :hover
+               wegfällt). Gilt für beide Hover-Properties, damit
+               Gradient-Verschiebung und Glow als Einheit reagieren. */
+            transition: background-position 0.4s ease-out,
+                        box-shadow 0.4s ease-out;
+            /* Default-Shadow in em (skaliert proportional zur font-size
+               des jeweiligen Buttons). 0.25em / 0.94em entsprechen am
+               16px-Button exakt den vorherigen 4px / 15px. */
+            box-shadow: 0 0.25em 0.94em 0 rgba(8, 211, 187, 0.25);
+        }
+        /* Hover: Farbverlauf-Verschiebung über 200%-Gradient (kein Anheben)
+           plus weicher Türkis-Glow als Marken-Geste (Schritt C-5).
+           - Glow-Farbe: var(--teal) via color-mix() (nicht hartkodiert).
+           - Zwei Shadow-Schichten: kompakter Kern (1em blur, 55 % Alpha)
+             + breites Halo (2.25em blur, 0.5em spread, 28 % Alpha) für
+             „weich gestreut, ohne harte Kante".
+           - em-Werte skalieren mit der Schriftgröße des Buttons.
+           - Transition 0.2s = Hover-In (asymmetrisch zu 0.4s Hover-Out
+             auf der Base-Klasse). */
+        .cta-button:hover {
+            background-position: right center;
+            box-shadow:
+              0 0 1em 0        color-mix(in srgb, var(--teal) 55%, transparent),
+              0 0 2.25em 0.5em color-mix(in srgb, var(--teal) 28%, transparent);
+            transition: background-position 0.2s ease-out,
+                        box-shadow 0.2s ease-out;
+        }
+        .gradient-text {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 50%, #8A3FFC 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .gradient-text-hero {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-text-full {
+            background-image: linear-gradient(90deg, #08D3BB 0%, #33B1FF 100%);
+        }
+        .gradient-text-subtle {
+            background-image: linear-gradient(to right, #08D3BB, #33B1FF);
+        }
+        .gradient-text-full, .gradient-text-subtle {
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .gradient-border-left {
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #08D3BB, #33B1FF, #8A3FFC) 1;
+        }
+        
+        /* Animationen */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes float-slow {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(10px, -15px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+        
+        .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+            will-change: transform;
+        }
+        
+        .animate-float-delay {
+            animation: float 6s ease-in-out infinite 1s;
+            will-change: transform;
+        }
+        
+        .hover-float {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-glow:hover {
+            filter: drop-shadow(0 0 8px currentColor);
+            transition: filter 0.3s ease;
+        }
+        
+        .lightbulb-glow {
+            filter: drop-shadow(0 0 20px rgba(8, 211, 187, 1)) 
+                    drop-shadow(0 0 35px rgba(51, 177, 255, 0.8)) 
+                    drop-shadow(0 0 50px rgba(138, 63, 252, 0.6)) !important;
+            -webkit-filter: drop-shadow(0 0 20px rgba(8, 211, 187, 1)) 
+                           drop-shadow(0 0 35px rgba(51, 177, 255, 0.8)) 
+                           drop-shadow(0 0 50px rgba(138, 63, 252, 0.6)) !important;
+        }
+
+        /* Barrierefreiheit: Sichtbarer Fokus-Ring für Tastatur-Navigation */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 2px !important;
+            border-radius: 4px;
+        }
+
+        .cta-button:focus-visible {
+            outline: 3px solid #22d3d1 !important;
+            outline-offset: 3px !important;
+            box-shadow: 0 0 0 6px rgba(34, 211, 209, 0.3) !important;
+        }
+
+        /* Fokus für Navigation-Links im Header */
+        header a:focus-visible,
+        nav a:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 4px !important;
+        }
+
+        /* Fokus für Footer-Links */
+        footer a:focus-visible {
+            outline: 2px solid #22d3d1 !important;
+            outline-offset: 2px !important;
+        }
+
+        /* ── Phase 3: Three.js Hero Canvas ─────────────────────── */
+        #hero { min-height: 100vh; }
+
+        .three-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: canvasFadeIn 1.8s ease 0.4s forwards;
+        }
+        @keyframes canvasFadeIn {
+            to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .three-canvas { display: none; }
+        }
+        /* Canvas auf Mobile grundsätzlich ausblenden (Three.js läuft dort nicht) */
+        @media (max-width: 767px) {
+            .three-canvas { display: none !important; }
+        }
+
+        /* ── Scroll Reveal Animations (Schritt 5, 17.05.2026) ─────────
+           Klassenname .scroll-reveal (nicht .reveal) wegen Namespace-
+           Konflikt mit public/ai-design-system.js, das .reveal-Klassen
+           bei Page-Load aktiv entfernt (alter GSAP-Cleanup, siehe L-008).
+           Startzustand: opacity 0 + 20 px Versatz nach unten. Wechsel auf
+           .is-visible via IntersectionObserver in BaseLayout (threshold
+           0.15, einmaliges Triggern). Gestaffeltes Erscheinen für Card-
+           Gruppen: data-reveal-stagger="N" → transition-delay N×100 ms
+           wird vom Script gesetzt. */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Hero-Staffelung (Schritt 5, 17.05.2026) ─────────────────
+           Hero-Bild bleibt sofort sichtbar (kein Fade), nur die Text-
+           Elemente staffeln nach Page-Load via CSS-Animation. Hero hat
+           keine separate Subline → 5 Stufen (Headline + 3 Fließtext-
+           absätze + CTA) statt der 4 Stufen aus der Spec, je 200 ms
+           Versatz. data-hero-stagger="N" steuert animation-delay. */
+        .hero-stagger {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: heroStaggerIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-stagger[data-hero-stagger="1"] { animation-delay:    0ms; }
+        .hero-stagger[data-hero-stagger="2"] { animation-delay:  200ms; }
+        .hero-stagger[data-hero-stagger="3"] { animation-delay:  400ms; }
+        .hero-stagger[data-hero-stagger="4"] { animation-delay:  600ms; }
+        .hero-stagger[data-hero-stagger="5"] { animation-delay:  800ms; }
+        @keyframes heroStaggerIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Accessibility: prefers-reduced-motion ──────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .hero-stagger {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+            .animate-float,
+            .animate-float-slow,
+            .animate-float-delay {
+                animation: none !important;
+            }
+            #Header-Icon-Group path,
+            #Header-Text-Group path,
+            #Footer-Icon-Group path,
+            #Footer-Text-Group path {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+            .cta-button {
+                transition: none !important;
+            }
+        }
+
+        /* ── Hero: volle Viewport-Höhe + vertikale Zentrierung des Inhalts ─────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* pt-24 aus dem class-Attribut bleibt als Mindest-Abstand zur fixierten Nav */
+        }
+        /* Der absolute-positionierte Inhalt braucht kein Flex-Verhalten */
+        #hero > .container {
+            width: 100%;
+        }
+
+        /* Hintergruendelemente werden nun direkt ueber Tailwind in BaseLayout (z.B. #deep-glow) gestyled */
+
+        /* ══ NOISE / GRAIN OVERLAY (statisch, v1) ════════════════════ */
+        #page-grain {
+            position: fixed; inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.024;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23g)'/%3E%3C/svg%3E");
+            background-size: 280px 280px;
+        }
+

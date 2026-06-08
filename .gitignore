@@ -1,5 +1,4 @@
 # Build-Tool (zu groß für GitHub, kann neu heruntergeladen werden)
-tailwindcss.exe
 
 # Temporäre/Hilfsdateien
 process_qr_code.py
@@ -36,19 +35,23 @@ images/icon-innovation.png
 images/systemprompt-document-clean.png
 images/closing-knowledge-flow.png
 
-node_modules
-
 # Projektnotizen & IDE
 CLAUDE.md
+docs/
 .vscode/
 
 # PDF-Workflow & Dev-Tools
 PDF-WORKFLOW.md
 generate-pdf.js
-debug-footer.js
-package.json
-package-lock.json
 node_modules/
 
 # Claude Code lokale Konfiguration
 .claude/
+
+# Astro
+dist/
+.astro/
+
+# Bild-Backups (inaktive Original- und Zwischenstände, lokal/Tresorit, nicht im Repo)
+src/assets/beraterstab-netz-original.png
+src/assets/beraterstab-netz-step2-sparkle-removed.png
