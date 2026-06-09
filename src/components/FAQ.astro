@@ -58,8 +58,25 @@ const faqs = [
     <div class="faq-list">
       {faqs.map((faq, index) => (
         <article class="faq-card scroll-reveal" data-reveal-stagger={index}>
-          <h3>{faq.question}</h3>
-          {faq.answer.map((para) => <p>{para}</p>)}
+          <h3 class="faq-question">
+            <button
+              type="button"
+              class="faq-trigger"
+              id={`faq-q-${index}`}
+              aria-expanded="false"
+              aria-controls={`faq-panel-${index}`}
+            >
+              <span class="faq-question-text">{faq.question}</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </h3>
+          <div class="faq-panel" id={`faq-panel-${index}`} role="region" aria-labelledby={`faq-q-${index}`}>
+            <div class="faq-panel-inner">
+              {faq.answer.map((para) => <p>{para}</p>)}
+            </div>
+          </div>
         </article>
       ))}
     </div>
@@ -193,13 +210,74 @@ const faqs = [
   .faq-card:nth-child(3n+2) { --accent: var(--accent-teal); }
   .faq-card:nth-child(3n)   { --accent: var(--accent-magenta); }
 
-  .faq-card h3 {
+  /* Frage-Zeile als barrierefreier Button (gesamte Zeile klickbar).
+     Button visuell unsichtbar – Typografie bleibt identisch zur alten h3
+     (17px/600), kein Hintergrund, kein Border. */
+  .faq-question {
+    margin: 0;
+  }
+
+  .faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--white);
+    transition: color 0.3s ease-out;
+  }
+
+  .faq-question-text {
     font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 600;
     line-height: 1.4;
-    color: var(--white);
-    margin: 0 0 16px 0;
+    color: inherit;
+  }
+
+  /* Hover/Focus: dezente Farbverschiebung auf die Card-Akzentfarbe
+     (var(--accent) = nth-child-Streifenfarbe purple/teal/magenta). */
+  .faq-trigger:hover,
+  .faq-trigger:focus-visible {
+    color: var(--accent);
+  }
+
+  .faq-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* Feines Linien-Chevron (currentColor → folgt dem Trigger-Farbwechsel).
+     Rotation beim Öffnen via CSS-Transition (power3-nahe cubic-bezier,
+     gleiche Dauer wie die GSAP-Höhenanimation). */
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--text-soft);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.3s ease-out;
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Antwort-Panel: standardmäßig geschlossen (height 0). Höhe wird per
+     GSAP animiert (height: auto ↔ 0). overflow:hidden klemmt den Inhalt.
+     Antworttexte bleiben IMMER im DOM (a11y / Screen-Reader). */
+  .faq-panel {
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* Abstand Frage→Antwort nur im offenen Zustand (war früher h3 margin). */
+  .faq-panel-inner {
+    padding-top: 16px;
   }
 
   .faq-card p {
@@ -229,4 +307,60 @@ const faqs = [
       gap: 32px;
     }
   }
+
+  /* Reduced-motion: keine Chevron-Rotation/Farb-Transition; das Öffnen/
+     Schließen setzt die Höhe im Script ohne GSAP-Tween sofort. */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-trigger,
+    .faq-chevron {
+      transition: none;
+    }
+  }
 </style>
+
+<script is:inline>
+  /* FAQ-Accordion (ADR-040): Multi-Open, Default alle geschlossen.
+     Höhenanimation via GSAP (height: auto ↔ 0, ease power3.out) – konsistent
+     mit Magnetic-Button. Antworttexte bleiben im DOM, nur die Höhe wird
+     gesteuert. GSAP wird via defer geladen → Logik läuft in DOMContentLoaded,
+     dann ist `gsap` garantiert verfügbar. Fallback ohne GSAP / bei
+     reduced-motion: Höhe wird sofort gesetzt. */
+  (function () {
+    function initFaqAccordion() {
+      var triggers = document.querySelectorAll('.faq-trigger');
+      if (!triggers.length) return;
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasGSAP = typeof gsap !== 'undefined';
+      var DURATION = 0.35;
+
+      Array.prototype.forEach.call(triggers, function (trigger) {
+        var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (!panel) return;
+
+        trigger.addEventListener('click', function () {
+          var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+
+          if (prefersReduced || !hasGSAP) {
+            panel.style.height = isOpen ? '0px' : 'auto';
+            return;
+          }
+
+          gsap.to(panel, {
+            height: isOpen ? 0 : 'auto',
+            duration: DURATION,
+            ease: 'power3.out',
+            overwrite: true
+          });
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFaqAccordion);
+    } else {
+      initFaqAccordion();
+    }
+  })();
+</script>
