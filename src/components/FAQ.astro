@@ -205,10 +205,16 @@ const faqs = [
   }
 
   /* Drei-Farben-Rotation: purple → teal → magenta → purple → teal → magenta
-     Modulo-Pattern, skaliert auch wenn Cards dazukommen oder wegfallen. */
-  .faq-card:nth-child(3n+1) { --accent: var(--accent-purple); }
-  .faq-card:nth-child(3n+2) { --accent: var(--accent-teal); }
-  .faq-card:nth-child(3n)   { --accent: var(--accent-magenta); }
+     Modulo-Pattern, skaliert auch wenn Cards dazukommen oder wegfallen.
+     --accent     = Linien-/Streifenfarbe (Volltonfarbe, ::before) – unverändert.
+     --accent-text = heller Hover-/Open-State-Text. Eigene helle Töne, weil die
+       dunklen Linienfarben (Violett #5F29D1 = 1,98:1, Magenta #A62AEB = 3,01:1)
+       auf dem dunklen Card-BG #2B1F42 WCAG AA (4,5:1) reißen (ADR-040 Addendum).
+       Werte: Violett #B07CFF = 5,21:1, Türkis #00CFC4 = 7,78:1, Magenta
+       #D46BF5 = 5,24:1 – alle AA-konform. */
+  .faq-card:nth-child(3n+1) { --accent: var(--accent-purple);  --accent-text: #B07CFF; }
+  .faq-card:nth-child(3n+2) { --accent: var(--accent-teal);    --accent-text: var(--teal); }
+  .faq-card:nth-child(3n)   { --accent: var(--accent-magenta); --accent-text: #D46BF5; }
 
   /* Frage-Zeile als barrierefreier Button (gesamte Zeile klickbar).
      Button visuell unsichtbar – Typografie bleibt identisch zur alten h3
@@ -230,6 +236,9 @@ const faqs = [
     text-align: left;
     color: var(--white);
     transition: color 0.3s ease-out;
+    /* System-Tap-Flash unterdrücken, damit der eigene Open-State (unten)
+       beim Antippen auf Touch sauber sichtbar ist und nicht überlagert wird. */
+    -webkit-tap-highlight-color: transparent;
   }
 
   .faq-question-text {
@@ -240,15 +249,26 @@ const faqs = [
     color: inherit;
   }
 
-  /* Hover/Focus: dezente Farbverschiebung auf die Card-Akzentfarbe
-     (var(--accent) = nth-child-Streifenfarbe purple/teal/magenta). */
-  .faq-trigger:hover,
-  .faq-trigger:focus-visible {
-    color: var(--accent);
+  /* Open-State (Desktop + Mobile identisch): solange die Frage offen ist
+     (aria-expanded="true"), bleibt der Fragetext in der hellen Akzentfarbe.
+     Dominiert automatisch, wenn die Maus weggeht – gleicher Farbwert. */
+  .faq-trigger[aria-expanded="true"] {
+    color: var(--accent-text);
   }
 
+  /* Hover NUR auf Geräten mit echtem Hover (Desktop) – verhindert
+     Sticky-Hover beim Tap auf Touch-Geräten. */
+  @media (hover: hover) {
+    .faq-trigger:hover {
+      color: var(--accent-text);
+    }
+  }
+
+  /* Tastatur-Fokus: heller Akzent + sichtbarer Fokusring, geräteunabhängig
+     (außerhalb der hover-Query). */
   .faq-trigger:focus-visible {
-    outline: 2px solid var(--accent);
+    color: var(--accent-text);
+    outline: 2px solid var(--accent-text);
     outline-offset: 4px;
     border-radius: 4px;
   }
