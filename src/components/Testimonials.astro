@@ -1,0 +1,165 @@
+---
+// Testimonials-Sektion (ADR-041 Stimmen-Auswahl + Design-Spec Arbeitsdokument
+// Abschnitt 11). Zwei Stimmen, Reihenfolge nach Wirkung. Wortlaut UNVERÄNDERT
+// (Testimonials.docx). Nergiz Kamat bewusst nicht enthalten (→ parkplatz.md).
+// Absatzstruktur als Array erhalten (Jeannette = vier Absätze).
+const testimonials = [
+  {
+    quote: [
+      "Isabella hört wirklich zu, bevor sie antwortet. Das klingt banal, ist es aber nicht. Sie erkennt schnell den Kern eines Themas und gibt Impulse, die Substanz haben. Keine leeren KI-Floskeln, keine Tool-Empfehlungen um der Tools willen, sondern fundierte Gedanken und konkrete Ideen, die zum jeweiligen Problem passen. Besonders wertvoll finde ich, dass Isabella Denkweisen verändert. Wer mit ihr arbeitet, bekommt nicht nur ihre volle Aufmerksamkeit, sondern entwickelt einen klareren Blick dafür, wie KI das eigene Business zukunftsfähig machen kann. Für mich ist genau das deutlich wertvoller als der nächste How-to-Guide zu Tools, die morgen schon wieder überholt sind."
+    ],
+    name: "Astrid Henrich",
+    role: "Beraterin Digitale Transformation"
+  },
+  {
+    quote: [
+      "Isabella versteht KI nicht oberflächlich, sie versteht, wie KI wirklich funktioniert. Sie ist dabei niemand, der auf jeden neuen Tool-Trend aufspringt oder jedem Hype hinterherläuft, sondern sie konzentriert sich bewusst auf das Wesentliche und kommt damit schneller und gezielter ans Ziel als die meisten anderen. Diese Klarheit spürt man in jeder Zusammenarbeit mit ihr.",
+      "Isabella stellt die richtigen Fragen, genau dann, wenn es darauf ankommt. Sie versteht das eigentliche Problem und entwickelt daraus Lösungen, die manchmal so verblüffend einfach sind, dass man sich ärgert, nicht selbst darauf gekommen zu sein.",
+      "Sie kann sich tief in ein Thema einarbeiten, sich in komplexe Abläufe hineindenken und arbeitet dabei so strukturiert, dass die Ergebnisse für sich sprechen. Isabella setzt KI als Werkzeug ein, das den Menschen nicht ersetzt, sondern ihn schneller und präziser macht.",
+      "Ich empfehle Isabella jedem, der KI nicht als Spielerei abtun, sondern als ernsthaftes Werkzeug im eigenen Business nutzen will. Wer sich einen echten Vorsprung erarbeiten möchte, statt irgendwann festzustellen, dass der Wettbewerb längst weitergezogen ist, findet in Isabella genau die richtige Sparringspartnerin."
+    ],
+    name: "Jeannette Rudloff",
+    role: "Die Email-Architektin"
+  }
+];
+---
+
+<section id="testimonials" class="testimonials-section">
+  <div class="testimonials-container">
+    <p class="section-subline">Stimmen</p>
+    <h2 class="testimonials-heading">Was andere sagen</h2>
+
+    <div class="testimonials-list">
+      {testimonials.map((t, index) => (
+        <figure class="testimonial scroll-reveal" data-reveal-stagger={index}>
+          <blockquote class="testimonial-quote">
+            {t.quote.map((para, i) => (
+              <p>{i === 0 ? "„" : ""}{para}{i === t.quote.length - 1 ? "“" : ""}</p>
+            ))}
+          </blockquote>
+          <figcaption class="testimonial-person">{t.name} – {t.role}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    position: relative;
+    z-index: 1;
+    /* Basiston identisch zu Sparring (Arbeitsbegriff „Petrol" – nicht im Code
+       verankert, ADR-042/L-012). Sparring = flach, Testimonials = mit Lichtschein. */
+    background-color: var(--black-warm);
+    padding: 120px 48px;
+    overflow: hidden;
+  }
+
+  /* Zentraler Lichtschein: Mitte aufgehellt mit dezentem Violett-Charakter
+     (CI-Primär --purple-light), dunkel nach außen. Rein CSS, keine Bild-
+     Abhängigkeit. Intensität bewusst dezent gestartet – justierbar über die
+     Opacity im rgba() unten (Isabella feintunt im Browser, kein Türkis hier:
+     Türkis bleibt Signalfarbe für Linie + CTA). */
+  .testimonials-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 65% 55% at 50% 40%,
+      rgba(137, 52, 240, 0.10),   /* --purple-light #8934F0, dezent */
+      transparent 70%
+    );
+  }
+
+  /* Verlaufstrich am unteren Sektions-Ende – Marken-Geste / Sektions-Trenner,
+     analog Sparring + FAQ. */
+  .testimonials-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--section-divider);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .testimonials-container {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .testimonials-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 56px 0;
+  }
+
+  /* Untereinander, großzügiger Abstand */
+  .testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* Auszeichnung pro Stimme: schmale, einfarbige Türkis-Linie links.
+     Drei-Farben-Rotation bewusst zurückgestellt (Design-Spec). */
+  .testimonial {
+    margin: 0;
+    padding-left: 28px;
+    border-left: 2px solid var(--accent-teal);
+  }
+
+  .testimonial-quote {
+    margin: 0;
+  }
+
+  /* Zitat: Fließtextgröße, kursiv */
+  .testimonial-quote p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin: 0 0 16px 0;
+  }
+
+  .testimonial-quote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Personen-Zeile: schlicht, NICHT kursiv. Trennzeichen Halbgeviertstrich „–". */
+  .testimonial-person {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.5;
+    color: var(--text-quiet);
+    margin-top: 20px;
+  }
+
+  @media (max-width: 767px) {
+    .testimonials-section {
+      padding: 80px 24px;
+    }
+    .testimonials-heading {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+    .testimonials-list {
+      gap: 48px;
+    }
+    .testimonial {
+      padding-left: 20px;
+    }
+  }
+</style>
