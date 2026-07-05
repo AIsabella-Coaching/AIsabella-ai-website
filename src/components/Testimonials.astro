@@ -1,15 +1,31 @@
 ---
-// Testimonials-Sektion (ADR-041 Stimmen-Auswahl + Design-Spec Arbeitsdokument
-// Abschnitt 11). Zwei Stimmen, Reihenfolge nach Wirkung. Wortlaut UNVERÄNDERT
-// (Testimonials.docx). Nergiz Kamat bewusst nicht enthalten (→ parkplatz.md).
-// Absatzstruktur als Array erhalten (Jeannette = vier Absätze).
+// Testimonials-Sektion (ADR-041 + Design-Spec Arbeitsdokument Abschnitt 11).
+// Preview-Stand: FÜNF Stimmen, Reihenfolge nach Wirkung – Nergiz als wärmster,
+// nahbarster Ausklang ans Ende. Wortlaut UNVERÄNDERT (Testimonials.docx),
+// Absatzstruktur erhalten. Anzeige nur mit Namen (Funktionen bewusst entfernt).
+// HINWEIS: Anordnung + finale Stimmen-Auswahl (vgl. ADR-041 „Launch mit zwei")
+// sind Preview-Stand, Entscheidung nach Isabellas Ansicht. Björn: freigegeben
+// (15.06.2026).
 const testimonials = [
   {
     quote: [
       "Isabella hört wirklich zu, bevor sie antwortet. Das klingt banal, ist es aber nicht. Sie erkennt schnell den Kern eines Themas und gibt Impulse, die Substanz haben. Keine leeren KI-Floskeln, keine Tool-Empfehlungen um der Tools willen, sondern fundierte Gedanken und konkrete Ideen, die zum jeweiligen Problem passen. Besonders wertvoll finde ich, dass Isabella Denkweisen verändert. Wer mit ihr arbeitet, bekommt nicht nur ihre volle Aufmerksamkeit, sondern entwickelt einen klareren Blick dafür, wie KI das eigene Business zukunftsfähig machen kann. Für mich ist genau das deutlich wertvoller als der nächste How-to-Guide zu Tools, die morgen schon wieder überholt sind."
     ],
-    name: "Astrid Henrich",
-    role: "Beraterin Digitale Transformation"
+    name: "Astrid Henrich"
+  },
+  {
+    quote: [
+      "Der Moment, der mich richtig geflasht hat: Isabella hatte sich komplett eigenständig ihren eigenen Beraterstab gebaut – eine ganze Runde von KI-Beratern für unterschiedliche Themen, vom Marketing bis zur kritischen Gegenstimme. Und zwar zu einem Zeitpunkt, als die Tools das so noch gar nicht hergaben und die meisten anderen das schlicht nicht konnten. Da war für mich klar: Die manövriert sich in jedes Thema rein, arbeitet sich ein – und löst es dann auch.",
+      "Genau deshalb empfehle ich Isabella weiter. Sie zeigt dir nicht nur, wie KI geht – sie erarbeitet es mit dir, an deinem eigenen, echten Alltagsproblem statt an grauer Theorie. Am Ende hast du nicht nur maßgeschneiderte Tools für deine eigenen Themen in der Hand, sondern weißt auch, wie sie funktionieren, und hast die Scheu vor KI abgelegt.",
+      "Wenn du Respekt vor KI hast, aber endlich den nächsten Schritt machen willst, bist du bei Isabella genau richtig. Sie bringt dich weiter."
+    ],
+    name: "Björn Rowek"
+  },
+  {
+    quote: [
+      "Der Beraterstab von Isabella ist fest in meine Produktentwicklung eingebaut und ohne ihn starte ich keine neue Idee mehr. Jeder Berater hat einen Namen und eine eigene Sicht, von Marketing über Vertrieb bis zur Strategie. Victor ist der Kritiker und er weist mich auf jede Schwachstelle hin. So sehe ich Punkte, die ich allein übersehen hätte. Z.B.: Dass meine Vertrieblerin nichts verkaufen kann, was sie nicht versteht, oder dass eine Preisgestaltung erst dann trägt, wenn die Logik dahinter sauber ist. Manches hatte ich selbst im Blick, anderes nicht. Bei jedem Einsatz fängt der Beraterstab Aspekte ab, die mich später deutlich mehr Zeit und Mühe gekostet hätten."
+    ],
+    name: "Marianne Forster"
   },
   {
     quote: [
@@ -18,8 +34,13 @@ const testimonials = [
       "Sie kann sich tief in ein Thema einarbeiten, sich in komplexe Abläufe hineindenken und arbeitet dabei so strukturiert, dass die Ergebnisse für sich sprechen. Isabella setzt KI als Werkzeug ein, das den Menschen nicht ersetzt, sondern ihn schneller und präziser macht.",
       "Ich empfehle Isabella jedem, der KI nicht als Spielerei abtun, sondern als ernsthaftes Werkzeug im eigenen Business nutzen will. Wer sich einen echten Vorsprung erarbeiten möchte, statt irgendwann festzustellen, dass der Wettbewerb längst weitergezogen ist, findet in Isabella genau die richtige Sparringspartnerin."
     ],
-    name: "Jeannette Rudloff",
-    role: "Die Email-Architektin"
+    name: "Jeannette Rudloff"
+  },
+  {
+    quote: [
+      "Isabella versteht mich einfach. Sie holt mich immer genau da ab, wo ich gerade bin, und erklärt mir alles so, dass ich es wirklich verstehe. Sie kann sich unglaublich gut und klar ausdrücken. Sie ist äußerst einfühlsam und verlässlich – wenn ich ihr schreibe, weiß ich, dass mir geholfen wird. Ich kann mir keine bessere Unterstützung für mein Projekt vorstellen."
+    ],
+    name: "Nergiz Kamat"
   }
 ];
 ---
@@ -32,12 +53,15 @@ const testimonials = [
     <div class="testimonials-list">
       {testimonials.map((t, index) => (
         <figure class="testimonial scroll-reveal" data-reveal-stagger={index}>
-          <blockquote class="testimonial-quote">
+          <blockquote class="testimonial-quote" id={`tq-${index}`}>
             {t.quote.map((para, i) => (
               <p>{i === 0 ? "„" : ""}{para}{i === t.quote.length - 1 ? "“" : ""}</p>
             ))}
           </blockquote>
-          <figcaption class="testimonial-person">{t.name} – {t.role}</figcaption>
+          <button class="testimonial-more" type="button" aria-expanded="false" aria-controls={`tq-${index}`} hidden>
+            <span class="testimonial-more-label">Weiterlesen</span>
+          </button>
+          <figcaption class="testimonial-person">{t.name}</figcaption>
         </figure>
       ))}
     </div>
@@ -48,33 +72,16 @@ const testimonials = [
   .testimonials-section {
     position: relative;
     z-index: 1;
-    /* Basiston identisch zu Sparring (Arbeitsbegriff „Petrol" – nicht im Code
-       verankert, ADR-042/L-012). Sparring = flach, Testimonials = mit Lichtschein. */
+    /* Basiston identisch zu Sparring (Arbeitsbegriff „Petrol"). */
     background-color: var(--black-warm);
     padding: 120px 48px;
     overflow: hidden;
+
+    /* Teaser-Höhe für das „Weiterlesen"-Clamp – ~3 Zeilen. Live justierbar. */
+    --teaser-height: 84px;
   }
 
-  /* Zentraler Lichtschein: Mitte aufgehellt mit dezentem Violett-Charakter
-     (CI-Primär --purple-light), dunkel nach außen. Rein CSS, keine Bild-
-     Abhängigkeit. Intensität bewusst dezent gestartet – justierbar über die
-     Opacity im rgba() unten (Isabella feintunt im Browser, kein Türkis hier:
-     Türkis bleibt Signalfarbe für Linie + CTA). */
-  .testimonials-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-      ellipse 65% 55% at 50% 40%,
-      rgba(137, 52, 240, 0.10),   /* --purple-light #8934F0, dezent */
-      transparent 70%
-    );
-  }
-
-  /* Verlaufstrich am unteren Sektions-Ende – Marken-Geste / Sektions-Trenner,
-     analog Sparring + FAQ. */
+  /* Verlaufstrich am unteren Sektions-Ende – Marken-Geste, analog Sparring + FAQ. */
   .testimonials-section::after {
     content: "";
     position: absolute;
@@ -111,16 +118,67 @@ const testimonials = [
     gap: 64px;
   }
 
-  /* Auszeichnung pro Stimme: schmale, einfarbige Türkis-Linie links.
-     Drei-Farben-Rotation bewusst zurückgestellt (Design-Spec). */
+  /* Auszeichnung pro Stimme: schmale, einfarbige Linie links. Farb-Rotation
+     analog FAQ (nth-child 3n+1 / 3n+2 / 3n), aber mit den HELLEN, WCAG-
+     geprüften Varianten (L-021, alle > 6:1 auf --black-warm), nicht den
+     dunklen Grundtönen: Violett → Türkis → Magenta → Violett → Türkis. */
+  .testimonial:nth-child(3n+1) { --line: #B07CFF; }  /* Violett  6,62:1 */
+  .testimonial:nth-child(3n+2) { --line: #00CFC4; }  /* Türkis   9,89:1 */
+  .testimonial:nth-child(3n)   { --line: #D46BF5; }  /* Magenta  6,66:1 */
+
+  /* Glow pro Stimme in der Linienfarbe (var(--line), rotiert mit). Justierbar
+     über CSS-Variablen (Startwerte bewusst moderat → eher runter- als hoch-
+     drehen, weil der Halo jetzt unter der ganzen Textfläche liegt, L-021):
+       --glow-opacity  : Deckkraft (glimmen, nicht leuchten)
+       --glow-size     : horizontale Ausdehnung des Halos (% der Card-Breite)
+       --glow-blur     : Weichheit
+       --glow-strength : Farbanteil der Linienfarbe (color-mix) */
   .testimonial {
+    --glow-opacity: 0.35;
+    --glow-size: 60%;
+    --glow-blur: 60px;
+    --glow-strength: 55%;
+    position: relative;
+    z-index: 0;
     margin: 0;
     padding-left: 28px;
-    border-left: 2px solid var(--accent-teal);
+    border-left: 2px solid var(--line, var(--accent-teal));
   }
 
+  /* Zentrierter, umhüllender Halo hinter der GESAMTEN Card (Gemini-Referenz:
+     symmetrisch, weich, flächig). inset:0 → deckt Breite UND Höhe ab und
+     bindet sich an die Card-Höhe (wächst beim Aufklappen mit). Farbe flächig
+     im Kern (Plateau 0–38 %, kein heißer Punkt → Lesbarkeit, L-021), läuft
+     nach allen Seiten weich in var(--black-warm) aus (Verlauf + blur). Liegt
+     hinter dem Text (z-index:-1), fährt mit der scroll-reveal-Opacity ein. */
+  .testimonial::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse var(--glow-size) 80% at center center,
+      color-mix(in srgb, var(--line) var(--glow-strength), transparent) 0%,
+      color-mix(in srgb, var(--line) var(--glow-strength), transparent) 38%,
+      transparent 74%
+    );
+    filter: blur(var(--glow-blur));
+    opacity: var(--glow-opacity);
+  }
+
+  /* Zitat-Block. Höhe wird für das Teaser-Clamp per JS gesteuert (GSAP,
+     analog FAQ-Accordion, ADR-040). overflow:hidden klemmt den Überstand. */
   .testimonial-quote {
     margin: 0;
+    overflow: hidden;
+  }
+
+  /* Eingeklappter Teaser: weicher Fade-out am unteren Rand (mask, hintergrund-
+     unabhängig). Die Höhe setzt das Script; hier nur der Fade. */
+  .testimonial-quote.is-collapsed {
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
   }
 
   /* Zitat: Fließtextgröße, kursiv */
@@ -137,14 +195,49 @@ const testimonials = [
     margin-bottom: 0;
   }
 
-  /* Personen-Zeile: schlicht, NICHT kursiv. Trennzeichen Halbgeviertstrich „–". */
+  /* „Weiterlesen" – sekundäre Aktion: kleiner und leiser als der Name. Nur
+     sichtbar, wenn der Text die Teaser-Höhe überschreitet (JS). */
+  .testimonial-more {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 14px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--text-quiet);
+    transition: color 0.3s ease-out;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Hover nur Desktop (kein Sticky-Hover auf Touch, L-021) */
+  @media (hover: hover) {
+    .testimonial-more:hover {
+      color: var(--accent-teal);
+    }
+  }
+
+  .testimonial-more:focus-visible {
+    color: var(--accent-teal);
+    outline: 2px solid var(--accent-teal);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* Personen-Zeile: Name als klare Hauptinfo – kräftiger und größer als der
+     „Weiterlesen"-Button. Nur Name, nicht kursiv. */
   .testimonial-person {
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: 600;
     font-style: normal;
-    line-height: 1.5;
-    color: var(--text-quiet);
-    margin-top: 20px;
+    line-height: 1.4;
+    color: var(--white);
+    margin-top: 18px;
   }
 
   @media (max-width: 767px) {
@@ -162,4 +255,85 @@ const testimonials = [
       padding-left: 20px;
     }
   }
+
+  /* reduced-motion: keine Farb-Transition am Button; Auf-/Zuklappen setzt die
+     Höhe im Script ohne GSAP-Tween sofort. (Lichtstrahl ist statisch.) */
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-more {
+      transition: none;
+    }
+  }
 </style>
+
+<script is:inline>
+  /* Testimonial „Weiterlesen"-Teaser: klemmt jedes Zitat auf eine einheitliche
+     Teaser-Höhe und blendet einen „Weiterlesen"-Button nur ein, wenn der Text
+     überläuft. Aufklapp-Mechanik analog FAQ-Accordion (ADR-040): aria-expanded,
+     tastaturbedienbar (nativer Button), Höhe via GSAP (power3.out) mit
+     reduced-motion-Fallback. Progressive Enhancement: ohne JS bleibt der volle
+     Text sichtbar und zugänglich, kein toter Button. */
+  (function () {
+    function initTestimonialTeasers() {
+      var section = document.querySelector('.testimonials-section');
+      if (!section) return;
+      var figures = section.querySelectorAll('.testimonial');
+      if (!figures.length) return;
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasGSAP = typeof gsap !== 'undefined';
+      var DURATION = 0.35;
+      var teaser = parseFloat(getComputedStyle(section).getPropertyValue('--teaser-height')) || 84;
+
+      Array.prototype.forEach.call(figures, function (fig) {
+        var quote = fig.querySelector('.testimonial-quote');
+        var btn = fig.querySelector('.testimonial-more');
+        var label = btn && btn.querySelector('.testimonial-more-label');
+        if (!quote || !btn) return;
+
+        // Natürliche Höhe messen (noch ungeklemmt). Kurze Zitate: nichts tun.
+        var full = quote.scrollHeight;
+        if (full <= teaser + 2) return;
+
+        // Klemmen + Button einblenden
+        quote.style.height = teaser + 'px';
+        quote.classList.add('is-collapsed');
+        btn.hidden = false;
+
+        btn.addEventListener('click', function () {
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          if (label) label.textContent = expanded ? 'Weiterlesen' : 'Weniger anzeigen';
+
+          if (!expanded) {
+            // aufklappen
+            quote.classList.remove('is-collapsed');
+            var target = quote.scrollHeight;
+            if (prefersReduced || !hasGSAP) {
+              quote.style.height = 'auto';
+            } else {
+              gsap.to(quote, {
+                height: target, duration: DURATION, ease: 'power3.out', overwrite: true,
+                onComplete: function () { quote.style.height = 'auto'; }
+              });
+            }
+          } else {
+            // einklappen
+            quote.style.height = quote.scrollHeight + 'px';
+            quote.classList.add('is-collapsed');
+            if (prefersReduced || !hasGSAP) {
+              quote.style.height = teaser + 'px';
+            } else {
+              gsap.to(quote, { height: teaser, duration: DURATION, ease: 'power3.out', overwrite: true });
+            }
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTestimonialTeasers);
+    } else {
+      initTestimonialTeasers();
+    }
+  })();
+</script>
