@@ -201,7 +201,7 @@
   .sparring-takeaway h2::before {
     content: "";
     display: block;
-    width: 44px;
+    width: 88px;
     height: 2px;
     background: var(--teal);
     margin-bottom: 20px;
@@ -266,6 +266,10 @@
     }
     .sparring-takeaway h2 {
       font-size: 28px;
+    }
+    /* Marker-Länge proportional zur kleineren Mobile-Überschrift (28px). */
+    .sparring-takeaway h2::before {
+      width: 60px;
     }
   }
 </style>
