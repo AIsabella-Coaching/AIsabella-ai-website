@@ -567,8 +567,8 @@ const footerLogoSvg = `
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
         <a href={legalPage ? "/" : "#hero"} aria-label="AIsabella – zur Startseite" class="inline-flex items-center flex-shrink-0"><Fragment set:html={headerLogoSvg} /></a>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-10">
+        <!-- Desktop Navigation (ab lg=1024 – darunter Burger, gegen Tablet-Umbruch bei 5 Items + CTA, ADR-043) -->
+        <div class="hidden lg:flex items-center space-x-10">
             <div class="space-x-8">
                  {navItems.map((item) => (
                    <a href={navHref(item.id)} class="text-base font-medium transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
@@ -579,7 +579,7 @@ const footerLogoSvg = `
 
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menü öffnen"
-                class="md:hidden ml-3 p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition">
+                class="lg:hidden ml-3 p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition">
             <svg data-icon="open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -588,7 +588,7 @@ const footerLogoSvg = `
             </svg>
         </button>
     </nav>
-    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+    <div id="mobile-menu" class="lg:hidden hidden px-6 pb-4">
         <div class="flex flex-col space-y-2">
             {navItems.map((item) => (
               <a href={navHref(item.id)} class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
