@@ -25,10 +25,13 @@
       </p>
     </article>
 
-    <article class="sparring-card sparring-card--takeaway scroll-reveal" data-reveal-stagger="1">
-      <h3>Was du mitnimmst</h3>
+    <article class="sparring-takeaway scroll-reveal" data-reveal-stagger="1">
+      <h2>Was du mitnimmst</h2>
       <p>
-        Souveränität im Umgang mit KI und die Urteilskraft, selbst zu unterscheiden, wobei sie dir hilft – und wovon du besser die Finger lässt. Einen inneren Kompass für KI-Entscheidungen, verankert in deinem unternehmerischen Alltag, erprobt an deinen echten Herausforderungen.
+        Souveränität im Umgang mit KI und die Urteilskraft, selbst zu unterscheiden, wobei sie dir hilft – und wovon du besser die Finger lässt.
+      </p>
+      <p>
+        Einen inneren Kompass für KI-Entscheidungen, verankert in deinem unternehmerischen Alltag, erprobt an deinen echten Herausforderungen.
       </p>
     </article>
 
@@ -167,9 +170,54 @@
     );
   }
 
-  /* Card 2: „Was du mitnimmst" – Türkis-Akzent (CI-zweite-Hauptfarbe) */
-  .sparring-card--takeaway {
-    --accent: var(--accent-teal);
+  /* „Was du mitnimmst" – aus dem Karten-Raster gelöst (ADR-045, 06.07.2026):
+     freistehender Block auf dem Sektions-Hintergrund. Kein Background, keine
+     Border, kein Radius, kein Shadow, kein Inner Glow, kein Akzent-Streifen –
+     die Karten-Klasse ist bewusst entfernt. Die Wirkung entsteht durch
+     Isolation + Weißraum, nicht durch mehr Farbe. Standout über Hierarchie:
+     h2 auf Section-Gewicht (gleich groß wie die Sparring-Überschrift), ein
+     einziger feiner Türkis-Akzent über der Zeile. Glow-Deckel (0,35) bleibt
+     unberührt, weil dieser Block gar keinen Glow mehr trägt. */
+  .sparring-takeaway {
+    /* Großzügiger Weißraum oben, deutlich über dem 32px-Container-Gap.
+       Unten trägt die Sektions-Padding (120px) + Beraterstab-Top-Padding
+       (120px) die Isolation – kein zusätzlicher margin-bottom nötig. */
+    margin-top: 80px;
+    max-width: 640px;
+  }
+
+  .sparring-takeaway h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0 0 24px 0;
+  }
+
+  /* Einziger Akzent: kurze, feine Türkis-Linie über der Überschrift,
+     linksbündig. Bestehendes Türkis-Token, kein Full-Width-Trennstrich. */
+  .sparring-takeaway h2::before {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 2px;
+    background: var(--teal);
+    margin-bottom: 20px;
+  }
+
+  .sparring-takeaway p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-soft);
+    /* Absatz-Rhythmus wie in der Sparring-Karte (18px), letzter Absatz bündig. */
+    margin: 0 0 18px 0;
+  }
+
+  .sparring-takeaway p:last-child {
+    margin-bottom: 0;
   }
 
   .sparring-card h2 {
@@ -180,15 +228,6 @@
     letter-spacing: -0.02em;
     color: var(--white);
     margin: 0 0 28px 0;
-  }
-
-  .sparring-card h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 19px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--white);
-    margin: 0 0 16px 0;
   }
 
   .sparring-card p {
@@ -220,6 +259,12 @@
       padding: 28px 24px;
     }
     .sparring-card h2 {
+      font-size: 28px;
+    }
+    .sparring-takeaway {
+      margin-top: 56px;
+    }
+    .sparring-takeaway h2 {
       font-size: 28px;
     }
   }
