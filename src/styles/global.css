@@ -29,6 +29,12 @@ p:not(.section-subline) {
   text-wrap: pretty;
 }
 
+/* === Mikrotypografie Überschriften: Zeilen gleichmäßig verteilen, damit kein
+       einzelnes Wort allein in der letzten Zeile steht. Progressive Enhancement. === */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
 /* === CI-Variablen (Sektions-Architektur, 16.05.2026) === */
 :root {
   /* Schwarz-Töne */
