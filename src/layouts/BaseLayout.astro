@@ -62,7 +62,7 @@ const defaultJsonLd = `
                         "KI-Sparring",
                         "KI-Beratung",
                         "KI-Training",
-                        "KI-Schulung für Führungskräfte",
+                        "KI-Schulung für Unternehmer und Führungskräfte",
                         "AI Consulting"
                     ],
                     "founder": {
@@ -448,8 +448,6 @@ const footerLogoSvg = `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-    <!-- Three.js-Flag: nur einmal im Head berechnen, kein document.write im Body -->
-    <script is:inline>window._loadThree=(window.innerWidth>=768&&window.matchMedia('(pointer:fine)').matches);</script>
     <link rel="stylesheet" href="/fonts/fonts.css">
 
     <!-- Open Graph / Social Media Meta Tags -->
@@ -550,6 +548,9 @@ const footerLogoSvg = `
   </div>
 </div>
 
+
+<!-- Skip-Link (WCAG 2.4.1): nur bei Tastaturfokus sichtbar, springt hinter die Navigation -->
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <header class="bg-gray-900/80 backdrop-blur-sm shadow-lg shadow-purple-900/10 sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
@@ -876,7 +877,6 @@ const footerLogoSvg = `
   })();
 </script>
 
-<!-- Scripts removed (ThreeJS and Shader) -->
 <!-- Lenis Smooth Scroll (lokal) -->
 <script defer src="/libs/lenis.min.js" is:inline></script>
 <!-- GSAP + ScrollTrigger (lokal) -->
