@@ -511,52 +511,54 @@ const footerLogoSvg = `
 
 <!-- GDPR Cookie Banner (German) -->
 <div id="cookie-consent-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background-color:rgba(15,23,42,0.4);background-color:color-mix(in oklab,#0f172a 40%,transparent)" role="dialog" aria-modal="true" aria-labelledby="cookie-main-heading">
-  <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-lg m-4 w-full">
+  <div class="bg-gray-800 text-gray-100 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-xl m-4 w-full">
     <!-- Main View -->
     <div id="cookie-view-main">
-      <h2 id="cookie-main-heading" class="text-2xl font-bold">Ich respektiere Ihre Privatsphäre</h2>
+      <h2 id="cookie-main-heading" class="text-2xl font-bold">Ich respektiere deine Privatsphäre</h2>
       <p class="mt-3 text-gray-300">
-        Ich verwende Cookies, um die Nutzung dieser Website zu verstehen und Ihr Erlebnis zu verbessern.
-        Sie können alle Cookies akzeptieren oder Ihre Einstellungen verwalten.
-        Mehr Informationen finden Sie in meiner
+        Mit deiner Zustimmung verwende ich Google Analytics, um zu sehen, wie diese Website genutzt wird.
+        Du kannst deine Entscheidung jederzeit unten auf der Seite unter <span class="whitespace-nowrap">„Cookie-Einstellungen“</span> ändern.
+        Mehr dazu in meiner
         <a href="/privacy" class="underline text-cyan-300 hover:text-cyan-200">Datenschutzerklärung</a>.
       </p>
+      <!-- Ablehnen und Akzeptieren gleichrangig auf erster Ebene, gleiche Optik (EDPB-Leitlinien 03/2022, Consent-Banner) -->
       <div class="mt-6 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
-        <button id="manage-cookies" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Cookies verwalten</button>
-        <button id="accept-cookies" class="w-full sm:w-auto bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg">Alle akzeptieren</button>
+        <button type="button" id="manage-cookies" class="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg whitespace-nowrap">Einstellungen</button>
+        <button type="button" data-cookie-reject class="w-full sm:w-auto bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg whitespace-nowrap">Alle ablehnen</button>
+        <button type="button" id="accept-cookies" class="w-full sm:w-auto bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg whitespace-nowrap">Alle akzeptieren</button>
       </div>
     </div>
     <!-- Preferences View -->
     <div id="cookie-view-prefs" class="hidden">
       <h2 class="text-2xl font-bold">Cookie-Einstellungen</h2>
-      <p class="mt-2 text-gray-300">Sie können Ihre Präferenzen unten anpassen. Notwendige Cookies sind immer aktiv.</p>
+      <p class="mt-2 text-gray-300">Hier wählst du selbst aus.</p>
       <div class="mt-5 space-y-4">
         <div class="p-4 border border-gray-700 rounded-lg">
           <div class="flex justify-between items-center">
-            <span class="font-semibold">Notwendige Cookies</span>
+            <span class="font-semibold">Notwendig <span class="font-normal text-sm text-gray-400">(immer aktiv)</span></span>
             <div class="relative inline-flex items-center h-6 rounded-full w-11 cursor-not-allowed">
               <input type="checkbox" class="w-11 h-6 rounded-full appearance-none bg-cyan-400" checked disabled />
               <span class="absolute left-1 top-1 w-4 h-4 transform bg-white rounded-full translate-x-5"></span>
             </div>
           </div>
-          <p class="mt-1 text-sm text-gray-400">Diese Cookies sind für die Grundfunktionen der Website erforderlich.</p>
+          <p class="mt-1 text-sm text-gray-400">Merkt sich deine Auswahl in diesem Fenster, damit du nicht bei jedem Besuch neu entscheiden musst.</p>
         </div>
         <div class="p-4 border border-gray-700 rounded-lg">
           <div class="flex justify-between items-center">
-            <span class="font-semibold">Analyse &amp; Performance</span>
+            <span class="font-semibold">Analyse</span>
             <label for="analytics-toggle" class="relative inline-flex items-center h-6 rounded-full w-11 cursor-pointer">
-              <input id="analytics-toggle" type="checkbox" class="sr-only peer" />
+              <input id="analytics-toggle" type="checkbox" class="sr-only peer" aria-label="Analyse mit Google Analytics erlauben" />
               <span class="w-11 h-6 rounded-full bg-gray-600 peer-checked:bg-cyan-400 transition-colors"></span>
               <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></span>
             </label>
           </div>
-          <p class="mt-1 text-sm text-gray-400">Diese Cookies helfen uns, Besuche und Traffic-Quellen zu messen.</p>
+          <p class="mt-1 text-sm text-gray-400">Mit Google Analytics sehe ich, wie viele Besuche es gibt und woher sie kommen.</p>
         </div>
       </div>
       <div class="mt-6 flex flex-wrap justify-end gap-3">
-        <button id="back-to-main" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Zurück</button>
-        <button id="reject-cookies" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg">Alle ablehnen</button>
-        <button id="save-preferences-button" class="bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg">Einstellungen speichern</button>
+        <button type="button" id="back-to-main" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg whitespace-nowrap">Zurück</button>
+        <button type="button" data-cookie-reject class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg whitespace-nowrap">Alle ablehnen</button>
+        <button type="button" id="save-preferences-button" class="bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-2.5 px-5 rounded-lg whitespace-nowrap">Auswahl speichern</button>
       </div>
     </div>
   </div>
@@ -628,8 +630,9 @@ const footerLogoSvg = `
         </div>
         <p class="mt-6">&copy; 2026 AIsabella. Alle Rechte vorbehalten.</p>
         <p class="text-sm mt-2">Isabella Bogdanovic | Deine KI-Denkerin & Sparringspartnerin</p>
-        <p class="text-sm mt-2">
-          <a href="/privacy" class="underline hover:text-gray-300">Datenschutzerklärung</a> | <a href="/imprint" class="underline hover:text-gray-300">Impressum</a>
+        <!-- Trennstriche nur ab sm: mobil umbrechen die Links ohne hängendes "|" -->
+        <p class="text-sm mt-2 flex flex-wrap justify-center gap-x-3 sm:gap-x-2 gap-y-1">
+          <a href="/privacy" class="underline hover:text-gray-300">Datenschutzerklärung</a><span class="hidden sm:inline" aria-hidden="true">|</span><a href="/imprint" class="underline hover:text-gray-300">Impressum</a><span class="hidden sm:inline" aria-hidden="true">|</span><button type="button" id="open-cookie-settings" class="underline hover:text-gray-300 cursor-pointer">Cookie-Einstellungen</button>
         </p>
     </div>
 </footer>
@@ -767,6 +770,19 @@ const footerLogoSvg = `
     function show(el) { el && el.classList.remove("hidden"); }
     function hide(el) { el && el.classList.add("hidden"); }
 
+    // Widerruf: GA-Cookies (_ga, _ga_<ID>) auf allen möglichen Domain-Varianten löschen.
+    function clearGACookies() {
+      const host = location.hostname;
+      const domains = ["", host, "." + host, "." + host.replace(/^www\./, "")];
+      document.cookie.split(";").forEach(function (c) {
+        const name = c.split("=")[0].trim();
+        if (!/^_ga/.test(name)) return;
+        domains.forEach(function (d) {
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + (d ? "; domain=" + d : "");
+        });
+      });
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       const banner = document.getElementById("cookie-consent-banner");
       const viewMain = document.getElementById("cookie-view-main");
@@ -775,8 +791,9 @@ const footerLogoSvg = `
       const manageBtn = document.getElementById("manage-cookies");
       const backBtn = document.getElementById("back-to-main");
       const acceptBtn = document.getElementById("accept-cookies");
-      const rejectBtn = document.getElementById("reject-cookies");
+      const rejectBtns = document.querySelectorAll("[data-cookie-reject]");
       const saveBtn = document.getElementById("save-preferences-button");
+      const openSettingsBtn = document.getElementById("open-cookie-settings");
       const analyticsToggle = document.getElementById("analytics-toggle");
 
       // Respect prior choice
@@ -787,6 +804,7 @@ const footerLogoSvg = `
         function _loadGAOnce() {
           if (_gaLoaded) return;
           _gaLoaded = true;
+          if (localStorage.getItem("cookie_consent") !== "true") return;
           loadGA(MEASUREMENT_ID);
           ['scroll','pointerdown','touchstart','keydown'].forEach(function(e){
             window.removeEventListener(e, _loadGAOnce, {passive:true});
@@ -801,13 +819,32 @@ const footerLogoSvg = `
         show(banner);
       }
 
+      function reflectStoredPreference() {
+        if (analyticsToggle) analyticsToggle.checked = localStorage.getItem("cookie_consent") === "true";
+      }
+
+      // Entscheidung speichern. Wird eine erteilte Einwilligung widerrufen,
+      // GA-Cookies löschen und neu laden, damit ein bereits geladenes gtag stoppt.
+      function applyChoice(enable) {
+        const previous = localStorage.getItem("cookie_consent");
+        localStorage.setItem("cookie_consent", enable ? "true" : "false");
+        hide(banner);
+        if (enable) {
+          loadGA(MEASUREMENT_ID);
+        } else if (previous === "true") {
+          window["ga-disable-" + MEASUREMENT_ID] = true;
+          clearGACookies();
+          location.reload();
+        } else {
+          console.log("[Analytics] Disabled by user preference.");
+        }
+      }
+
       // Buttons
       if (manageBtn) {
         manageBtn.addEventListener("click", function () {
           hide(viewMain); show(viewPrefs);
-          // reflect stored preference in toggle
-          const stored = localStorage.getItem("cookie_consent");
-          if (analyticsToggle) analyticsToggle.checked = stored === "true";
+          reflectStoredPreference();
         });
       }
       if (backBtn) {
@@ -816,29 +853,23 @@ const footerLogoSvg = `
         });
       }
       if (acceptBtn) {
-        acceptBtn.addEventListener("click", function () {
-          localStorage.setItem("cookie_consent", "true");
-          hide(banner);
-          loadGA(MEASUREMENT_ID);
-        });
+        acceptBtn.addEventListener("click", function () { applyChoice(true); });
       }
-      if (rejectBtn) {
-        rejectBtn.addEventListener("click", function () {
-          localStorage.setItem("cookie_consent", "false");
-          hide(banner);
-          console.log("[Analytics] Disabled by user preference.");
-        });
-      }
+      rejectBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () { applyChoice(false); });
+      });
       if (saveBtn) {
         saveBtn.addEventListener("click", function () {
-          const enable = !!(analyticsToggle && analyticsToggle.checked);
-          localStorage.setItem("cookie_consent", enable ? "true" : "false");
-          hide(banner);
-          if (enable) {
-            loadGA(MEASUREMENT_ID);
-          } else {
-            console.log("[Analytics] Disabled by user preference.");
-          }
+          applyChoice(!!(analyticsToggle && analyticsToggle.checked));
+        });
+      }
+      // Footer-Link: Dialog jederzeit wieder öffnen (Widerruf gem. Art. 7 Abs. 3 DSGVO)
+      if (openSettingsBtn && banner) {
+        openSettingsBtn.addEventListener("click", function () {
+          hide(viewMain); show(viewPrefs);
+          reflectStoredPreference();
+          show(banner);
+          if (analyticsToggle) analyticsToggle.focus();
         });
       }
     });
