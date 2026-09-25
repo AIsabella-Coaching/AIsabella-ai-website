@@ -36,9 +36,11 @@ images/systemprompt-document-clean.png
 images/closing-knowledge-flow.png
 
 # Projektnotizen & IDE
-CLAUDE.md
 docs/
 .vscode/
+
+# Privates Doku-Repo (eigenes Git-Repo, siehe AIsabella-website-intern)
+intern/
 
 # PDF-Workflow & Dev-Tools
 PDF-WORKFLOW.md
