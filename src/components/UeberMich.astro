@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import portrait from '../assets/Bogdanovic_Profile_Photo.jpg';
+import sealAST from '../assets/AST_Guetesiegel_CERTIFIED.jpg';
+import sealTUV from '../assets/TUV-certified-Isabella-Bogdanovic.png';
 ---
 
 <section id="ueber-mich" class="uebermich-section">
@@ -9,11 +13,14 @@
         <p class="section-subline">Die Person dahinter</p>
         <h2>Über mich</h2>
         <figure class="uebermich-photo">
-          <img
-            src="/images/Bogdanovic_Profile_Photo.webp"
+          <!-- Anzeige max. 280px (mobil 220px); Varianten bis 3x für hochauflösende Displays -->
+          <Image
+            src={portrait}
             alt="Isabella Bogdanovic"
-            width="320"
-            height="400"
+            width={840}
+            widths={[280, 440, 560, 840]}
+            sizes="(max-width: 767px) 220px, 280px"
+            quality={85}
             loading="lazy"
           />
         </figure>
@@ -41,18 +48,21 @@
         Geprüfte Qualifikationen: KI-Managerin nach ISO/IEC 17024 (Austrian Standards) und AI Trainer (TÜV Rheinland).
       </p>
       <div class="uebermich-logos">
-        <img
-          src="/images/AST_Guetesiegel_CERTIFIED.webp"
+        <!-- Siegel werden per CSS auf 80px (mobil 64px) Höhe gesetzt; width/height = echtes Seitenverhältnis -->
+        <Image
+          src={sealAST}
           alt="Austrian Standards – Certified"
-          width="110"
-          height="110"
+          height={80}
+          densities={[1, 2, 3]}
+          quality={90}
           loading="lazy"
         />
-        <img
-          src="/images/TUV-certified-Isabella-Bogdanovic.webp"
+        <Image
+          src={sealTUV}
           alt="TÜV Rheinland – Certified AI Trainer"
-          width="110"
-          height="110"
+          height={80}
+          densities={[1, 2, 3]}
+          quality={90}
           loading="lazy"
         />
       </div>
