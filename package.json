@@ -26,6 +26,7 @@
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
+    "parse5": "^8.0.1",
     "playwright": "^1.60.0"
   }
 }
