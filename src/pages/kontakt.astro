@@ -14,7 +14,6 @@ import { contactEndpoint } from '../config/site';
     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
       <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Kontakt</h1>
-      <p class="mt-4 text-lg text-gray-400">Schreib mir, worum es geht. Ich antworte dir per E-Mail.</p>
     </div>
   </section>
 
@@ -25,8 +24,8 @@ import { contactEndpoint } from '../config/site';
            Beim Seitenaufruf wird nichts von fremden Servern geladen (ADR-058). -->
       <form id="contact-form" data-endpoint={contactEndpoint} class="glass-card rounded-xl p-6 md:p-8 max-w-2xl mx-auto space-y-6">
         <div>
-          <label for="contact-name" class="block text-base font-semibold text-white mb-2">Name <span class="font-normal text-gray-400">(freiwillig)</span></label>
-          <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" class="contact-field" />
+          <label for="contact-name" class="block text-base font-semibold text-white mb-2">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="100" class="contact-field" />
         </div>
         <div>
           <label for="contact-email" class="block text-base font-semibold text-white mb-2">E-Mail-Adresse</label>
@@ -54,11 +53,7 @@ import { contactEndpoint } from '../config/site';
         <p id="contact-status" role="status" aria-live="polite" class="text-base empty:hidden"></p>
       </form>
 
-      <p class="text-center text-base mt-8">
-        Oder direkt per E-Mail: <a href="mailto:aisabella@aisabella.ai" class="text-cyan-400 hover:text-cyan-300">aisabella@aisabella.ai</a>
-      </p>
-
-      <div class="text-center pt-6">
+      <div class="text-center mt-8">
         <a href="/" class="inline-block mt-2 text-sm underline hover:text-gray-200">Zurück zur Startseite</a>
       </div>
     </div>
@@ -96,9 +91,9 @@ import { contactEndpoint } from '../config/site';
     if (!form || !status) return;
     const button = form.querySelector('button[type="submit"]');
     const startedAt = Date.now();
-    // Letzter Teil jeder Meldung bricht nicht um (kein „E-“ am Zeilenende, kein Einzelwort)
+    // Letzter Teil jeder Meldung bricht nicht um (kein Einzelwort in der letzten Zeile)
     const fallback = ["Das hat leider nicht geklappt. Schreib mir bitte direkt an ", "aisabella@aisabella.ai."];
-    const success = ["Danke, deine Nachricht ist angekommen. Ich melde mich per ", "E-Mail bei dir."];
+    const success = ["Danke, die Nachricht ist angekommen. Ich melde mich ", "bei dir."];
 
     const show = ([text, tail], ok) => {
       const keep = document.createElement("span");
