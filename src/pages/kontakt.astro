@@ -43,7 +43,7 @@ import { contactEndpoint } from '../config/site';
         </div>
 
         <p class="text-sm text-gray-400">
-          Deine Angaben verwende ich nur, um dir zu antworten. Mehr dazu in der <a href="/privacy#kontaktformular" class="underline text-cyan-400 hover:text-cyan-300">Datenschutzerklärung</a>.
+          Deine Angaben verwende ich nur, um dir zu antworten. Mehr dazu in&nbsp;der<br><a href="/privacy#kontaktformular" class="underline text-cyan-400 hover:text-cyan-300">Datenschutzerklärung</a>.
         </p>
 
         <div>
@@ -93,7 +93,7 @@ import { contactEndpoint } from '../config/site';
     const startedAt = Date.now();
     // Letzter Teil jeder Meldung bricht nicht um (kein Einzelwort in der letzten Zeile)
     const fallback = ["Das hat leider nicht geklappt. Schreib mir bitte direkt an ", "aisabella@aisabella.ai."];
-    const success = ["Danke, die Nachricht ist angekommen. Ich melde mich ", "bei dir."];
+    const success = ["Danke, deine Nachricht ist angekommen. Ich melde mich ", "bei dir."];
 
     const show = ([text, tail], ok) => {
       const keep = document.createElement("span");
