@@ -31,7 +31,7 @@ const navItems = [
   { id: 'faq', label: 'FAQ' },
 ];
 const navHref = (id: string) => (legalPage ? `/#${id}` : `#${id}`);
-const defaultDescription = "KI-Sparring für Unternehmer:innen & Führungskräfte in Wien. Entwickeln Sie strategisches KI-Denken in 1:1 Sessions – keine Kurse, sondern individuelle Befähigung für echten Wettbewerbsvorteil. Zertifizierte KI-Managerin.";
+const defaultDescription = "KI als Denkpartner für strategische Fragen, Entscheidungen und alles, was tatsächlich Gewicht hat in deinem täglichen Geschäft.";
 
 const defaultJsonLd = `
         {
@@ -40,11 +40,11 @@ const defaultJsonLd = `
                 {
                     "@type": "ProfessionalService",
                     "@id": "https://aisabella.ai/#organization",
-                    "name": "AIsabella | KI-Coaching Wien",
+                    "name": "AIsabella | KI-Sparring Wien",
                     "url": "https://aisabella.ai/",
                     "logo": "https://aisabella.ai/images/AIsabella-Banner.png",
                     "image": "https://aisabella.ai/images/AIsabella-Banner.png",
-                    "description": "1:1 KI-Strategie-Sparring für Führungskräfte und Unternehmer:innen in Wien. Entwickeln Sie strategisches KI-Denken für nachhaltigen Wettbewerbsvorteil.",
+                    "description": "Strategisches 1:1 KI-Sparring für Unternehmer und Führungskräfte in Wien. KI als Denkpartner für strategische Fragen, Entscheidungen und alles, was tatsächlich Gewicht hat im täglichen Geschäft.",
                     "address": {
                         "@type": "PostalAddress",
                         "addressLocality": "Wien",
@@ -60,8 +60,7 @@ const defaultJsonLd = `
                     "serviceType": [
                         "KI-Strategie-Beratung",
                         "KI-Sparring",
-                        "AI Consulting",
-                        "Künstliche Intelligenz Coaching"
+                        "AI Consulting"
                     ],
                     "founder": {
                         "@type": "Person",
@@ -86,9 +85,9 @@ const defaultJsonLd = `
                     "description": "Zertifizierte KI-Managerin (Austrian Standards) und AI-Trainerin (TÜV Rheinland)",
                     "worksFor": {
                         "@type": "Organization",
-                        "name": "AIsabella | KI-Coaching Wien"
+                        "name": "AIsabella | KI-Sparring Wien"
                     },
-                    "knowsAbout": ["Künstliche Intelligenz", "Strategieentwicklung", "Mindset Coaching", "Führungskräfteentwicklung", "KI-Beratung"],
+                    "knowsAbout": ["Künstliche Intelligenz", "Strategieentwicklung", "Führungskräfteentwicklung", "KI-Beratung"],
                     "hasCredential": [
                         {
                             "@type": "EducationalOccupationalCredential",
@@ -115,13 +114,13 @@ const defaultJsonLd = `
                     "serviceType": "Individuelles 1:1 KI-Sparring & Strategieentwicklung",
                     "provider": {
                         "@type": "Organization",
-                        "name": "AIsabella | KI-Coaching Wien"
+                        "name": "AIsabella | KI-Sparring Wien"
                     },
                     "areaServed": {
                         "@type": "City",
                         "name": "Wien"
                     },
-                    "description": "Intensive 1:1-Sessions, die Unternehmer:innen und Führungskräfte befähigen, 'KI zu denken'. Der Fokus liegt auf der Entwicklung eines strategischen Mindsets und eines inneren Kompasses, um souverän die Rolle von KI für das eigene Business zu beurteilen.",
+                    "description": "Acht Sessions à 60 Minuten über zwölf Wochen, online und ausschließlich 1:1. Wir arbeiten an dem, was dich in deinem unternehmerischen Alltag gerade beschäftigt – und daran, wie KI dir dabei konkret helfen kann.",
                     "audience": {
                         "@type": "Audience",
                         "audienceType": ["Unternehmer", "Führungskräfte", "Selbstständige", "EPU", "KMU"]
@@ -131,7 +130,7 @@ const defaultJsonLd = `
                         "price": "0",
                         "priceCurrency": "EUR",
                         "name": "Unverbindliches 20-Minuten-Gespräch",
-                        "description": "Ein erstes Gespräch, um deinen persönlichen Startpunkt zu klären und herauszufinden, wie aus deinem Interesse ein echter strategischer Vorteil wird."
+                        "description": "20 Minuten, online, kostenfrei und vertraulich – ohne Verpflichtung. Wir klären, wo du mit KI gerade stehst, was dich beschäftigt und ob das Sparring zu deiner Situation passt."
                     }
                 },
                 {
@@ -139,7 +138,7 @@ const defaultJsonLd = `
                     "@id": "https://aisabella.ai/#webpage",
                     "url": "https://aisabella.ai",
                     "name": "AIsabella | KI-Strategie-Sparring für Führungskräfte in Wien",
-                    "description": "Strategisches KI-Denken lernen in 1:1 Sessions. Keine Kurse, sondern individuelle Befähigung für echten Wettbewerbsvorteil.",
+                    "description": "KI als Denkpartner für strategische Fragen, Entscheidungen und alles, was tatsächlich Gewicht hat in deinem täglichen Geschäft.",
                     "inLanguage": "de-AT",
                     "isPartOf": {
                         "@id": "https://aisabella.ai/#organization"
@@ -530,7 +529,7 @@ const footerLogoSvg = `
               <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></span>
             </label>
           </div>
-          <p class="mt-1 text-sm text-gray-400">Mit Google Analytics sehe ich, wie viele Menschen meine Website besuchen und über welchen Weg sie hierherfinden, zum Beispiel über Google oder LinkedIn.</p>
+          <p class="mt-1 text-sm text-gray-400">Mit Google Analytics sehe ich, wie viele Menschen meine Website besuchen und über welchen Weg sie hierherfinden, zum Beispiel über Google oder Social Media.</p>
         </div>
       </div>
       <div class="mt-6 flex flex-wrap justify-end gap-3">
