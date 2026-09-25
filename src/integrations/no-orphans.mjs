@@ -78,7 +78,8 @@ function findEdits(node, html, edits) {
       const lastWord = chars.slice(i + 1, end + 1).map((c) => c.ch).join('');
       // Leerraum-Lauf vor dem letzten Wort
       let j = i;
-      while (j >= 0 && WS.test(chars[j].ch)) j--;
+      // <br> zählt nicht als Leerraum (sonst würde das Wort aus der Vorzeile angehängt)
+      while (j >= 0 && WS.test(chars[j].ch) && !chars[j].br) j--;
       if (j < 0 || chars[j].br) continue;
       let k = j;
       while (k >= 0 && !WS.test(chars[k].ch) && !chars[k].br) k--;
