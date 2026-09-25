@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { calendlyUrl } from '../config/site';
+import { faqs } from '../data/faq';
 
 interface Props {
   title: string;
@@ -143,47 +144,23 @@ const defaultJsonLd = `
                     "isPartOf": {
                         "@id": "https://aisabella.ai/#organization"
                     }
-                },
-                {
-                    "@type": "FAQPage",
-                    "mainEntity": [
-                        {
-                            "@type": "Question",
-                            "name": "Für wen ist dieses Sparring gedacht?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "Für erfolgreiche Selbstständige, Unternehmer:innen und Führungskräfte – insbesondere im Raum Wien – die spüren, dass KI mehr als nur das nächste Effizienz-Tool ist. Mein KI-Sparring zielt auf Klienten, die ihre Zeit schätzen, oberflächlichen Hype ablehnen und einen ehrlichen, strategischen Dialog suchen, der zu einer direkt anwendbaren Denkweise führt – anstatt zu einer endlosen Tool-Liste."
-                            }
-                        },
-                        {
-                            "@type": "Question",
-                            "name": "Was unterscheidet dich von einem normalen KI-Kurs oder einer typischen Beratung?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "Der entscheidende Unterschied ist die Philosophie: Mindset über Tools. Bei mir geht es nicht um generische Checklisten. Es geht darum, in intensiven 1:1-Sessions eine neue Fähigkeit zu entwickeln: 'KI zu denken'. Das Ergebnis ist kein starrer Fahrplan, sondern dein innerer Kompass. Mein gesamter Ansatz zielt auf deine Souveränität und unternehmerische Unabhängigkeit ab."
-                            }
-                        },
-                         {
-                            "@type": "Question",
-                            "name": "Ich habe schon mit Tools wie ChatGPT experimentiert, mir fehlt aber die Strategie. Passt das?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "Perfekt. Das ist der ideale Ausgangspunkt. Mein Angebot ist keine Einführung in einzelne Tools, sondern der nächste Schritt: Wir heben deine Erfahrungen auf eine strategische Ebene. Es geht darum, vom reinen Ausprobieren zur gezielten Wertschöpfung zu kommen und deine bisherigen Erkenntnisse in einen klaren, unternehmerischen Rahmen zu gießen."
-                            }
-                        },
-                        {
-                            "@type": "Question",
-                            "name": "Was ist das konkrete Ergebnis unserer Zusammenarbeit?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "Das Ergebnis ist keine Checkliste, sondern eine neue Haltung in deinem Kopf. Konkret gewinnst du drei Dinge: 1. Zeitersparnis: Indem du dir die stundenlange, mühsame Einarbeitung in unzählige Tutorials, Tools und Konzepte sparst. 2. Strategische Ruhe: Durch einen klaren Fokus statt dem Gefühl, einen entscheidenden Wettbewerbsvorteil zu verspielen. 3. Echte Befähigung: Du erhältst deinen 'inneren Kompass', der dir hilft, bei zukünftigen unternehmerischen Entscheidungen souverän zu beurteilen, welche Rolle KI für dich spielen kann – und welche nicht."
-                            }
-                        }
-                    ]
                 }
             ]
         }
 `;
+
+// FAQPage wird aus src/data/faq.ts erzeugt (gleiche Quelle wie die sichtbaren FAQ).
+const faqPageJsonLd = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer.join(" ") },
+  })),
+};
+const defaultJsonLdObject = JSON.parse(defaultJsonLd);
+defaultJsonLdObject["@graph"].push(faqPageJsonLd);
+const defaultJsonLdString = JSON.stringify(defaultJsonLdObject, null, 2);
 
 const headerLogoSvg = `
 <svg version="1.1" id="HeaderLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1084.38 385.49" class="block h-12 md:h-16 w-auto mb-1" aria-hidden="true" focusable="false">
@@ -485,7 +462,7 @@ const footerLogoSvg = `
 
     <!-- Schema.org Data for SEO (default = Index, override via slot="schema") -->
     <slot name="schema">
-        <script type="application/ld+json" is:inline set:html={defaultJsonLd}></script>
+        <script type="application/ld+json" is:inline set:html={defaultJsonLdString}></script>
     </slot>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-new.png">
