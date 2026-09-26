@@ -23,9 +23,15 @@ import { contactEndpoint } from '../config/site';
       <!-- Formular sendet erst beim Absenden an das Apps-Script-Projekt in Isabellas Google-Konto.
            Beim Seitenaufruf wird nichts von fremden Servern geladen (ADR-058). -->
       <form id="contact-form" data-endpoint={contactEndpoint} class="glass-card rounded-xl p-6 md:p-8 max-w-2xl mx-auto space-y-6">
-        <div>
-          <label for="contact-name" class="block text-base font-semibold text-white mb-2">Name</label>
-          <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="100" class="contact-field" />
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="contact-vorname" class="block text-base font-semibold text-white mb-2">Vorname</label>
+            <input id="contact-vorname" name="vorname" type="text" autocomplete="given-name" required maxlength="60" class="contact-field" />
+          </div>
+          <div>
+            <label for="contact-nachname" class="block text-base font-semibold text-white mb-2">Nachname</label>
+            <input id="contact-nachname" name="nachname" type="text" autocomplete="family-name" required maxlength="60" class="contact-field" />
+          </div>
         </div>
         <div>
           <label for="contact-email" class="block text-base font-semibold text-white mb-2">E-Mail-Adresse</label>
@@ -42,8 +48,8 @@ import { contactEndpoint } from '../config/site';
           <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
         </div>
 
-        <p class="text-sm text-gray-400">
-          Deine Angaben verwende ich nur, um dir zu antworten. Mehr dazu in&nbsp;der<br><a href="/privacy#kontaktformular" class="underline text-cyan-400 hover:text-cyan-300">Datenschutzerklärung</a>.
+        <p class="text-sm md:text-[13.5px] text-gray-400">
+          Deine Angaben verwende ich nur, um dir zu antworten. Mehr dazu in&nbsp;der<br class="md:hidden"> <a href="/privacy#kontaktformular" class="underline text-cyan-400 hover:text-cyan-300">Datenschutzerklärung</a>.
         </p>
 
         <div>
@@ -110,8 +116,12 @@ import { contactEndpoint } from '../config/site';
       if (!endpoint) { show(fallback, false); return; }
 
       const data = new FormData(form);
+      const vorname = String(data.get("vorname") || "").trim();
+      const nachname = String(data.get("nachname") || "").trim();
       const payload = {
-        name: data.get("name") || "",
+        vorname,
+        nachname,
+        name: (vorname + " " + nachname).trim(), // für ältere Fassungen des Apps Script
         email: data.get("email") || "",
         nachricht: data.get("nachricht") || "",
         website: data.get("website") || "",
