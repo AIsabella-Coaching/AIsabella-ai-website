@@ -26,7 +26,7 @@ jobs:
       - name: Install, build, upload artifact
         uses: withastro/action@v3
         with:
-          # Node 22 explizit: Astro 6 verlangt >=22.12, Runner-Default ist 20.
+          # Node 22 explizit: Astro 7 verlangt >=22.12, Runner-Default ist 20.
           node-version: 22
           package-manager: npm@latest
 

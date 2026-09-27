@@ -22,7 +22,7 @@
   "homepage": "https://github.com/AIsabella-Coaching/AIsabella-ai-website#readme",
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.1.8",
+    "astro": "^7.3.5",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
