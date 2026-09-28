@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { rechtstextStand } from '../utils/rechtstext-stand.mjs';
+
+// Datum automatisch aus der letzten inhaltlichen Änderung (Commit-Titel „recht(…)“)
+const stand = rechtstextStand('src/pages/privacy.astro');
 
 const privacyJsonLd = `
 {
@@ -35,7 +39,7 @@ const privacyJsonLd = `
     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
       <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Datenschutzerklärung</h1>
-      <p class="mt-4 text-lg text-gray-400">Stand: September 2026</p>
+      <p class="mt-4 text-lg text-gray-400">Stand: {stand}</p>
     </div>
   </section>
 
