@@ -35,6 +35,15 @@
       </p>
     </article>
 
+    <!-- Hervorgehobenes Zitat (10.10.2026): Auszug aus Sandras Stimme unter
+         „Stimmen“, semantisch als Zitat ausgezeichnet. -->
+    <figure class="sparring-quote scroll-reveal" data-reveal-stagger="2">
+      <blockquote>
+        <p>„Durch das Learning by doing konnte ich offene Fragen sofort klären und direkt am eigenen Bildschirm ausprobieren.“</p>
+      </blockquote>
+      <figcaption>Sandra Herrmann, MSc MBA</figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -220,6 +229,64 @@
     margin-bottom: 0;
   }
 
+  /* Hervorgehobenes Zitat nach „Was du mitnimmst“: zentriert, schmal.
+     margin-top 32px + Container-Gap 32px = 4rem Abstand zum Absatz davor. */
+  .sparring-quote {
+    align-self: center;
+    width: 100%;
+    max-width: 470px;
+    margin: 32px 0 0 0;
+    text-align: center;
+  }
+
+  /* Großes öffnendes Anführungszeichen oben mittig, Türkis. Das „ sitzt
+     tief auf der Grundlinie → Ausgleich in em (wächst mit der Schriftgröße),
+     damit die sichtbaren Abstände stimmen: 4rem zum Absatz davor, 28px zum
+     Zitattext (im Browser nachgemessen). */
+  .sparring-quote::before {
+    content: "„";
+    display: block;
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 72px;
+    height: 0.3em;
+    line-height: 0.3em;
+    color: var(--teal);
+    margin-top: -0.39em;
+    margin-bottom: calc(28px + 0.34em);
+  }
+
+  .sparring-quote blockquote {
+    margin: 0;
+  }
+
+  .sparring-quote blockquote p {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--white);
+    margin: 0;
+  }
+
+  /* Linie mit dem sichtbaren Verlauf des Buttons „Erstgespräch vereinbaren“
+     (.cta-button: #08D3BB → #8A3FFC bei 200 % Breite). */
+  .sparring-quote figcaption::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 24px auto 16px;
+    background: linear-gradient(to right, #08D3BB 0%, #8A3FFC 100%);
+  }
+
+  .sparring-quote figcaption {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-quiet);
+  }
+
   .sparring-card h2 {
     font-family: 'Geist', 'Inter', sans-serif;
     font-size: 38px;
@@ -258,7 +325,65 @@
     .sparring-card {
       padding: 28px 24px;
     }
-    .sparring-card h2 {
+    /* Hervorgehobenes Zitat nach „Was du mitnimmst“: zentriert, schmal.
+     margin-top 32px + Container-Gap 32px = 4rem Abstand zum Absatz davor. */
+  .sparring-quote {
+    align-self: center;
+    width: 100%;
+    max-width: 470px;
+    margin: 32px 0 0 0;
+    text-align: center;
+  }
+
+  /* Großes öffnendes Anführungszeichen oben mittig, Türkis. Das „ sitzt
+     tief auf der Grundlinie → Ausgleich in em (wächst mit der Schriftgröße),
+     damit die sichtbaren Abstände stimmen: 4rem zum Absatz davor, 28px zum
+     Zitattext (im Browser nachgemessen). */
+  .sparring-quote::before {
+    content: "„";
+    display: block;
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 72px;
+    height: 0.3em;
+    line-height: 0.3em;
+    color: var(--teal);
+    margin-top: -0.39em;
+    margin-bottom: calc(28px + 0.34em);
+  }
+
+  .sparring-quote blockquote {
+    margin: 0;
+  }
+
+  .sparring-quote blockquote p {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--white);
+    margin: 0;
+  }
+
+  /* Linie mit dem sichtbaren Verlauf des Buttons „Erstgespräch vereinbaren“
+     (.cta-button: #08D3BB → #8A3FFC bei 200 % Breite). */
+  .sparring-quote figcaption::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 24px auto 16px;
+    background: linear-gradient(to right, #08D3BB 0%, #8A3FFC 100%);
+  }
+
+  .sparring-quote figcaption {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-quiet);
+  }
+
+  .sparring-card h2 {
       font-size: 28px;
     }
     .sparring-takeaway {
@@ -270,6 +395,16 @@
     /* Marker-Länge proportional zur kleineren Mobile-Überschrift (28px). */
     .sparring-takeaway h2::before {
       width: 60px;
+    }
+    .sparring-quote {
+      margin-top: 24px;
+    }
+    .sparring-quote::before {
+      font-size: 56px;
+      margin-bottom: calc(22px + 0.34em);
+    }
+    .sparring-quote blockquote p {
+      font-size: 17px;
     }
   }
 </style>
