@@ -1,6 +1,6 @@
 # aisabella.ai
 
-Website von AIsabella – Strategisches KI-Sparring für Unternehmer:innen, Inhaber:innen und Führungskräfte.
+Website von AIsabella – 1:1 KI-Sparring für Unternehmer:innen, Inhaber:innen und Führungskräfte.
 
 Live: [aisabella.ai](https://aisabella.ai)
 

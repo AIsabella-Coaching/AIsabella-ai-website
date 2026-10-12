@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import netzGrafik from '../assets/beraterstab-netz.png';
+import { calendlyUrl } from '../config/site';
 ---
 
 <section id="beraterstab" class="beraterstab-section">
@@ -44,7 +45,7 @@ import netzGrafik from '../assets/beraterstab-netz.png';
     </p>
 
     <p class="beraterstab-bridge">
-      Wenn du magst, baust du dir im Sparring deinen eigenen auf.<br class="hidden lg:inline" /> Mehr darüber erzähle ich dir gerne im Erstgespräch.
+      Wenn du magst, baust du dir im Sparring deinen eigenen auf.<br class="hidden lg:inline" /> Mehr darüber erzähle ich dir gerne im <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="beraterstab-link">Erstgespräch</a>.
     </p>
 
   </div>
@@ -162,6 +163,33 @@ import netzGrafik from '../assets/beraterstab-netz.png';
     /* Zeilen voll ausnutzen statt ausgleichen (12.10.2026, Isabella):
        „gerne“ bleibt am Desktop in der oberen Zeile. */
     text-wrap: wrap;
+  }
+
+  /* Link „Erstgespräch“ im letzten Satz (12.10.2026): einziger Text-Link
+     dieser Art auf der Seite. Wort in Weiß, fett, Unterstreichung im
+     Verlauf des Erstgespräch-Buttons. Darüberfahren: Verlauf wandert wie
+     beim Button, Linie wird etwas dicker. */
+  .beraterstab-link {
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #08D3BB 0%, #8A3FFC 51%, #33B1FF 100%);
+    background-size: 200% 2px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-position 0.4s ease-out, background-size 0.2s ease-out;
+  }
+
+  .beraterstab-link:hover {
+    background-position: right bottom;
+    background-size: 200% 3px;
+  }
+
+  .beraterstab-link:focus-visible {
+    outline: 2px solid #22d3d1;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   /* Netz-Grafik als absolut positionierter Background-Layer.
