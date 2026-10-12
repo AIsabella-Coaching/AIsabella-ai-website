@@ -397,8 +397,8 @@ h1, h2, h3 {
 /* === Handy-Menü (12.10.2026) =============================================
    Offenes Menü deckend statt halbtransparent, darunter abgedunkelter und
    weichgezeichneter Hintergrund – der Seiteninhalt scheint nicht mehr
-   durch. Menüpunkte als volle Zeilen mit feiner Trennlinie, damit sie
-   so breit wirken wie der Button darunter. */
+   durch; Tippen darauf schließt das Menü. Menüpunkte linksbündig, 19px,
+   ohne Trennlinien (Isabella). */
 header.menu-open {
   background-color: var(--black-warm) !important;
   -webkit-backdrop-filter: none;
@@ -415,6 +415,31 @@ header.menu-open {
 }
 
 .mobile-menu-item {
-  font-size: 17px;
-  border-bottom: 1px solid var(--hairline);
+  position: relative;
+  isolation: isolate;
+  font-size: 19px;
+  padding: 0.8rem 16px;
+}
+
+/* Darüberfahren bzw. Antippen: dezenter Balken über die volle Breite
+   (so breit wie der Button). Als ::before, damit er auch beim aktiven
+   Menüpunkt (Verlaufsschrift per bg-clip-text) sichtbar bleibt. */
+.mobile-menu-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.mobile-menu-item:hover::before,
+.mobile-menu-item:focus-visible::before {
+  opacity: 1;
+}
+
+.mobile-menu-item:hover {
+  color: var(--white);
 }

@@ -598,7 +598,7 @@ const footerLogoSvg = `
     <div id="mobile-menu" class="lg:hidden hidden px-6 pb-6">
         <div class="mobile-menu-list flex flex-col">
             {navItems.map((item) => (
-              <a href={navHref(item.id)} class="mobile-menu-item block py-3.5 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
+              <a href={navHref(item.id)} class="mobile-menu-item block transition text-gray-300">{item.label}</a>
             ))}
             <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base mt-5">Erstgespräch vereinbaren</a>
         </div>
