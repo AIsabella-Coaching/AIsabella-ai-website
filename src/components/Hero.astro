@@ -25,21 +25,28 @@ import { calendlyUrl } from '../config/site';
   <div class="hero-readability-overlay absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
   <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+    <!-- Slogan-Zeile im Stil der Abschnitts-Zeilen (12.10.2026); gemeinsam mit der Überschrift eingeblendet. -->
+    <p class="hero-stagger section-subline hero-slogan" data-hero-stagger="1">Lerne, KI zu denken.</p>
+
     <h1 class="hero-stagger text-[2rem] md:text-5xl lg:text-6xl font-bold mb-10 leading-tight text-white" data-hero-stagger="1" style="text-shadow: 0 4px 16px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8);">
-      Strategisches <span class="whitespace-nowrap">KI-Sparring</span><br class="hidden md:inline" />
+      <span class="whitespace-nowrap">1:1 KI-Sparring</span><br class="hidden md:inline" />
       für&nbsp;Unternehmer und Führungskräfte
     </h1>
 
     <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-6 leading-relaxed" data-hero-stagger="2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
-      Viele nutzen KI für E-Mails, Texte, Zusammenfassungen und Recherche. Damit kratzen sie nur an der Oberfläche. Was darüber hinausgeht, ist eine andere Form von Arbeit: KI als Denkpartner für strategische Fragen, Entscheidungen und alles, was tatsächlich Gewicht hat in deinem täglichen Geschäft.
+      Du nutzt Sprachmodelle wie ChatGPT, Claude oder Gemini schon für Texte und Recherche und bist neugierig, was damit noch alles möglich ist.
     </p>
 
     <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-6 leading-relaxed" data-hero-stagger="3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
-      Im Sparring arbeiten wir genau daran. 1:1, zwölf Wochen, vertraulich. Egal, ob du gerade erst ansetzt oder KI schon nutzt und merkst, dass du dort nicht stehen bleiben und tiefer gehen&nbsp;willst.
+      Im Sparring bekommst du das Know-how, das ich seit Jänner 2023 aus intensiver Praxis und aus laufender Weiterbildung sammle: wie Sprachmodelle funktionieren, wie du sie auf deine Arbeitsweise abstimmst und mit welchen Kniffen du das Beste für dich herausholst.
     </p>
 
-    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-10 leading-relaxed font-medium" data-hero-stagger="4" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
-      Am Ende steht deine Souveränität – in einem Feld, das sich gerade neu sortiert.
+    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-6 leading-relaxed" data-hero-stagger="4" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
+      KI ist wie ein Verstärker: Mit deinem Fachwissen beurteilst du, was sie liefert. Und mit ihr wirst du in dem, was du kannst, noch besser. Am Ende gehört KI zu deiner täglichen Routine, auch bei Aufgaben, die du bisher vor dir hergeschoben hast.
+    </p>
+
+    <p class="hero-stagger text-lg md:text-xl text-gray-100 mb-10 leading-relaxed font-medium" data-hero-stagger="5" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8);">
+      Wir arbeiten 1:1 und vertraulich, zwölf Wochen lang, an deinen echten Themen.
     </p>
 
     <a
@@ -47,7 +54,7 @@ import { calendlyUrl } from '../config/site';
       target="_blank"
       rel="noopener noreferrer"
       class="hero-stagger cta-button inline-block text-white font-bold py-4 px-10 rounded-lg text-lg"
-      data-hero-stagger="5"
+      data-hero-stagger="6"
     >
       Zum Erstgespräch
     </a>
@@ -55,6 +62,13 @@ import { calendlyUrl } from '../config/site';
 </section>
 
 <style>
+  /* Slogan-Zeile über der Überschrift: Stil der Abschnitts-Zeilen (.section-subline),
+     zentriert, mit Schatten für die Lesbarkeit auf dem Video. */
+  .hero-slogan {
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  }
+
   /* Verlaufstrich am unteren Sektions-Ende als Marken-Geste / Sektions-Trenner. */
   #hero::after {
     content: "";

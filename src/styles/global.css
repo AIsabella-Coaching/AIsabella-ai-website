@@ -319,10 +319,9 @@ h1, h2, h3 {
 
         /* ── Hero-Staffelung (Schritt 5, 17.05.2026) ─────────────────
            Hero-Bild bleibt sofort sichtbar (kein Fade), nur die Text-
-           Elemente staffeln nach Page-Load via CSS-Animation. Hero hat
-           keine separate Subline → 5 Stufen (Headline + 3 Fließtext-
-           absätze + CTA) statt der 4 Stufen aus der Spec, je 200 ms
-           Versatz. data-hero-stagger="N" steuert animation-delay. */
+           Elemente staffeln nach Page-Load via CSS-Animation. Seit
+           12.10.2026 6 Stufen (Slogan-Zeile + Headline gemeinsam, 4 Fließ-
+           textabsätze, CTA), je 200 ms Versatz. data-hero-stagger="N" steuert animation-delay. */
         .hero-stagger {
             opacity: 0;
             transform: translateY(15px);
@@ -333,6 +332,7 @@ h1, h2, h3 {
         .hero-stagger[data-hero-stagger="3"] { animation-delay:  400ms; }
         .hero-stagger[data-hero-stagger="4"] { animation-delay:  600ms; }
         .hero-stagger[data-hero-stagger="5"] { animation-delay:  800ms; }
+        .hero-stagger[data-hero-stagger="6"] { animation-delay: 1000ms; }
         @keyframes heroStaggerIn {
             to { opacity: 1; transform: translateY(0); }
         }

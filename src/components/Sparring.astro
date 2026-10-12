@@ -9,15 +9,28 @@
       <h2>Dein Sparring: Deine Themen, dein Tempo</h2>
 
       <p>
-        Acht Sessions à 60 Minuten über zwölf Wochen, online und ausschließlich 1:1. Kein Gruppenformat, keine Zuhörer, kein Publikum. Was in unseren Gesprächen passiert, bleibt dort.
+        Das strategische 1:1 KI-Sparring umfasst acht Sessions à 60 Minuten über zwölf Wochen, online und ausschließlich unter vier Augen. Was in unseren Gesprächen passiert, bleibt dort.
       </p>
 
       <p>
-        Wir arbeiten an dem, was dich in deinem unternehmerischen Alltag gerade beschäftigt – und daran, wie KI dir dabei konkret helfen kann. Vielleicht hast du schon erste Erfahrungen mit KI gesammelt und willst sie auf eine strategische Ebene heben. Vielleicht weißt du noch gar nicht, wo du ansetzen sollst. Beides ist ein guter Startpunkt, denn genau dafür ist das Sparring da. Ich hole dich dort ab, wo du stehst, und wir finden gemeinsam heraus, wo KI in deinem Business den größten Unterschied macht.
+        Ob du KI schon regelmäßig nutzt oder gerade erst ansetzt: Ich hole dich dort ab, wo du stehst. Ausgangspunkt sind die Themen, die bei dir gerade anliegen. So lernst du an Beispielen aus deinem eigenen Arbeitsalltag.
       </p>
 
       <p>
-        Wir starten wöchentlich, damit die neue Denkweise Fuß fasst und du schnell ins Tun kommst. Nach den ersten Wochen bekommst du mehr Raum für die eigene Umsetzung. Wir treffen uns zweiwöchentlich und vertiefen, was in der Praxis auftaucht.
+        Fünf Felder geben die Richtung vor, Reihenfolge und Tiefe richten sich nach dir:
+      </p>
+
+      <!-- Die fünf Felder (12.10.2026): nummerierte Liste, Feldname fett. -->
+      <ol class="sparring-fields">
+        <li><strong>Fundament:</strong> Wie Sprachmodelle arbeiten und was sie von dir brauchen, um gute Ergebnisse zu liefern.</li>
+        <li><strong>Personalisierung:</strong> Wie du sie auf dich einstellst, mit den Funktionen, auf die es bei deiner täglichen Arbeit ankommt.</li>
+        <li><strong>Routinen:</strong> Wiederkehrende Aufgaben so aufsetzen, dass KI dich dabei künftig entlastet.</li>
+        <li><strong>Strategie:</strong> Wie KI vom Chatbot zum Gegenüber wird, das nachfragt, widerspricht und andere Blickwinkel einbringt, auf die du allein nicht kommst. So durchdenkst du Ideen gründlicher und bereitest Entscheidungen mit mehr Weitblick vor.</li>
+        <li><strong>Beraterstab (optional):</strong> Ein Gremium aus KI-Rollen, das dich beim Denken und Entscheiden unterstützt, zugeschnitten auf dein Unternehmen. Was das genau ist, liest du im nächsten Abschnitt.</li>
+      </ol>
+
+      <p>
+        Wir starten wöchentlich, damit die neue Denkweise Fuß fasst und du schnell ins Tun kommst. Nach den ersten Wochen treffen wir uns zweiwöchentlich. Dazwischen hast du Raum für die eigene Umsetzung und wir vertiefen, was in der Praxis auftaucht.
       </p>
 
       <p>
@@ -27,12 +40,14 @@
 
     <article class="sparring-takeaway scroll-reveal" data-reveal-stagger="1">
       <h2>Was du mitnimmst</h2>
-      <p>
-        Souveränität im Umgang mit KI und die Urteilskraft, selbst zu unterscheiden, wobei sie dir hilft – und wovon du besser die Finger lässt.
-      </p>
-      <p>
-        Einen inneren Kompass für KI-Entscheidungen, verankert in deinem unternehmerischen Alltag, erprobt an deinen echten Herausforderungen.
-      </p>
+      <ul class="sparring-takeaway-list">
+        <li>Du weißt, wie und wofür du KI einsetzt.</li>
+        <li>Deine KI ist auf dich und deine Arbeit eingestellt.</li>
+        <li>Wiederkehrende Aufgaben gehen dir mit KI schneller und leichter von der Hand.</li>
+        <li>Deine Arbeit gewinnt an Qualität, weil du KI mit deinem Fachwissen gezielt führst.</li>
+        <li>Bei Ideen und Entscheidungen hast du ein Gegenüber, das deine Gedanken hinterfragt und weiterführt.</li>
+        <li>Du traust dir zu, Neues selbst auszuprobieren, auch wenn sich die Werkzeuge verändern.</li>
+      </ul>
     </article>
 
     <!-- Hervorgehobenes Zitat (10.10.2026): Auszug aus Sandras Stimme unter
@@ -229,6 +244,78 @@
     margin-bottom: 0;
   }
 
+  /* Die fünf Felder (12.10.2026): nummerierte Liste in der Sparring-Karte.
+     Ziffern in Türkis (wie die Abschnitts-Zeile), Text wie die Absätze. */
+  .sparring-fields {
+    list-style: none;
+    counter-reset: sparring-field;
+    margin: 0 0 22px 0;
+    padding: 0;
+  }
+
+  .sparring-fields li {
+    counter-increment: sparring-field;
+    position: relative;
+    padding-left: 36px;
+    margin: 0 0 14px 0;
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    text-wrap: pretty;
+  }
+
+  .sparring-fields li:last-child {
+    margin-bottom: 0;
+  }
+
+  .sparring-fields li::before {
+    content: counter(sparring-field) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .sparring-fields strong {
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  /* „Was du mitnimmst" als Liste (12.10.2026): kurze Türkis-Striche als
+     Aufzählungszeichen, passend zur Türkis-Linie über der Überschrift. */
+  .sparring-takeaway-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sparring-takeaway-list li {
+    position: relative;
+    padding-left: 30px;
+    margin: 0 0 14px 0;
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    text-wrap: pretty;
+  }
+
+  .sparring-takeaway-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .sparring-takeaway-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 14px;
+    height: 2px;
+    background: var(--teal);
+  }
+
   /* Hervorgehobenes Zitat nach „Was du mitnimmst“ (Variante A, 10.10.2026):
      dezentes Kastl, damit die fremde Stimme sichtbar nicht zum Text davor
      gehört. Bewusst ohne Akzent-Streifen, Schatten und Glow – keine Karte im
@@ -324,6 +411,13 @@
     }
     .sparring-takeaway h2 {
       font-size: 28px;
+    }
+    .sparring-fields li {
+      padding-left: 28px;
+    }
+    .sparring-takeaway-list li {
+      font-size: 17px;
+      padding-left: 26px;
     }
     /* Marker-Länge proportional zur kleineren Mobile-Überschrift (28px). */
     .sparring-takeaway h2::before {
