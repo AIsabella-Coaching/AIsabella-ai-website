@@ -421,9 +421,10 @@ header.menu-open {
   padding: 0.8rem 16px;
 }
 
-/* Darüberfahren bzw. Antippen: dezenter Balken über die volle Breite
-   (so breit wie der Button). Als ::before, damit er auch beim aktiven
-   Menüpunkt (Verlaufsschrift per bg-clip-text) sichtbar bleibt. */
+/* Darüberfahren bzw. Antippen: zusätzlich zum Farbwechsel der Schrift
+   (siehe unten) ein dezenter Balken über die volle Breite
+   (so breit wie der Button). Als ::before, weil die Verlaufsschrift per
+   bg-clip-text den eigenen Hintergrund auf die Buchstaben beschneidet. */
 .mobile-menu-item::before {
   content: "";
   position: absolute;
@@ -440,6 +441,15 @@ header.menu-open {
   opacity: 1;
 }
 
-.mobile-menu-item:hover {
-  color: var(--white);
+/* Farbwechsel der Schrift wie bisher (Verlauf Türkis → Blau, gleiche Farben
+   wie die Desktop-Navigation). Bewusst ohne Tailwind-hover:, weil das nur
+   bei Geräten mit Maus greift – so erscheint er am Handy beim Antippen
+   gemeinsam mit dem Balken. */
+.mobile-menu-item:hover,
+.mobile-menu-item:focus-visible {
+  background-image: linear-gradient(to right, var(--color-cyan-400), var(--color-blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
+
