@@ -174,6 +174,7 @@ import { calendlyUrl } from '../config/site';
      Türkis-Leuchten. */
   .beraterstab-link {
     display: inline-block;
+    position: relative;
     font-weight: 600;
     text-decoration: none;
     background-image: linear-gradient(to right, #08D3BB 0%, #B07CFF 50%, #5FC8FF 100%);
@@ -192,6 +193,22 @@ import { calendlyUrl } from '../config/site';
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 6px rgba(8, 211, 187, 0.45));
     /* wie .cta-button: Hover-In 0,2 s, Hover-Out 0,4 s */
     transition: background-position 0.2s ease-out, filter 0.2s ease-out;
+  }
+
+  /* Feine Verlaufslinie unter dem Wort (12.10.2026, Isabella): eindeutig
+     als Link erkennbar. Gleicher Verlauf wie die Schrift, wandert beim
+     Darüberfahren mit. */
+  .beraterstab-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1px;
+    height: 1.5px;
+    background-image: inherit;
+    background-size: 200% 100%;
+    background-position: inherit;
+    transition: inherit;
   }
 
   .beraterstab-link:focus-visible {

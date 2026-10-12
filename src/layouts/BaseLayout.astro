@@ -595,15 +595,18 @@ const footerLogoSvg = `
             </svg>
         </button>
     </nav>
-    <div id="mobile-menu" class="lg:hidden hidden px-6 pb-4">
-        <div class="flex flex-col space-y-2">
+    <div id="mobile-menu" class="lg:hidden hidden px-6 pb-6">
+        <div class="mobile-menu-list flex flex-col">
             {navItems.map((item) => (
-              <a href={navHref(item.id)} class="block py-2 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
+              <a href={navHref(item.id)} class="mobile-menu-item block py-3.5 transition text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500">{item.label}</a>
             ))}
-            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base">Erstgespräch vereinbaren</a>
+            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="cta-button block text-center text-white font-bold py-3 px-6 rounded-lg text-base mt-5">Erstgespräch vereinbaren</a>
         </div>
     </div>
 </header>
+<!-- Abgedunkelter Hintergrund hinter dem offenen Handy-Menü (12.10.2026):
+     Seiteninhalt scheint nicht mehr durch; Tippen daneben schließt das Menü. -->
+<div id="mobile-menu-backdrop" class="lg:hidden hidden" aria-hidden="true"></div>
 
 <slot />
 
@@ -679,9 +682,12 @@ const footerLogoSvg = `
     if (mobileMenuButton && mobileMenu) {
         const openIcon = mobileMenuButton.querySelector('[data-icon="open"]');
         const closeIcon = mobileMenuButton.querySelector('[data-icon="close"]');
+        const menuBackdrop = document.getElementById('mobile-menu-backdrop');
         // Ein Zustand für Menü, Symbol und Screenreader-Angaben (aria-expanded + Label)
         const setMenu = (open) => {
             mobileMenu.classList.toggle('hidden', !open);
+            mobileMenuButton.closest('header').classList.toggle('menu-open', open);
+            if (menuBackdrop) menuBackdrop.classList.toggle('hidden', !open);
             openIcon.classList.toggle('hidden', open);
             closeIcon.classList.toggle('hidden', !open);
             mobileMenuButton.setAttribute('aria-expanded', String(open));
@@ -693,6 +699,7 @@ const footerLogoSvg = `
         // Nach Tippen auf einen Menüpunkt schließen – sonst verdeckt das offene
         // Menü den angesprungenen Abschnitt. Läuft vor dem Sprung zum Anker,
         // daher landet die Überschrift sauber unter der Kopfzeile.
+        if (menuBackdrop) menuBackdrop.addEventListener('click', function() { setMenu(false); });
         mobileMenu.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function() { setMenu(false); });
         });
