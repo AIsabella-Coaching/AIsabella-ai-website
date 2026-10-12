@@ -35,12 +35,12 @@ export const faqs: Faq[] = [
   {
     question: "Wie viel Zeit brauche ich dafür neben meiner Arbeit?",
     answer: [
-      "Acht Sessions à 60 Minuten, dazu etwas Zeit zwischen den Terminen, um das Neue auszuprobieren. Wie viel davon, entscheidest du selbst.",
+      "Acht Sessions à 60 Minuten, dazu etwas Zeit zwischen den Terminen, um in die Umsetzung zu kommen. Wie viel davon, entscheidest du selbst.",
       "Dass neben der eigentlichen Arbeit kaum Zeit bleibt, sich tiefer mit KI zu beschäftigen und sie zu erkunden, begegnet mir in vielen Gesprächen. Deine Kernkompetenz liegt in deinem Fach und dort brauchst du deine Zeit am meisten. Deshalb bekommst du im Sparring das, was dich gerade weiterbringt, ohne lange selbst danach suchen zu müssen."
     ]
   },
   {
-    question: "Acht Sessions in zwölf Wochen – was hast du danach, was du jetzt nicht hast?",
+    question: "Was hast du nach dem Sparring, was du jetzt nicht hast?",
     answer: [
       "Vor allem einen praktischen Umgang mit KI in deinem Tagesgeschäft. Du kennst dich grundlegend aus und kannst in Gesprächen darüber mitreden und einordnen, was du hörst.",
       "Und von hier aus gehst du weiter – mit dem Reiz, noch mehr zu entdecken."

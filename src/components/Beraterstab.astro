@@ -36,11 +36,11 @@ import netzGrafik from '../assets/beraterstab-netz.png';
     </p>
 
     <p>
-      Meinen Beraterstab kannst du nicht übernehmen. Er ist auf mich und mein Unternehmen ausgerichtet, niemand sonst könnte etwas mit ihm anfangen. Aber die Denkweise und Methodik dahinter lassen sich übertragen.
+      Meinen Beraterstab kannst du nicht übernehmen. Er ist auf mich und mein Unternehmen ausgerichtet, niemand sonst könnte etwas mit ihm anfangen. Aber die Denkweise und Methodik dahinter lassen sich sehr wohl übertragen.
     </p>
 
     <p>
-      Jeder Beraterstab wäre anders. Andere Rollen, andere Schwerpunkte, andere Anzahl, zugeschnitten auf das jeweilige Unternehmen oder den unternehmerischen Kontext. Meiner hat 16 Rollen. Deiner hätte vielleicht 5. Oder 20.
+      Jeder Beraterstab wäre anders. Andere Rollen, andere Schwerpunkte, andere Anzahl, zugeschnitten auf das jeweilige Unternehmen oder den unternehmerischen Kontext.<br class="hidden lg:inline" /> Meiner hat 16 Rollen. Deiner hätte vielleicht 5. Oder 20.
     </p>
 
     <p class="beraterstab-bridge">
@@ -159,6 +159,9 @@ import netzGrafik from '../assets/beraterstab-netz.png';
   .beraterstab-bridge {
     margin-top: 32px !important;
     color: var(--white) !important;
+    /* Zeilen voll ausnutzen statt ausgleichen (12.10.2026, Isabella):
+       „gerne“ bleibt am Desktop in der oberen Zeile. */
+    text-wrap: wrap;
   }
 
   /* Netz-Grafik als absolut positionierter Background-Layer.
