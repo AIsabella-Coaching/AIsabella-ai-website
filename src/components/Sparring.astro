@@ -20,14 +20,15 @@
         Fünf Felder geben die Richtung vor, Reihenfolge und Tiefe richten sich nach dir:
       </p>
 
-      <!-- Die fünf Felder (12.10.2026): nummerierte Liste, Feldname fett. -->
-      <ol class="sparring-fields">
-        <li><strong>Fundament:</strong> Wie Sprachmodelle arbeiten und was sie von dir brauchen, um gute Ergebnisse zu liefern.</li>
-        <li><strong>Personalisierung:</strong> Wie du sie auf dich einstellst, mit den Funktionen, auf die es bei deiner täglichen Arbeit ankommt.</li>
-        <li><strong>Routinen:</strong> Wiederkehrende Aufgaben so aufsetzen, dass KI dich dabei künftig entlastet.</li>
-        <li><strong>Strategie:</strong> Wie KI vom Chatbot zum Gegenüber wird, das nachfragt, widerspricht und andere Blickwinkel einbringt, auf die du allein nicht kommst. So durchdenkst du Ideen gründlicher und bereitest Entscheidungen mit mehr Weitblick vor.</li>
-        <li><strong>Beraterstab (optional):</strong> Ein Gremium aus KI-Rollen, das dich beim Denken und Entscheiden unterstützt, zugeschnitten auf dein Unternehmen. Was das genau ist, liest du im nächsten Abschnitt.</li>
-      </ol>
+      <!-- Die fünf Felder (12.10.2026): verbunden durch eine senkrechte Linie
+           statt Nummern, weil sich die Reihenfolge nach der Klientin richtet. -->
+      <ul class="sparring-fields">
+        <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><strong>Fundament:</strong> Wie Sprachmodelle arbeiten und was sie von dir brauchen, um gute Ergebnisse zu liefern.</li>
+        <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><strong>Personalisierung:</strong> Wie du sie auf dich einstellst, mit den Funktionen, auf die es bei deiner täglichen Arbeit ankommt.</li>
+        <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="m7 22-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg></span><strong>Routinen:</strong> Wiederkehrende Aufgaben so aufsetzen, dass KI dich dabei künftig entlastet.</li>
+        <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><strong>Strategie:</strong> Wie KI vom Chatbot zum Gegenüber wird, das nachfragt, widerspricht und andere Blickwinkel einbringt, auf die du allein nicht kommst. So durchdenkst du Ideen gründlicher und bereitest Entscheidungen mit mehr Weitblick vor.</li>
+        <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M11 7 6 16M13 7l5 9M7 18h10"/></svg></span><strong>Beraterstab (optional):</strong> Ein Gremium aus KI-Rollen, das dich beim Denken und Entscheiden unterstützt, zugeschnitten auf dein Unternehmen. Was das genau ist, liest du im nächsten Abschnitt.</li>
+      </ul>
 
       <p>
         Wir starten wöchentlich, damit die neue Denkweise Fuß fasst und du schnell ins Tun kommst. Nach den ersten Wochen treffen wir uns zweiwöchentlich. Dazwischen hast du Raum für die eigene Umsetzung und wir vertiefen, was in der Praxis auftaucht.
@@ -244,20 +245,20 @@
     margin-bottom: 0;
   }
 
-  /* Die fünf Felder (12.10.2026): nummerierte Liste in der Sparring-Karte.
-     Schlanke Ziffern „01–05“ im Verlauf des Erstgespräch-Buttons
-     (#08D3BB → #8A3FFC), feine Trennlinien zwischen den Feldern. */
+  /* Die fünf Felder (12.10.2026, Variante C): senkrechte Linie im Verlauf
+     des Erstgespräch-Buttons (#08D3BB → #8A3FFC) verbindet die Felder.
+     Je Feld ein Kreis mit dezentem Icon; Farbe wandert mit der Linie. */
   .sparring-fields {
+    position: relative;
     list-style: none;
-    counter-reset: sparring-field;
     margin: 8px 0 26px 0;
     padding: 0;
   }
 
   .sparring-fields li {
-    counter-increment: sparring-field;
+    --marker: #08D3BB;
     position: relative;
-    padding: 18px 0 18px 64px;
+    padding: 14px 0 14px 54px;
     font-family: 'Geist', 'Inter', sans-serif;
     font-size: 16.5px;
     line-height: 1.75;
@@ -265,23 +266,46 @@
     text-wrap: pretty;
   }
 
-  .sparring-fields li + li {
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  .sparring-fields li:nth-child(1) { --next: #2DB6DA; }
+  .sparring-fields li:nth-child(2) { --marker: #2DB6DA; --next: #4F9BE8; }
+  .sparring-fields li:nth-child(3) { --marker: #4F9BE8; --next: #7468F4; }
+  .sparring-fields li:nth-child(4) { --marker: #7468F4; --next: #8A3FFC; }
+  .sparring-fields li:nth-child(5) { --marker: #8A3FFC; }
+
+  /* Linien-Stück von der Kreismitte dieses Felds zur Kreismitte des
+     nächsten (Mitte = 28px unter Feldbeginn) – endet so genau beim letzten. */
+  .sparring-fields li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 15.25px;
+    top: 28px;
+    bottom: -28px;
+    width: 1.5px;
+    background: linear-gradient(to bottom, var(--marker), var(--next));
+    opacity: 0.55;
   }
 
-  .sparring-fields li::before {
-    content: counter(sparring-field, decimal-leading-zero);
+  .sparring-fields .field-marker {
     position: absolute;
     left: 0;
-    top: 14px;
-    font-size: 30px;
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #08D3BB 0%, #8A3FFC 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a1f42;
+    border: 1.5px solid color-mix(in srgb, var(--marker) 70%, transparent);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--marker) 30%, transparent);
+    color: var(--marker);
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  .sparring-fields .field-marker svg {
+    width: 16px;
+    height: 16px;
   }
 
   .sparring-fields strong {
@@ -425,10 +449,6 @@
     }
     .sparring-fields li {
       padding-left: 48px;
-    }
-    .sparring-fields li::before {
-      font-size: 24px;
-      top: 16px;
     }
     .sparring-takeaway-list li {
       font-size: 17px;
