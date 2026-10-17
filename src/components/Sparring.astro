@@ -494,18 +494,33 @@ import sessel from '../assets/szenen/sessel.jpg';
   }
 
   .sparring-facts li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Oben ausgerichtet: alle Zahlen stehen auf einer Linie (Isabella). */
+    justify-content: flex-start;
     border: 1px solid color-mix(in srgb, var(--teal) 28%, transparent);
     border-radius: 12px;
-    padding: 16px 10px 14px;
+    padding: 18px 10px 16px;
     text-align: center;
     background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  /* Mouse-over: Rahmen dezent heller mit leichtem Türkis-Schein
+     (nur bei Geräten mit Maus). */
+  @media (hover: hover) {
+    .sparring-facts li:hover {
+      border-color: color-mix(in srgb, var(--teal) 70%, transparent);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--teal) 18%, transparent);
+    }
   }
 
   .sparring-facts strong {
     display: block;
     font-family: 'Geist', 'Inter', sans-serif;
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 40px;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: -0.02em;
     background: linear-gradient(90deg, #08D3BB, #8A3FFC);
@@ -552,7 +567,7 @@ import sessel from '../assets/szenen/sessel.jpg';
       grid-template-columns: repeat(2, 1fr);
     }
     .sparring-facts strong {
-      font-size: 26px;
+      font-size: 34px;
     }
     .sparring-takeaway {
       margin-top: 56px;
