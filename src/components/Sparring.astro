@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import sessel from '../assets/szenen/sessel.jpg';
 ---
 
 <section id="sparring" class="sparring-section">
@@ -39,6 +41,10 @@
       </p>
     </article>
 
+    <!-- „Was du mitnimmst“ mit Szenenbild (KI-Bild, Oktober 2026): leerer
+         petrolfarbener Sessel als „Gegenüber“, Isabella unscharf von hinten.
+         Desktop: Liste links, Bild rechts; schmaler: Bild unter der Liste. -->
+    <div class="sparring-takeaway-wrap">
     <article class="sparring-takeaway scroll-reveal" data-reveal-stagger="1">
       <h2>Was du mitnimmst</h2>
       <ul class="sparring-takeaway-list">
@@ -50,6 +56,19 @@
         <li>Du traust dir zu, Neues selbst auszuprobieren, auch wenn sich die Werkzeuge verändern.</li>
       </ul>
     </article>
+
+    <figure class="scene-photo sparring-photo scroll-reveal" data-reveal-stagger="1">
+      <Image
+        src={sessel}
+        alt="Blick über die Schulter von Isabella auf einen leeren petrolfarbenen Sessel gegenüber, dazwischen ein Tisch mit Wasserkaraffe und zwei Gläsern"
+        widths={[300, 450, 600, 900]}
+        sizes="(min-width: 900px) 300px, (max-width: 767px) calc(100vw - 48px), 420px"
+        quality={80}
+        loading="lazy"
+      />
+      <span class="scene-ai-label">KI-generiert</span>
+    </figure>
+    </div>
 
     <!-- Hervorgehobenes Zitat (10.10.2026): Auszug aus Sandras Stimme unter
          „Stimmen“, semantisch als Zitat ausgezeichnet. -->
@@ -204,11 +223,34 @@
      einziger feiner Türkis-Akzent über der Zeile. Glow-Deckel (0,35) bleibt
      unberührt, weil dieser Block gar keinen Glow mehr trägt. */
   .sparring-takeaway {
-    /* Großzügiger Weißraum oben, deutlich über dem 32px-Container-Gap.
-       Unten trägt die Sektions-Padding (120px) + Beraterstab-Top-Padding
-       (120px) die Isolation – kein zusätzlicher margin-bottom nötig. */
-    margin-top: 80px;
     max-width: 640px;
+  }
+
+  /* Liste + Szenenbild (Oktober 2026). Der große Weißraum oben (80px,
+     ADR-045) sitzt jetzt am Wrapper statt an der Liste. */
+  .sparring-takeaway-wrap {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .sparring-photo {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .sparring-takeaway-wrap {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 56px;
+      align-items: center;
+    }
+    .sparring-photo {
+      max-width: none;
+    }
   }
 
   .sparring-takeaway h2 {
@@ -441,7 +483,7 @@
     .sparring-card h2 {
       font-size: 28px;
     }
-    .sparring-takeaway {
+    .sparring-takeaway-wrap {
       margin-top: 56px;
     }
     .sparring-takeaway h2 {

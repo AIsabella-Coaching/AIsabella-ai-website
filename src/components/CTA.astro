@@ -1,5 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { calendlyUrl } from '../config/site';
+import schreibtisch from '../assets/szenen/schreibtisch.jpg';
+import bildschirm2 from '../assets/szenen/bildschirm-2.png';
+import bildschirm3 from '../assets/szenen/bildschirm-3.png';
+import bildschirm4 from '../assets/szenen/bildschirm-4.png';
+
+// Bildschirm-Ausschnitte für die Überblendung: liegen exakt über dem
+// Laptop-Bildschirm im Grundbild (Ausschnitt 222/640, 368×315 von 1122×1402 px).
+const bildschirme = [bildschirm2, bildschirm3, bildschirm4];
 ---
 
 <section id="erstgespraech" class="cta-section">
@@ -8,6 +17,35 @@ import { calendlyUrl } from '../config/site';
   <div class="cta-readability-overlay" aria-hidden="true"></div>
 
   <div class="cta-container">
+    <!-- Szenenbild (KI-Bild, Oktober 2026): Isabella unscharf von hinten im
+         Videogespräch. Auf dem Bildschirm wechseln langsam vier Menschen
+         (Überblendung nur per CSS; bei „weniger Bewegung“ Standbild). -->
+    <figure class="scene-photo cta-photo">
+      <Image
+        src={schreibtisch}
+        alt="Blick über die Schulter von Isabella auf ihren Laptop, auf dem ein Videogespräch läuft"
+        widths={[340, 510, 680, 1020]}
+        sizes="(min-width: 900px) 340px, (max-width: 767px) calc(100vw - 48px), 420px"
+        quality={80}
+        loading="lazy"
+      />
+      {bildschirme.map((b, i) => (
+        <Image
+          src={b}
+          alt=""
+          aria-hidden="true"
+          class={`cta-screen cta-screen-${i + 1}`}
+          widths={[130, 200, 260, 370]}
+          sizes="(min-width: 900px) 112px, 33vw"
+          format="webp"
+          quality={80}
+          loading="lazy"
+        />
+      ))}
+      <span class="scene-ai-label">KI-generiert</span>
+    </figure>
+
+    <div class="cta-text">
     <h2>Dein Erstgespräch</h2>
 
     <p class="cta-subline">
@@ -22,6 +60,7 @@ import { calendlyUrl } from '../config/site';
     >
       Erstgespräch vereinbaren
     </a>
+    </div>
   </div>
 </section>
 
@@ -89,6 +128,58 @@ import { calendlyUrl } from '../config/site';
     z-index: 2;
     max-width: 720px;
     margin: 0 auto;
+  }
+
+  .cta-photo {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 48px;
+  }
+
+  /* Bildschirm-Ausschnitte: Lage in Prozent des Grundbilds (1122×1402 px). */
+  .cta-photo :global(.cta-screen) {
+    position: absolute;
+    left: 19.786%;
+    top: 45.649%;
+    width: 32.799%;
+    height: auto;
+    opacity: 0;
+    animation: cta-screen-fade 24s linear infinite both;
+  }
+  .cta-photo :global(.cta-screen-1) { animation-delay: 6s; }
+  .cta-photo :global(.cta-screen-2) { animation-delay: 12s; }
+  .cta-photo :global(.cta-screen-3) { animation-delay: 18s; }
+
+  /* Je Person 6 s: 1,5 s weich einblenden, halten, beim Wechsel 1,5 s
+     ausblenden – die nächste blendet gleichzeitig ein. */
+  @keyframes cta-screen-fade {
+    0%      { opacity: 0; }
+    6.25%   { opacity: 1; }
+    25%     { opacity: 1; }
+    31.25%  { opacity: 0; }
+    100%    { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-photo :global(.cta-screen) {
+      animation: none;
+      display: none;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .cta-container {
+      max-width: 1040px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: center;
+      text-align: left;
+    }
+    .cta-photo {
+      max-width: none;
+      margin: 0;
+    }
   }
 
   .cta-section h2 {

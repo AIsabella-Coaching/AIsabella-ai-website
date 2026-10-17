@@ -453,3 +453,39 @@ header.menu-open {
   color: transparent;
 }
 
+
+/* Szenenbilder (KI-Bilder, Oktober 2026) in „Was du mitnimmst“ und
+   „Dein Erstgespräch“: gerundete Kante, Schatten wie die Karten, kleiner
+   Hinweis „KI-generiert“ oben rechts. */
+.scene-photo {
+  position: relative;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.scene-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scene-ai-label {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 5px 7px;
+}
