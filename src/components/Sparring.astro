@@ -43,32 +43,33 @@ import sessel from '../assets/szenen/sessel.jpg';
 
     <!-- „Was du mitnimmst“ mit Szenenbild (KI-Bild, Oktober 2026): leerer
          petrolfarbener Sessel als „Gegenüber“, Isabella unscharf von hinten.
-         Desktop: Liste links, Bild rechts; schmaler: Bild unter der Liste. -->
-    <div class="sparring-takeaway-wrap">
+         Desktop: Überschrift darüber, Liste links, Bild rechts – ohne
+         Zuschnitt so groß, dass es genau so hoch ist wie die Liste;
+         schmaler: Bild unter der Liste. -->
     <article class="sparring-takeaway scroll-reveal" data-reveal-stagger="1">
       <h2>Was du mitnimmst</h2>
-      <ul class="sparring-takeaway-list">
-        <li>Du weißt, wie und wofür du KI einsetzt.</li>
-        <li>Deine KI ist auf dich und deine Arbeit eingestellt.</li>
-        <li>Wiederkehrende Aufgaben gehen dir mit KI schneller und leichter von der Hand.</li>
-        <li>Deine Arbeit gewinnt an Qualität, weil du KI mit deinem Fachwissen gezielt führst.</li>
-        <li>Bei Ideen und Entscheidungen hast du ein Gegenüber, das deine Gedanken hinterfragt und weiterführt.</li>
-        <li>Du traust dir zu, Neues selbst auszuprobieren, auch wenn sich die Werkzeuge verändern.</li>
-      </ul>
+      <div class="sparring-takeaway-row">
+        <ul class="sparring-takeaway-list">
+          <li>Du weißt, wie und wofür du KI einsetzt.</li>
+          <li>Deine KI ist auf dich und deine Arbeit eingestellt.</li>
+          <li>Wiederkehrende Aufgaben gehen dir mit KI schneller und leichter von der Hand.</li>
+          <li>Deine Arbeit gewinnt an Qualität, weil du KI mit deinem Fachwissen gezielt führst.</li>
+          <li>Bei Ideen und Entscheidungen hast du ein Gegenüber, das deine Gedanken hinterfragt und weiterführt.</li>
+          <li>Du traust dir zu, Neues selbst auszuprobieren, auch wenn sich die Werkzeuge verändern.</li>
+        </ul>
+        <figure class="scene-photo sparring-photo">
+          <Image
+            src={sessel}
+            alt="Blick über die Schulter von Isabella auf einen leeren petrolfarbenen Sessel gegenüber, dazwischen ein Tisch mit Wasserkaraffe und zwei Gläsern"
+            widths={[300, 450, 600, 900]}
+            sizes="(min-width: 900px) 333px, (max-width: 767px) calc(100vw - 48px), 420px"
+            quality={80}
+            loading="lazy"
+          />
+          <span class="scene-ai-label" title="KI-generiertes Bild"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" /></svg><span aria-hidden="true">KI</span><span class="sr-only">KI-generiertes Bild</span></span>
+        </figure>
+      </div>
     </article>
-
-    <figure class="scene-photo sparring-photo scroll-reveal" data-reveal-stagger="1">
-      <Image
-        src={sessel}
-        alt="Blick über die Schulter von Isabella auf einen leeren petrolfarbenen Sessel gegenüber, dazwischen ein Tisch mit Wasserkaraffe und zwei Gläsern"
-        widths={[300, 450, 600, 900]}
-        sizes="(min-width: 900px) 300px, (max-width: 767px) calc(100vw - 48px), 420px"
-        quality={80}
-        loading="lazy"
-      />
-      <span class="scene-ai-label" title="KI-generiertes Bild"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" /></svg><span aria-hidden="true">KI</span><span class="sr-only">KI-generiertes Bild</span></span>
-    </figure>
-    </div>
 
     <!-- Hervorgehobenes Zitat (10.10.2026): Auszug aus Sandras Stimme unter
          „Stimmen“, semantisch als Zitat ausgezeichnet. -->
@@ -223,13 +224,15 @@ import sessel from '../assets/szenen/sessel.jpg';
      einziger feiner Türkis-Akzent über der Zeile. Glow-Deckel (0,35) bleibt
      unberührt, weil dieser Block gar keinen Glow mehr trägt. */
   .sparring-takeaway {
-    max-width: 640px;
+    /* Großzügiger Weißraum oben, deutlich über dem 32px-Container-Gap.
+       Unten trägt die Sektions-Padding (120px) + Beraterstab-Top-Padding
+       (120px) die Isolation – kein zusätzlicher margin-bottom nötig. */
+    margin-top: 80px;
   }
 
-  /* Liste + Szenenbild (Oktober 2026). Der große Weißraum oben (80px,
-     ADR-045) sitzt jetzt am Wrapper statt an der Liste. */
-  .sparring-takeaway-wrap {
-    margin-top: 80px;
+  /* Liste + Szenenbild (Oktober 2026). Ab 900 px nebeneinander: Bild
+     333 px breit im Format 4:5 = so hoch wie die Liste, mittig dazu. */
+  .sparring-takeaway-row {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -242,10 +245,10 @@ import sessel from '../assets/szenen/sessel.jpg';
   }
 
   @media (min-width: 900px) {
-    .sparring-takeaway-wrap {
+    .sparring-takeaway-row {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 56px;
+      grid-template-columns: 1fr 333px;
+      gap: 48px;
       align-items: center;
     }
     .sparring-photo {
@@ -483,7 +486,7 @@ import sessel from '../assets/szenen/sessel.jpg';
     .sparring-card h2 {
       font-size: 28px;
     }
-    .sparring-takeaway-wrap {
+    .sparring-takeaway {
       margin-top: 56px;
     }
     .sparring-takeaway h2 {
