@@ -11,10 +11,6 @@ import sessel from '../assets/szenen/sessel.jpg';
       <h2>Dein Sparring: Deine Themen, dein Tempo</h2>
 
       <p>
-        Das 1:1 KI-Sparring umfasst acht Sessions à 60 Minuten über zwölf Wochen, online und ausschließlich unter vier Augen. Was in unseren Gesprächen passiert, bleibt dort.
-      </p>
-
-      <p>
         Ob du KI schon regelmäßig nutzt oder gerade erst ansetzt: Ich hole dich dort ab, wo du stehst. Ausgangspunkt sind die Themen, die bei dir gerade anliegen. So lernst du an Beispielen aus deinem eigenen Arbeitsalltag.
       </p>
 
@@ -32,12 +28,23 @@ import sessel from '../assets/szenen/sessel.jpg';
         <li><span class="field-marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 7.5 11.5 12 4.5l4.5 7 4.5-4L19 17H5L3 7.5z"/><path d="M5 20.5h14"/></svg></span><strong>Beraterstab (optional):</strong> Ein Gremium aus KI-Rollen, das dich beim Denken und Entscheiden unterstützt, zugeschnitten auf dein Unternehmen. Was das genau ist, liest du im nächsten Abschnitt.</li>
       </ol>
 
+      <!-- Ablauf (17.10.2026): Eckdaten als Kacheln vom Großen zum Kleinen
+           (Format, Zeitraum, Anzahl, Dauer). Der frühere Einleitungssatz mit
+           denselben Zahlen steht weiter in den strukturierten Daten (BaseLayout). -->
+      <h3 class="sparring-subhead">So läuft das Sparring ab</h3>
+      <ul class="sparring-facts">
+        <li><strong>1:1</strong><span>online &amp;<br />vertraulich</span></li>
+        <li><strong>12</strong><span>Wochen</span></li>
+        <li><strong>8</strong><span>Sessions</span></li>
+        <li><strong>60</strong><span>Minuten je Session</span></li>
+      </ul>
+
       <p>
         Wir starten wöchentlich, damit die neue Denkweise Fuß fasst und du schnell ins Tun kommst. Nach den ersten Wochen treffen wir uns zweiwöchentlich. Dazwischen hast du Raum für die eigene Umsetzung und wir vertiefen, was in der Praxis auftaucht.
       </p>
 
       <p>
-        Zwischen den Sessions bin ich für Rückfragen erreichbar, denn gute Fragen kommen selten auf Knopfdruck.
+        Zwischen den Sessions bin ich für Rückfragen erreichbar, denn gute Fragen kommen selten auf Knopfdruck. Was in unseren Gesprächen passiert, bleibt dort.
       </p>
     </article>
 
@@ -463,6 +470,61 @@ import sessel from '../assets/szenen/sessel.jpg';
     margin: 0 0 18px 0;
   }
 
+  /* Zwischenüberschrift „So läuft das Sparring ab“ mit feiner Trennlinie. */
+  .sparring-subhead {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--white);
+    margin: 36px 0 18px 0;
+    padding-top: 30px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  /* Eckdaten-Kacheln: Zahl im Verlauf des Erstgespräch-Buttons,
+     Beschriftung in Versalien. Desktop 4 nebeneinander, Handy 2×2. */
+  .sparring-facts {
+    list-style: none;
+    margin: 0 0 26px 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .sparring-facts li {
+    border: 1px solid color-mix(in srgb, var(--teal) 28%, transparent);
+    border-radius: 12px;
+    padding: 16px 10px 14px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .sparring-facts strong {
+    display: block;
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #08D3BB, #8A3FFC);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+  }
+
+  .sparring-facts span {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
   /* Override: scoped .sparring-card p hat höhere Spezifität als globale .section-subline.
      Diese Regel (.sparring-card .section-subline) hat 0,4,0 und gewinnt. */
   .sparring-card .section-subline {
@@ -485,6 +547,12 @@ import sessel from '../assets/szenen/sessel.jpg';
     }
     .sparring-card h2 {
       font-size: 28px;
+    }
+    .sparring-facts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .sparring-facts strong {
+      font-size: 26px;
     }
     .sparring-takeaway {
       margin-top: 56px;
